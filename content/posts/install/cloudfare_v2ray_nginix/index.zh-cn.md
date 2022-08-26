@@ -165,7 +165,7 @@ server {
   }
 
 ```
-{{< snippet src="/data/script/test.js" >}}
+{{< year >}}
 
 
 

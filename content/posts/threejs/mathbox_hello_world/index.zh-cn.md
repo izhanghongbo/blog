@@ -4,9 +4,15 @@ date: 2022-08-26T22:44:23+08:00
 draft: false
 tags: ["Mathbox","WebGL"]
 categories: ["Threejs"]
+resources:
+- name: "featured-image"
+  src: "banner.png"
 ---
 ## 演示效果
-
+<script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/@editorjs/editorjs@2.25.0/dist/editor.min.js"
+    ></script>
 <script
       type="text/javascript"
       src="https://cdn.jsdelivr.net/npm/three@0.137.0/build/three.min.js"
