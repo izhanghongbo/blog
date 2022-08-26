@@ -1,6 +1,18 @@
 {{- $cdn := .Scratch.Get "cdn" | default dict -}}
 {{- $fingerprint := .Scratch.Get "fingerprint" -}}
 
+<!-- {{ range $elem := .Site.Params.customCss }}
+    <link rel="stylesheet" href="{{ $elem | absURL }}">
+{{- end }}
+
+{{ range .Site.Params.customjs }}
+    <script type="text/javascript" src="{{ . | absURL }}"></script>
+{{- end }} -->
+
+{{ range $elem := .Site.Params.customjscssraw }}
+    {{ $elem | safeHTML }}
+{{- end }}
+
 {{- if not .Site.Params.app.noFavicon -}}
     {{- with .Site.Params.app.svgFavicon -}}
         <link rel="icon" href="{{ . }}">

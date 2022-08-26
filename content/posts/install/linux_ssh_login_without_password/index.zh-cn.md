@@ -4,7 +4,7 @@ date: 2022-08-20T18:46:09+08:00
 author: "Jacob"
 tags: ["Linux", "SSH"]
 categories: ["Linux"]
-draft: true
+draft: false
 ---
 
 ## 生成秘钥

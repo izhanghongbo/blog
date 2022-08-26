@@ -1,0 +1,28 @@
+{{- define "title" }}{{ .Title }} - {{ .Site.Title }}{{ end -}}
+
+{{- define "content" -}}
+    <!-- {{- $params := .Scratch.Get "params" -}} -->
+    <div class="page single special">
+        {{- /* Title */ -}}
+	<div class="program">
+
+        {{- range .Site.Params.program.main  -}}
+            <div class="item">
+              
+               <span class="{{ .icon }}"></span>
+               <span>{{ .name }}</span>
+            </div>
+        {{- end -}}
+
+		<!-- <div class="item"><span>One</span></div>
+		<div class="item">Two</div>
+		<div class="item">Three</div>
+		<div class="item">Three</div>
+		<div class="item">Three</div>
+		<div class="item">Three</div>
+		<div class="item">Three</div>
+		<div class="item">Three</div> -->
+	</div>
+    </div>
+{{- end -}}
+
