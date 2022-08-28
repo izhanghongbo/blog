@@ -25,20 +25,3 @@ git push -f origin master
 
 # Build the project.
 hugo
-
-# Go To Public folder
-cd public
-
-# Add changes to git.
-git add .
-
-# Commit changes.
-msg="Published on $(date +'%Y-%m-%d %H:%M:%S')"
-if [ -n "$*" ]; then
-    msg="$*"
-fi
-git commit -m "$msg"
-
-git pull --rebase origin master
-# Push source and build repos.
-git push -f origin master
