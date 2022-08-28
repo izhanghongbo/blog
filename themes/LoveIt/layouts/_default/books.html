@@ -1,0 +1,29 @@
+
+{{- define "title" }}{{ .Title }} - {{ .Site.Title }}{{ end -}}
+
+{{- define "content" -}}
+    <!-- {{- $params := .Scratch.Get "params" -}} -->
+    <div class="page single special">
+        {{- /* Title */ -}}
+	<div class="program">
+
+        {{- range readDir "./static/books"  -}}
+            <div class="item">              
+               <a href='/booklist' >{{ .Name }}</a>
+            </div>
+        {{- end -}}
+
+	<!-- {{ $dataJ := getJSON "http://localhost:8888/data" }}
+	
+	{{- range $dataJ  -}}
+	<div class="item">              
+		{{ $qs := slice "q" "test" "page" 3 }}
+		<a href="/booklist?{{ (querify $qs) | safeURL }}">{{ . }}</a>
+	</div>
+	{{- end -}} -->
+
+	
+	</div>
+    </div>
+{{- end -}}
+
