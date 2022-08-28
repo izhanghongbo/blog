@@ -1,8 +1,8 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>Express - 标签 - Bu Graph</title>
+        <title>Express - 标签 - Love Graph</title>
         <link>http://blog.bugraph.com/tags/express/</link>
-        <description>Express - 标签 - Bu Graph</description>
+        <description>Express - 标签 - Love Graph</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sat, 27 Aug 2022 15:28:33 &#43;0800</lastBuildDate><atom:link href="http://blog.bugraph.com/tags/express/" rel="self" type="application/rss+xml" /><item>
     <title>构建Express应用程序</title>
     <link>http://blog.bugraph.com/build_an_express_app/</link>

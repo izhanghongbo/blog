@@ -1,8 +1,8 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>shortcodes - 标签 - Bu Graph</title>
+        <title>shortcodes - 标签 - Love Graph</title>
         <link>http://blog.bugraph.com/tags/shortcodes/</link>
-        <description>shortcodes - 标签 - Bu Graph</description>
+        <description>shortcodes - 标签 - Love Graph</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 03 Mar 2020 16:29:59 &#43;0800</lastBuildDate><atom:link href="http://blog.bugraph.com/tags/shortcodes/" rel="self" type="application/rss+xml" /><item>
     <title>主题文档 - 扩展 Shortcodes</title>
     <link>http://blog.bugraph.com/theme-documentation-extended-shortcodes/</link>
