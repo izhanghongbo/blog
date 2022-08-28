@@ -1,8 +1,13 @@
 var express = require('express');
+var fs = require('fs');
+var http = require('http');
+var https = require('https');
 const cors = require('cors');
 const dree = require('dree');
 const tree = dree.scan('./books');
-
+var privateKey  = fs.readFileSync('ssl/key.pem', 'utf8');
+var certificate = fs.readFileSync('ssl/cert.pem', 'utf8');
+var credentials = {key: privateKey, cert: certificate};
 
 var app = express();
 app.use(cors()); 
@@ -18,11 +23,6 @@ app.get('/data', function (req, res) {
    res.send(tree);
 })
  
-var server = app.listen(8888, function () {
- 
-  var host = server.address().address
-  var port = server.address().port
- 
-  console.log("应用实例，访问地址为 http://%s:%s", host, port)
- 
-})
+var httpsServer = https.createServer(credentials, app);
+httpsServer.listen(8888);
+
