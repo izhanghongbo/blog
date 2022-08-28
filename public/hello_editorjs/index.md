@@ -1,4 +1,4 @@
-# EditorJS使用
+# Hello EditorJS
 
 
 <script src="https://cdn.jsdelivr.net/npm/@editorjs/editorjs@latest"></script>

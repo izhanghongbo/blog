@@ -1,4 +1,4 @@
-# Mathbox基础
+# 你好 Mathbox
 
 ## 演示效果
 <script

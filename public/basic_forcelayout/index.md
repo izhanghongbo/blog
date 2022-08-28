@@ -1,4 +1,4 @@
-# ForceLayout基础
+# 你好 ForceLayout
 
 
 ## 演示效果
@@ -17,11 +17,13 @@
       src="https://cdn.jsdelivr.net/npm/d3-force-3d@3.0.3/dist/d3-force-3d.min.js"
 ></script>
 
+
 <script>
+
 
 function onTick(){
     console.log(graph)
-
+    
     let positions = pointsGeometry.attributes.position.array
     for(let i = 0;i< positions.length;i+=3){
         positions[i] = nodes[i/3].x/100
@@ -46,6 +48,7 @@ linePositions = lineGeometry.attributes.position.array
       lineGeometry.attributes.position.needsUpdate = true
 }
 
+
 function onRun(){
     nodes = graph.nodes
     links = graph.links
@@ -57,6 +60,8 @@ function onRun(){
 
     simulation.restart()
 }
+
+
 
 </script>
 
@@ -106,6 +111,7 @@ function pointCloud(graph)
   return new THREE.Points(pointsGeometry, pointsMaterial);
 }
 
+
 function parseGraph(data) {
         var id = 0;
         var nodes = [];
@@ -122,9 +128,9 @@ function parseGraph(data) {
                 }
             };
             node.position = new THREE.Vector3(
-                Math.random() *5* 2 - 5,
-                Math.random() *5* 2 - 5,
-                Math.random() *5* 2 - 5
+                Math.random() * 5 * 2 - 5,
+                Math.random() * 5 * 2 - 5,
+                Math.random() * 5 * 2 - 5
             );
             nodes.push(node);
             let neibours = root.children
@@ -135,9 +141,9 @@ function parseGraph(data) {
                         name: c.name
                     };
                     n.position = new THREE.Vector3(
-                        Math.random() *5* 2 - 5,
-                        Math.random() *5* 2 - 5,
-                        Math.random() *5* 2 - 5
+                        Math.random() * 5 * 2 - 5,
+                        Math.random() * 5 * 2 - 5,
+                        Math.random() * 5 * 2 - 5
                     );
                     return {
                         node: n,
@@ -166,24 +172,23 @@ function parseGraph(data) {
 }
 
 var data = fetch("flare.json").then(d=>d.json()).then(d=>{
- graph = parseGraph(d)
- nodeCloud = pointCloud(graph)
- edgeCloud = lineCloud(graph)
- scene.add(nodeCloud);
- scene.add(edgeCloud);
- onRun()
+	graph = parseGraph(d)
+	nodeCloud = pointCloud(graph)
+	edgeCloud = lineCloud(graph)
 
+	scene.add(nodeCloud);
+        scene.add(edgeCloud);
 })
 
 var nodeVertextShader = `
 precision highp float;
 void main() {
     vec3 finalPosition = position;
-    vec4 mvPosition = modelViewMatrix *vec4( finalPosition, 1.0 );
-float vSize = 3.0* ( 50.0 / -mvPosition.z );
+    vec4 mvPosition = modelViewMatrix * vec4( finalPosition, 1.0 );
+    float vSize = 3.0 * ( 50.0 / -mvPosition.z );
     gl_PointSize = vSize;
     gl_Position = projectionMatrix * mvPosition;
-}
+} 
 `
 
 var nodeFragmentShader = `
@@ -220,6 +225,7 @@ var scene = new THREE.Scene();
 var camera = new THREE.PerspectiveCamera( 75, window.innerWidth/window.innerHeight, 0.1, 1000 );
 camera.position.z = 4;
 
+
 // Create a renderer with Antialiasing
 var renderer = new THREE.WebGLRenderer({antialias:true});
 
@@ -228,10 +234,11 @@ renderer.setClearColor("#000000");
 
 const controls = new THREE.OrbitControls( camera, renderer.domElement );
 
+
 // Configure renderer size
 let width = d3.select("#three-canvas").node().getBoundingClientRect().width
 let height = width/2;
-
+ 
 renderer.setSize(width,height);
 
 // Append Renderer to DOM

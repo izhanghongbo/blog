@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
-        <title>Cloudfare Nginx V2ray 配置 - Bu Graph</title><meta name="Description" content="Graph"><meta property="og:title" content="Cloudfare Nginx V2ray 配置" />
+        <title>Cloudfare Nginx V2ray 配置 - Love Graph</title><meta name="Description" content="Graph"><meta property="og:title" content="Cloudfare Nginx V2ray 配置" />
 <meta property="og:description" content="时间校准 1 2 3 4 sudo timedatectl set-ntp true # 启用 NTP 服务 sudo ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime # 将时区设为“亚洲/上海” sudo hwclock --systohc # 将硬件时钟调整到与当前系统时间一致 date -R # 以 RFC 5322 格式输出日期和" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://blog.bugraph.com/cloudfare_v2ray_nginix/" /><meta property="og:image" content="http://blog.bugraph.com/avatar.png"/><meta property="article:section" content="posts" />
@@ -30,7 +30,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/blog.bugraph.com\/cloudfare_v2ray_nginix\/"
-        },"image": ["http:\/\/blog.bugraph.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","wordcount":  672 ,
+        },"image": ["http:\/\/blog.bugraph.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","wordcount":  656 ,
         "url": "http:\/\/blog.bugraph.com\/cloudfare_v2ray_nginix\/","datePublished": "2022-08-21T19:06:20+08:00","dateModified": "2022-08-21T19:06:20+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": "http:\/\/blog.bugraph.com\/images\/avatar.png"},"author": {
@@ -41,15 +41,15 @@
     </script></head>
     <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
 
-        <div id="mask"></div><div class="wrapper"><script type="text/javascript" src="http://blog.bugraph.com/js/custom.js"></script><script type="text/javascript" src="https://unpkg.com/react@16/umd/react.production.min.js"></script><script type="text/javascript" src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script><script type="text/javascript" src="https://unpkg.com/babel-standalone@6/babel.min.js"></script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/rxjs@5.1.0/bundles/Rx.min.js"></script><script type="text/javascript" src="https://d3js.org/d3.v6.min.js"></script>
+        <div id="mask"></div><div class="wrapper"><script type="text/javascript" src="http://blog.bugraph.com/js/custom.js"></script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script><script type="text/javascript" src="https://d3js.org/d3.v6.min.js"></script>
 
 <header class="desktop" id="header-desktop">
     <div class="header-wrapper">
         <div class="header-title">
-            <a href="/" title="Bu Graph"><span class="header-title-pre"><i class='fa-solid fa-folder-tree'></i></span><span id="id-1" class="typeit"></span></a>
+            <a href="/" title="Love Graph"><span id="id-1" class="typeit"></span></a>
         </div>
         <div class="menu">
-            <div class="menu-inner"><a class="menu-item" href="/posts/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/program/"> 小程序 </a><a class="menu-item" href="/books/"> 书籍 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+            <div class="menu-inner"><a class="menu-item" href="/program/"> 小程序 </a><a class="menu-item" href="/posts/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/categories/documentation/"> 文档 </a><a class="menu-item" href="/about/"> 关于 </a><a class="menu-item" href="https://github.com/dillonzq/LoveIt" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw' aria-hidden='true'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
                         <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
                         <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
                             <i class="fas fa-search fa-fw" aria-hidden="true"></i>
@@ -62,6 +62,9 @@
                         </span>
                     </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
                     <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a><a href="javascript:void(0);" class="menu-item language" title="选择语言">
+                    <i class="fa fa-globe" aria-hidden="true"></i>                      
+                    <select class="language-select" id="language-select-desktop" onchange="location = this.value;"><option value="/cloudfare_v2ray_nginix/" selected>简体中文</option></select>
                 </a></div>
         </div>
     </div>
@@ -69,7 +72,7 @@
     <div class="header-container">
         <div class="header-wrapper">
             <div class="header-title">
-                <a href="/" title="Bu Graph"><span class="header-title-pre"><i class='fa-solid fa-folder-tree'></i></span><span id="id-2" class="typeit"></span></a>
+                <a href="/" title="Love Graph"><span id="id-2" class="typeit"></span></a>
             </div>
             <div class="menu-toggle" id="menu-toggle-mobile">
                 <span></span><span></span><span></span>
@@ -91,9 +94,12 @@
                     <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
                         取消
                     </a>
-                </div><a class="menu-item" href="/posts/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/program/" title="">小程序</a><a class="menu-item" href="/books/" title="">书籍</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                </div><a class="menu-item" href="/program/" title="">小程序</a><a class="menu-item" href="/posts/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/categories/documentation/" title="">文档</a><a class="menu-item" href="/about/" title="">关于</a><a class="menu-item" href="https://github.com/dillonzq/LoveIt" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw' aria-hidden='true'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
                 <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
-            </a></div>
+            </a><a href="javascript:void(0);" class="menu-item" title="选择语言">
+                    <i class="fa fa-globe fa-fw" aria-hidden="true"></i>
+                    <select class="language-select" onchange="location = this.value;"><option value="/cloudfare_v2ray_nginix/" selected>简体中文</option></select>
+                </a></div>
     </div>
 </header><div class="search-dropdown desktop">
         <div id="search-dropdown-desktop"></div>
@@ -106,7 +112,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Cloudfare Nginx V2ray 配置</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Jacob</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-08-21">2022-08-21</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 672 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-08-21">2022-08-21</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 656 字&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 2 分钟&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
                 <div class="details-summary toc-title">
@@ -422,7 +428,7 @@
 </span></span></span><span class="line"><span class="cl"><span class="s2">  }
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><p><div id="observablehq-62629335">
+</div><div id="observablehq-62629335">
 	<div class="observablehq-viewof-edgeColor"></div>
 	<div class="observablehq-viewof-align"></div>
 	<div class="observablehq-chart"></div>
@@ -436,38 +442,8 @@
 	  if (name === "chart") return Inspector.into("#observablehq-62629335 .observablehq-chart")();
 	});
       </script>
-<table>
-    <th>Size in bytes</th>
-    <th>Name</th>
-    <tr>
-        <td>6148</td>
-        <td><a href="/booklist/.DS_Store" target="_blank"> .DS_Store</a></td>
-    </tr>
-    <tr>
-        <td>160</td>
-        <td><a href="/booklist/docker" target="_blank"> docker</a></td>
-    </tr>
-    <tr>
-        <td>64</td>
-        <td><a href="/booklist/javascript" target="_blank"> javascript</a></td>
-    </tr>
-    <tr>
-        <td>64</td>
-        <td><a href="/booklist/math" target="_blank"> math</a></td>
-    </tr>
-    <tr>
-        <td>64</td>
-        <td><a href="/booklist/nodejs" target="_blank"> nodejs</a></td>
-    </tr>
-    <tr>
-        <td>64</td>
-        <td><a href="/booklist/webgl" target="_blank"> webgl</a></td>
-    </tr>
-</table></p>
 <p><a href="https://ericclose.github.io/V2Ray-TLS-WebSocket-Nginx-with-Cloudflare.html" target="_blank" rel="noopener noreffer ">转载</a></p>
-</div>
-
-        <div class="post-footer" id="post-footer">
+</div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
@@ -490,8 +466,8 @@
         </section>
     </div>
 
-    <div class="post-nav"><a href="/hello_editorjs/" class="prev" rel="prev" title="EditorJS使用"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>EditorJS使用</a>
-            <a href="/memgraph-install/" class="next" rel="next" title="Memgraph Docker 安装命令">Memgraph Docker 安装命令<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+    <div class="post-nav"><a href="/hello_editorjs/" class="prev" rel="prev" title="Hello EditorJS"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>Hello EditorJS</a>
+            <a href="/memgraph-install/" class="next" rel="next" title="Memgraph Install">Memgraph Install<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
 </div>
 </article></div>
             </main></div>
@@ -501,5 +477,5 @@
             </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
                 <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
             </a>
-        </div><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.13.1/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@8.6.0/dist/index.umd.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":50},"comment":{},"data":{"id-1":"数据可视化","id-2":"数据可视化"},"search":{"algoliaAppID":"PASDMWALPK","algoliaIndex":"index.zh-cn","algoliaSearchKey":"b42948e51daaa93df92381c8e2ac0f93","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+        </div><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.13.1/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@8.6.0/dist/index.umd.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":50},"comment":{},"data":{"id-1":"Love Graph","id-2":"Love Graph"},"search":{"algoliaAppID":"PASDMWALPK","algoliaIndex":"index.zh-cn","algoliaSearchKey":"b42948e51daaa93df92381c8e2ac0f93","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
 </html>

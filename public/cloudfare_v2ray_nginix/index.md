@@ -163,7 +163,6 @@ server {
 
 ```
 {{< year >}}
-{{< directory path="/static/books" pathURL="/booklist" >}}
 
 
 
