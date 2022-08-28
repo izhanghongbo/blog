@@ -39,7 +39,7 @@ title: "书籍"
 </style>
 
 <script type="text/babel">
-const SERVER = "http://95.163.203.164:8888"
+const SERVER = "https://95.163.203.164:8888"
 class Book extends React.Component {
  constructor(props) {
      super(props);
