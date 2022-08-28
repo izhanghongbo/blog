@@ -1,4 +1,4 @@
-# Graphxr_schema
+# GraphXR Schema
 
 
 ## GraphXR Schema

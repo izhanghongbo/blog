@@ -1,5 +1,5 @@
 ---
-title: "你好 Graph"
+title: "Graph示例"
 date: 2022-08-26T22:44:23+08:00
 draft: false
 tags: ["Threejs", "WebGL"]

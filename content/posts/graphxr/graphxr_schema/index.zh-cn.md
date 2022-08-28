@@ -1,5 +1,5 @@
 ---
-title: "Graphxr_schema"
+title: "GraphXR Schema"
 date: 2022-08-23T16:54:09+08:00
 draft: false
 tags: ["GraphXR"]

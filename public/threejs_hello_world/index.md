@@ -1,4 +1,4 @@
-# 你好 ThreeJS
+# ThreeJS示例
 
 ## 演示效果
 

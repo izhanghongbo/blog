@@ -1,5 +1,5 @@
 ---
-title: "你好 WebGL"
+title: "WebGL示例"
 date: 2022-08-21T19:06:20+08:00
 draft: false
 tags: ["WebGL"]

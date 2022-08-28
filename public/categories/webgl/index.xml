@@ -4,7 +4,7 @@
         <link>http://blog.bugraph.com/categories/webgl/</link>
         <description>WebGL - 分类 - Love Graph</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 21 Aug 2022 19:06:20 &#43;0800</lastBuildDate><atom:link href="http://blog.bugraph.com/categories/webgl/" rel="self" type="application/rss+xml" /><item>
-    <title>你好 WebGL</title>
+    <title>WebGL示例</title>
     <link>http://blog.bugraph.com/hello_webgl/</link>
     <pubDate>Sun, 21 Aug 2022 19:06:20 &#43;0800</pubDate>
     <author>Jacob</author>

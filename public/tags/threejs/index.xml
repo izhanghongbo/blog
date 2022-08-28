@@ -4,7 +4,7 @@
         <link>http://blog.bugraph.com/tags/threejs/</link>
         <description>Threejs - 标签 - Love Graph</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Fri, 26 Aug 2022 22:44:23 &#43;0800</lastBuildDate><atom:link href="http://blog.bugraph.com/tags/threejs/" rel="self" type="application/rss+xml" /><item>
-    <title>你好 ForceLayout</title>
+    <title>ForceLayout示例</title>
     <link>http://blog.bugraph.com/basic_forcelayout/</link>
     <pubDate>Fri, 26 Aug 2022 22:44:23 &#43;0800</pubDate>
     <author>Jacob</author>
@@ -12,7 +12,7 @@
     <description><![CDATA[演示效果 运行布局 代码片段]]></description>
 </item>
 <item>
-    <title>你好 Graph</title>
+    <title>Graph示例</title>
     <link>http://blog.bugraph.com/basic_graph/</link>
     <pubDate>Fri, 26 Aug 2022 22:44:23 &#43;0800</pubDate>
     <author>Jacob</author>
@@ -20,7 +20,7 @@
     <description><![CDATA[演示效果 代码片段]]></description>
 </item>
 <item>
-    <title>你好 ThreeJS</title>
+    <title>ThreeJS示例</title>
     <link>http://blog.bugraph.com/threejs_hello_world/</link>
     <pubDate>Fri, 26 Aug 2022 22:44:23 &#43;0800</pubDate>
     <author>Jacob</author>

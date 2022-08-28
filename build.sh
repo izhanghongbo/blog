@@ -8,6 +8,10 @@ set -e
 
 printf "\033[0;32mDeploying updates to GitHub...\033[0m\n"
 
+
+# Build the project.
+hugo
+
 # Add changes to git.
 git add .
 
@@ -21,7 +25,3 @@ git commit -m "$msg"
 git pull --rebase origin master
 # Push source and build repos.
 git push -f origin master
-
-
-# Build the project.
-hugo

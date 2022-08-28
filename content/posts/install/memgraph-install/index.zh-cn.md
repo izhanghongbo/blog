@@ -1,5 +1,5 @@
 ---
-title: "Memgraph Install"
+title: "Memgraph安装"
 date: 2022-08-23T13:32:40+08:00
 draft: false
 tags: []
