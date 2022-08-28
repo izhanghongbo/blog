@@ -1,6 +1,10 @@
 ---
 title: "书籍"
 ---
+
+<script src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.5/jszip.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/epubjs/dist/epub.min.js"></script>
 
@@ -35,7 +39,7 @@ title: "书籍"
 </style>
 
 <script type="text/babel">
-const SERVER = "http://95.163.203.164/:8888"
+const SERVER = "http://95.163.203.164:8888"
 class Book extends React.Component {
  constructor(props) {
      super(props);
@@ -128,4 +132,4 @@ ReactDOM.render(
 );
 </script>
 
-<div id="root">dd</div>
+<div id="root"></div>

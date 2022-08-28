@@ -1,6 +1,6 @@
-# 小程序
+# 书籍
 
----
-title: "小程序"
-layout: program
----
+
+<script src="https://unpkg.com/react@16/umd/react.production.min.js" />
+<script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js" />
+<script src="https://unpkg.com/babel-standalone@6/babel.min.js" />
