@@ -1,0 +1,15 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Layout - 标签 - Bu Graph</title>
+        <link>http://blog.bugraph.com/tags/layout/</link>
+        <description>Layout - 标签 - Bu Graph</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Fri, 26 Aug 2022 22:44:23 &#43;0800</lastBuildDate><atom:link href="http://blog.bugraph.com/tags/layout/" rel="self" type="application/rss+xml" /><item>
+    <title>ForceLayout基础</title>
+    <link>http://blog.bugraph.com/basic_forcelayout/</link>
+    <pubDate>Fri, 26 Aug 2022 22:44:23 &#43;0800</pubDate>
+    <author>Jacob</author>
+    <guid>http://blog.bugraph.com/basic_forcelayout/</guid>
+    <description><![CDATA[演示效果 运行布局 代码片段]]></description>
+</item>
+</channel>
+</rss>

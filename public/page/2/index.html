@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+	<meta name="generator" content="Hugo 0.101.0" />
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>Bu Graph</title><meta name="Description" content="Graph"><meta property="og:title" content="Bu Graph" />
+<meta property="og:description" content="Graph" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="http://blog.bugraph.com/" /><meta property="og:image" content="http://blog.bugraph.com/avatar.png"/><meta property="og:site_name" content="LoveIt" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="http://blog.bugraph.com/avatar.png"/>
+
+<meta name="twitter:title" content="Bu Graph"/>
+<meta name="twitter:description" content="Graph"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c">
+
+<link rel="icon" href="/images/avatar.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://blog.bugraph.com/" /><link rel="alternate" href="/index.xml" type="application/rss+xml" title="Bu Graph">
+    <link rel="feed" href="/index.xml" type="application/rss+xml" title="Bu Graph"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "WebSite",
+        "url": "http:\/\/blog.bugraph.com\/","inLanguage": "zh-CN","author": {
+                "@type": "Person",
+                "name": "Jacob"
+            },"description": "Graph","image": "http:\/\/blog.bugraph.com\/images\/Apple-Devices-Preview.png","thumbnailUrl": "http:\/\/blog.bugraph.com\/images\/screenshot.png","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","name": "Bu Graph"
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><script type="text/javascript" src="http://blog.bugraph.com/js/custom.js"></script><script type="text/javascript" src="https://unpkg.com/react@16/umd/react.production.min.js"></script><script type="text/javascript" src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script><script type="text/javascript" src="https://unpkg.com/babel-standalone@6/babel.min.js"></script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/rxjs@5.1.0/bundles/Rx.min.js"></script><script type="text/javascript" src="https://d3js.org/d3.v6.min.js"></script>
+
+<header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Bu Graph"><span class="header-title-pre"><i class='fa-solid fa-folder-tree'></i></span><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/program/"> 小程序 </a><a class="menu-item" href="/books/"> 书籍 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Bu Graph"><span class="header-title-pre"><i class='fa-solid fa-folder-tree'></i></span><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/program/" title="">小程序</a><a class="menu-item" href="/books/" title="">书籍</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="page home" data-home="posts"><div class="home-profile"><div class="home-avatar"><a href="/posts/" title="所有文章"><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/images/avatar.png"
+        data-srcset="/images/avatar.png, /images/avatar.png 1.5x, /images/avatar.png 2x"
+        data-sizes="auto"
+        alt="/images/avatar.png"
+        title="/images/avatar.png" /></a></div><div class="home-subtitle"><div id="id-3" class="typeit"></div></div><div class="links"></div></div>
+<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/basic_graph/">图可视化</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Jacob</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2022-08-26">2022-08-26</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/threejs/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Threejs</a></span></div><div class="content">演示效果 代码片段</div><div class="post-footer">
+        <a href="/basic_graph/">阅读全文</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/threejs/">Threejs</a>,&nbsp;<a href="/tags/webgl/">WebGL</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/graphxr_schema/">Graphxr_schema</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Jacob</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2022-08-23">2022-08-23</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/graphxr/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>GraphXR</a></span></div><div class="content">GraphXR Schema 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125 126 127 128 129 130 131 132 133 134 135 136 137 138 139 140 141 142 143 144 145 146 147 148 149 150 151 152 153 154 155 156 157 158 159 160 161 162 163 164 165 166 167 168 169 170 171 172 173 174 175 176 177 178 179 180 181 182 183 184 185 186 187 188 189 190 191 192 193 194 195 196 197 198 199 200 201 202 203 204 205 206 207 208 209 210 211 212 213 214 215 216 217 218 219 220 221 222 223 224 225 226 227 228 229 230 231 232 233 234 235 236 237 238 239 240 241 242 243 244 { &#34;labels&#34;: { &#34;Vehicle&#34;: { &#34;name&#34;: &#34;Vehicle&#34;, &#34;props&#34;: [ &#34;make&#34;, &#34;model&#34;, &#34;reg&#34;, &#34;year&#34; ] }, &#34;Email&#34;: { &#34;name&#34;: &#34;Email&#34;, &#34;props&#34;: [ &#34;email_address&#34; ] }, &#34;Phone&#34;: { &#34;name&#34;: &#34;Phone&#34;, &#34;props&#34;: [ &#34;phoneNo&#34; ] }, &#34;Crime&#34;: { &#34;name&#34;: &#34;Crime&#34;, &#34;props&#34;: [ &#34;date&#34;, &#34;id&#34;, &#34;last_outcome&#34;, &#34;type&#34; ] }, &#34;PhoneCall&#34;: { &#34;name&#34;: &#34;PhoneCall&#34;, &#34;props&#34;: [ &#34;call_date&#34;, &#34;call_duration&#34;, &#34;call_time&#34;, &#34;call_type&#34; ] }, &#34;Person&#34;: { &#34;name&#34;: &#34;Person&#34;, &#34;props&#34;: [ &#34;name&#34;, &#34;surname&#34; ] }, &#34;Location&#34;: { &#34;name&#34;: &#34;Location&#34;, &#34;props&#34;: [ &#34;address&#34;, &#34;latitude&#34;, &#34;longitude&#34;, &#34;postcode&#34; ] }, &#34;Officer&#34;: { &#34;name&#34;: &#34;Officer&#34;, &#34;props&#34;: [ &#34;badge_no&#34;, &#34;name&#34;, &#34;rank&#34;, &#34;surname&#34; ] } }, &#34;relationships&#34;: { &#34;INVOLVED_IN&#34;: { &#34;name&#34;: &#34;INVOLVED_IN&#34;, &#34;props&#34;: [] }, &#34;FAMILY_REL&#34;: { &#34;name&#34;: &#34;FAMILY_REL&#34;, &#34;props&#34;: [] }, &#34;CALLER&#34;: { &#34;name&#34;: &#34;CALLER&#34;, &#34;props&#34;: [] }, &#34;KNOWS_PHONE&#34;: { &#34;name&#34;: &#34;KNOWS_PHONE&#34;, &#34;props&#34;: [] }, &#34;INVESTIGATED_BY&#34;: { &#34;name&#34;: &#34;INVESTIGATED_BY&#34;, &#34;props&#34;: [] }, &#34;HAS_EMAIL&#34;: { &#34;name&#34;: &#34;HAS_EMAIL&#34;, &#34;props&#34;: [] }, &#34;KNOWS_SN&#34;: { &#34;name&#34;: &#34;KNOWS_SN&#34;, &#34;props&#34;: [] }, &#34;KNOWS&#34;: { &#34;name&#34;: &#34;KNOWS&#34;, &#34;props&#34;: [] }, &#34;CALLED&#34;: { &#34;name&#34;: &#34;CALLED&#34;, &#34;props&#34;: [] }, &#34;CURRENT_ADDRESS&#34;: { &#34;name&#34;: &#34;CURRENT_ADDRESS&#34;, &#34;props&#34;: [] }, &#34;OCCURRED_AT&#34;: { &#34;name&#34;: &#34;OCCURRED_AT&#34;, &#34;props&#34;: [] }, &#34;KNOWS_LW&#34;: { &#34;name&#34;: &#34;KNOWS_LW&#34;, &#34;props&#34;: [] }, &#34;PARTY_TO&#34;: { &#34;name&#34;: &#34;PARTY_TO&#34;, &#34;props&#34;: [] }, &#34;HAS_PHONE&#34;: { &#34;name&#34;: &#34;HAS_PHONE&#34;, &#34;props&#34;: [] } }, &#34;indexs&#34;: {}, &#34;schema&#34;: { &#34;labels&#34;: [ &#34;Vehicle&#34;, &#34;Area&#34;, &#34;Email&#34;, &#34;Phone&#34;, &#34;Crime&#34;, &#34;PhoneCall&#34;, &#34;Object&#34;, &#34;PostCode&#34;, &#34;Person&#34;, &#34;Location&#34;, &#34;Officer&#34; ], &#34;relationships&#34;: [ &#34;INVOLVED_IN&#34;, &#34;FAMILY_REL&#34;, &#34;CALLER&#34;, &#34;KNOWS_PHONE&#34;, &#34;INVESTIGATED_BY&#34;, &#34;HAS_EMAIL&#34;, &#34;KNOWS_SN&#34;, &#34;KNOWS&#34;, &#34;CALLED&#34;, &#34;CURRENT_ADDRESS&#34;, &#34;OCCURRED_AT&#34;, &#34;KNOWS_LW&#34;, &#34;PARTY_TO&#34;, &#34;HAS_PHONE&#34; ], &#34;maps&#34;: [ { &#34;id&#34;: &#34;-42&#34;, &#34;name&#34;: &#34;INVOLVED_IN&#34;, &#34;startLabelName&#34;: &#34;Vehicle&#34;, &#34;endLabelName&#34;: &#34;Crime&#34; }, { &#34;id&#34;: &#34;-31&#34;, &#34;name&#34;: &#34;FAMILY_REL&#34;, &#34;startLabelName&#34;: &#34;Person&#34;, &#34;endLabelName&#34;: &#34;Person&#34; }, { &#34;id&#34;: &#34;-35&#34;, &#34;name&#34;: &#34;CALLER&#34;, &#34;startLabelName&#34;: &#34;PhoneCall&#34;, &#34;endLabelName&#34;: &#34;Phone&#34; }, { &#34;id&#34;: &#34;-38&#34;, &#34;name&#34;: &#34;KNOWS_PHONE&#34;, &#34;startLabelName&#34;: &#34;Person&#34;, &#34;endLabelName&#34;: &#34;Person&#34; }, { &#34;id&#34;: &#34;-40&#34;, &#34;name&#34;: &#34;INVESTIGATED_BY&#34;, &#34;startLabelName&#34;: &#34;Crime&#34;, &#34;endLabelName&#34;: &#34;Officer&#34; }, { &#34;id&#34;: &#34;-37&#34;, &#34;name&#34;: &#34;HAS_EMAIL&#34;, &#34;startLabelName&#34;: &#34;Person&#34;, &#34;endLabelName&#34;: &#34;Email&#34; }, { &#34;id&#34;: &#34;-33&#34;, &#34;name&#34;: &#34;KNOWS_SN&#34;, &#34;startLabelName&#34;: &#34;Person&#34;, &#34;endLabelName&#34;: &#34;Person&#34; }, { &#34;id&#34;: &#34;-32&#34;, &#34;name&#34;: &#34;KNOWS&#34;, &#34;startLabelName&#34;: &#34;Person&#34;, &#34;endLabelName&#34;: &#34;Person&#34; }, { &#34;id&#34;: &#34;-34&#34;, &#34;name&#34;: &#34;CALLED&#34;, &#34;startLabelName&#34;: &#34;PhoneCall&#34;, &#34;endLabelName&#34;: &#34;Phone&#34; }, { &#34;id&#34;: &#34;-30&#34;, &#34;name&#34;: &#34;CURRENT_ADDRESS&#34;, &#34;startLabelName&#34;: &#34;Person&#34;, &#34;endLabelName&#34;: &#34;Location&#34; }, { &#34;id&#34;: &#34;-29&#34;, &#34;name&#34;: &#34;OCCURRED_AT&#34;, &#34;startLabelName&#34;: &#34;Crime&#34;, &#34;endLabelName&#34;: &#34;Location&#34; }, { &#34;id&#34;: &#34;-39&#34;, &#34;name&#34;: &#34;KNOWS_LW&#34;, &#34;startLabelName&#34;: &#34;Person&#34;, &#34;endLabelName&#34;: &#34;Person&#34; }, { &#34;id&#34;: &#34;-41&#34;, &#34;name&#34;: &#34;PARTY_TO&#34;, &#34;startLabelName&#34;: &#34;Person&#34;, &#34;endLabelName&#34;: &#34;Crime&#34; }, { &#34;id&#34;: &#34;-36&#34;, &#34;name&#34;: &#34;HAS_PHONE&#34;, &#34;startLabelName&#34;: &#34;Person&#34;, &#34;endLabelName&#34;: &#34;Phone&#34; } ] } } </div><div class="post-footer">
+        <a href="/graphxr_schema/">阅读全文</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/graphxr/">GraphXR</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/memgraph-install/">Memgraph Docker 安装命令</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Jacob</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2022-08-23">2022-08-23</time></span></div><div class="content">安装MemGraph 1 docker run -p 7687:7687 -p 7444:7444 memgraph/memgraph</div><div class="post-footer">
+        <a href="/memgraph-install/">阅读全文</a></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/cloudfare_v2ray_nginix/">Cloudfare Nginx V2ray 配置</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Jacob</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2022-08-21">2022-08-21</time></span></div><div class="content">时间校准 1 2 3 4 sudo timedatectl set-ntp true # 启用 NTP 服务 sudo ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime # 将时区设为“亚洲/上海” sudo hwclock --systohc # 将硬件时钟调整到与当前系统时间一致 date -R # 以 RFC 5322 格式输出日期和</div><div class="post-footer">
+        <a href="/cloudfare_v2ray_nginix/">阅读全文</a></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/hello_editorjs/">EditorJS使用</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Jacob</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2022-08-21">2022-08-21</time></span></div><div class="content"></div><div class="post-footer">
+        <a href="/hello_editorjs/">阅读全文</a></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/hello_react/">hugo中使用react</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Jacob</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2022-08-21">2022-08-21</time></span></div><div class="content">在文章中嵌入下面下代码 1 2 3 &lt; raw-html &gt; &lt;div id=&#34;root&#34;&gt;&lt;/div&gt; &lt;/ raw-html &gt; 新建react代码 在static/js/posts/目目录下创建以文章title为名的文件</div><div class="post-footer">
+        <a href="/hello_react/">阅读全文</a></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/hello_javascript/">Runtime使用</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Jacob</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2022-08-21">2022-08-21</time></span></div><div class="content"></div><div class="post-footer">
+        <a href="/hello_javascript/">阅读全文</a></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/hello_webgl/">WebGL基础</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Jacob</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2022-08-21">2022-08-21</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/webgl/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>WebGL</a></span></div><div class="content">效果 代码 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66</div><div class="post-footer">
+        <a href="/hello_webgl/">阅读全文</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/webgl/">WebGL</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><div class="featured-image-preview">
+            <a href="/ngnix-with-password/"><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/ngnix-with-password/bg.jpeg"
+        data-srcset="/ngnix-with-password/bg.jpeg, /ngnix-with-password/bg.jpeg 1.5x, /ngnix-with-password/bg.jpeg 2x"
+        data-sizes="auto"
+        alt="/ngnix-with-password/bg.jpeg"
+        title="/ngnix-with-password/bg.jpeg" /></a>
+        </div><h1 class="single-title" itemprop="name headline">
+        <a href="/ngnix-with-password/">使用htpasswd实现Nginx验证访问</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Jacob</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2022-08-20">2022-08-20</time></span></div><div class="content">安装htpasswd 1 yum -y install httpd-tools 生成密码 1 htpasswd -c ./passwd jacob 执行上面这个命令后，会在当前路径下生成一个passwd的文件 配置Nginx 打开/etc/ng</div><div class="post-footer">
+        <a href="/ngnix-with-password/">阅读全文</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/nginx/">Nginx</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/vim/">Vim使用</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Jacob</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2022-08-20">2022-08-20</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/linux/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Linux</a></span></div><div class="content">安装vim-plug 下载vim-plug 1 2 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim neovim 的安装路径是/.config/nvim/autoload 安装插件 以安装markdo</div><div class="post-footer">
+        <a href="/vim/">阅读全文</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/vim/">Vim</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/linux_ssh_login_without_password/">Linux免密登录设置</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Jacob</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2022-08-20">2022-08-20</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/linux/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Linux</a></span></div><div class="content">生成秘钥 查看你的本地是否存在 ~/.ssh文件夹，如果不存在则用如下命令生成秘钥 1 ssh-keygen -t rsa 上传公钥到服务器 进入 ～/.ssh文件夹中有id_rsa</div><div class="post-footer">
+        <a href="/linux_ssh_login_without_password/">阅读全文</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/linux/">Linux</a>,&nbsp;<a href="/tags/ssh/">SSH</a></div></div>
+</article><ul class="pagination"><li class="page-item ">
+                    <span class="page-link">
+                        <a href="/">1</a>
+                    </span>
+                </li><li class="page-item active">
+                    <span class="page-link">
+                        <a href="/page/2/">2</a>
+                    </span>
+                </li></ul></div></div>
+            </main></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.13.1/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@8.6.0/dist/index.umd.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":50},"data":{"id-1":"数据可视化","id-2":"数据可视化","id-3":"Jacob 的点滴记录"},"search":{"algoliaAppID":"PASDMWALPK","algoliaIndex":"index.zh-cn","algoliaSearchKey":"b42948e51daaa93df92381c8e2ac0f93","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"],"id-3":["id-3"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

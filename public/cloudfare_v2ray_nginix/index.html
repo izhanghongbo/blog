@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>Cloudfare Nginx V2ray 配置 - Bu Graph</title><meta name="Description" content="Graph"><meta property="og:title" content="Cloudfare Nginx V2ray 配置" />
+<meta property="og:description" content="时间校准 1 2 3 4 sudo timedatectl set-ntp true # 启用 NTP 服务 sudo ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime # 将时区设为“亚洲/上海” sudo hwclock --systohc # 将硬件时钟调整到与当前系统时间一致 date -R # 以 RFC 5322 格式输出日期和" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://blog.bugraph.com/cloudfare_v2ray_nginix/" /><meta property="og:image" content="http://blog.bugraph.com/avatar.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-08-21T19:06:20+08:00" />
+<meta property="article:modified_time" content="2022-08-21T19:06:20+08:00" /><meta property="og:site_name" content="LoveIt" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="http://blog.bugraph.com/avatar.png"/>
+
+<meta name="twitter:title" content="Cloudfare Nginx V2ray 配置"/>
+<meta name="twitter:description" content="时间校准 1 2 3 4 sudo timedatectl set-ntp true # 启用 NTP 服务 sudo ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime # 将时区设为“亚洲/上海” sudo hwclock --systohc # 将硬件时钟调整到与当前系统时间一致 date -R # 以 RFC 5322 格式输出日期和"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c">
+
+<link rel="icon" href="/images/avatar.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://blog.bugraph.com/cloudfare_v2ray_nginix/" /><link rel="prev" href="http://blog.bugraph.com/hello_editorjs/" /><link rel="next" href="http://blog.bugraph.com/memgraph-install/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Cloudfare Nginx V2ray 配置",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/blog.bugraph.com\/cloudfare_v2ray_nginix\/"
+        },"image": ["http:\/\/blog.bugraph.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","wordcount":  672 ,
+        "url": "http:\/\/blog.bugraph.com\/cloudfare_v2ray_nginix\/","datePublished": "2022-08-21T19:06:20+08:00","dateModified": "2022-08-21T19:06:20+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": "http:\/\/blog.bugraph.com\/images\/avatar.png"},"author": {
+                "@type": "Person",
+                "name": "Jacob"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><script type="text/javascript" src="http://blog.bugraph.com/js/custom.js"></script><script type="text/javascript" src="https://unpkg.com/react@16/umd/react.production.min.js"></script><script type="text/javascript" src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script><script type="text/javascript" src="https://unpkg.com/babel-standalone@6/babel.min.js"></script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/rxjs@5.1.0/bundles/Rx.min.js"></script><script type="text/javascript" src="https://d3js.org/d3.v6.min.js"></script>
+
+<header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Bu Graph"><span class="header-title-pre"><i class='fa-solid fa-folder-tree'></i></span><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/program/"> 小程序 </a><a class="menu-item" href="/books/"> 书籍 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Bu Graph"><span class="header-title-pre"><i class='fa-solid fa-folder-tree'></i></span><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/program/" title="">小程序</a><a class="menu-item" href="/books/" title="">书籍</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Cloudfare Nginx V2ray 配置</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Jacob</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-08-21">2022-08-21</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 672 字&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 2 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#时间校准">时间校准</a></li>
+    <li><a href="#安装v2ray">安装V2ray</a></li>
+    <li><a href="#配置v2ray">配置V2ray</a>
+      <ul>
+        <li><a href="#查看v2ray状态">查看V2ray状态</a></li>
+        <li><a href="#编辑配置文件">编辑配置文件</a></li>
+      </ul>
+    </li>
+    <li><a href="#nginx-配置">Nginx 配置</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="时间校准">时间校准</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo timedatectl set-ntp <span class="nb">true</span> <span class="c1"># 启用 NTP 服务</span>
+</span></span><span class="line"><span class="cl">sudo ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime <span class="c1"># 将时区设为“亚洲/上海”</span>
+</span></span><span class="line"><span class="cl">sudo hwclock --systohc <span class="c1"># 将硬件时钟调整到与当前系统时间一致</span>
+</span></span><span class="line"><span class="cl">date -R <span class="c1"># 以 RFC 5322 格式输出日期和时间。例如 Mon, 18 Jan 2021 11:04:16 +0800</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="安装v2ray">安装V2ray</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 下载脚本</span>
+</span></span><span class="line"><span class="cl">curl -O https://raw.githubusercontent.com/v2fly/fhs-install-v2ray/master/install-release.sh
+</span></span><span class="line"><span class="cl">curl -O https://raw.githubusercontent.com/v2fly/fhs-install-v2ray/master/install-dat-release.sh
+</span></span><span class="line"><span class="cl"><span class="c1"># 安装</span>
+</span></span><span class="line"><span class="cl">install-release.sh
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="配置v2ray">配置V2ray</h2>
+<h3 id="查看v2ray状态">查看V2ray状态</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">systemctl status v2ray
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这里会列出v2ray用的安装路径和配置文件路径</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"> v2ray.service - V2Ray Service
+</span></span><span class="line"><span class="cl">   Loaded: loaded <span class="o">(</span>/etc/systemd/system/v2ray.service<span class="p">;</span> disabled<span class="p">;</span> vendor preset: disabled<span class="o">)</span>
+</span></span><span class="line"><span class="cl">  Drop-In: /etc/systemd/system/v2ray.service.d
+</span></span><span class="line"><span class="cl">           └─10-donot_touch_single_conf.conf
+</span></span><span class="line"><span class="cl">   Active: active <span class="o">(</span>running<span class="o">)</span> since Sun 2022-08-21 17:34:27 CST<span class="p">;</span> 1h 47min ago
+</span></span><span class="line"><span class="cl">     Docs: https://www.v2fly.org/
+</span></span><span class="line"><span class="cl"> Main PID: <span class="m">32669</span> <span class="o">(</span>v2ray<span class="o">)</span>
+</span></span><span class="line"><span class="cl">    Tasks: <span class="m">8</span>
+</span></span><span class="line"><span class="cl">   Memory: 27.2M
+</span></span><span class="line"><span class="cl">   CGroup: /system.slice/v2ray.service
+</span></span><span class="line"><span class="cl">           └─32669 /usr/local/bin/v2ray -config /usr/local/etc/v2ray/config.json
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Aug <span class="m">21</span> 17:34:27 superb-code-2.localdomain systemd<span class="o">[</span>1<span class="o">]</span>: Started V2Ray Service.
+</span></span><span class="line"><span class="cl">Aug <span class="m">21</span> 17:34:28 superb-code-2.localdomain v2ray<span class="o">[</span>32669<span class="o">]</span>: V2Ray 4.45.2 <span class="o">(</span>V2Fly, a community-driven edition of V2Ray.<span class="o">)</span> Custom ...md64<span class="o">)</span>
+</span></span><span class="line"><span class="cl">Aug <span class="m">21</span> 17:34:28 superb-code-2.localdomain v2ray<span class="o">[</span>32669<span class="o">]</span>: A unified platform <span class="k">for</span> anti-censorship.
+</span></span><span class="line"><span class="cl">Aug <span class="m">21</span> 17:34:28 superb-code-2.localdomain v2ray<span class="o">[</span>32669<span class="o">]</span>: 2022/08/21 17:34:28 <span class="o">[</span>Info<span class="o">]</span> main/jsonem: Reading config: /usr/local....json
+</span></span><span class="line"><span class="cl">Aug <span class="m">21</span> 17:34:28 superb-code-2.localdomain v2ray<span class="o">[</span>32669<span class="o">]</span>: 2022/08/21 17:34:28 <span class="o">[</span>Warning<span class="o">]</span> V2Ray 4.45.2 started
+</span></span><span class="line"><span class="cl">Hint: Some lines were ellipsized, use -l to show in full.
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="编辑配置文件">编辑配置文件</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="s2">&#34;inbounds&#34;</span>: <span class="o">[{</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;port&#34;</span>: 10000,
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;listen&#34;</span>: <span class="s2">&#34;127.0.0.1&#34;</span>,
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;protocol&#34;</span>: <span class="s2">&#34;vmess&#34;</span>,
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;settings&#34;</span>: <span class="o">{</span>
+</span></span><span class="line"><span class="cl">      <span class="s2">&#34;clients&#34;</span>: <span class="o">[</span>
+</span></span><span class="line"><span class="cl">        <span class="o">{</span>
+</span></span><span class="line"><span class="cl">          <span class="s2">&#34;id&#34;</span>: <span class="s2">&#34;uuid&#34;</span>,
+</span></span><span class="line"><span class="cl">          <span class="s2">&#34;level&#34;</span>: 1,
+</span></span><span class="line"><span class="cl">          <span class="s2">&#34;alterId&#34;</span>: <span class="m">0</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">      <span class="o">]</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>,
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;streamSettings&#34;</span>: <span class="o">{</span>
+</span></span><span class="line"><span class="cl">      <span class="s2">&#34;network&#34;</span>: <span class="s2">&#34;ws&#34;</span>,
+</span></span><span class="line"><span class="cl">      <span class="s2">&#34;wsSettings&#34;</span>: <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;path&#34;</span>: <span class="s2">&#34;/test&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}]</span>,
+</span></span><span class="line"><span class="cl">  <span class="s2">&#34;outbounds&#34;</span>: <span class="o">[{</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;protocol&#34;</span>: <span class="s2">&#34;freedom&#34;</span>,
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;settings&#34;</span>: <span class="o">{}</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>,<span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;protocol&#34;</span>: <span class="s2">&#34;blackhole&#34;</span>,
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;settings&#34;</span>: <span class="o">{}</span>,
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;tag&#34;</span>: <span class="s2">&#34;blocked&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}]</span>,
+</span></span><span class="line"><span class="cl">  <span class="s2">&#34;routing&#34;</span>: <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;rules&#34;</span>: <span class="o">[</span>
+</span></span><span class="line"><span class="cl">      <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;type&#34;</span>: <span class="s2">&#34;field&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;ip&#34;</span>: <span class="o">[</span><span class="s2">&#34;geoip:private&#34;</span><span class="o">]</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;outboundTag&#34;</span>: <span class="s2">&#34;blocked&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">]</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="nginx-配置">Nginx 配置</h2>
+<p>打开文件夹<code>/etc/nginx/conf.d</code>,找到域名相关的配置文件xxxx.com.conf</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">server <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  listen <span class="m">80</span> default_server<span class="p">;</span>
+</span></span><span class="line"><span class="cl">  listen <span class="o">[</span>::<span class="o">]</span>:80 default_server<span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  server_name blog.bugraph.com<span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="m">301</span> https://<span class="nv">$host$request_uri</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">server <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  listen <span class="m">443</span> ssl http2<span class="p">;</span>
+</span></span><span class="line"><span class="cl">  listen <span class="o">[</span>::<span class="o">]</span>:443 ssl http2<span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  ssl_certificate /etc/ssl/cert_s.pem<span class="p">;</span>
+</span></span><span class="line"><span class="cl">  ssl_certificate_key /etc/ssl/key_s.pem<span class="p">;</span>
+</span></span><span class="line"><span class="cl">  ssl_client_certificate /etc/ssl/cloudflare.crt<span class="p">;</span>
+</span></span><span class="line"><span class="cl">  ssl_verify_client on<span class="p">;</span>
+</span></span><span class="line"><span class="cl">  ssl_session_timeout 1d<span class="p">;</span>
+</span></span><span class="line"><span class="cl">  ssl_session_cache shared:MozSSL:10m<span class="p">;</span>  <span class="c1"># about 40000 sessions</span>
+</span></span><span class="line"><span class="cl">  ssl_session_tickets off<span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="c1"># intermediate configuration</span>
+</span></span><span class="line"><span class="cl">  <span class="c1"># ssl_protocols TLSv1.2 TLSv1.3;</span>
+</span></span><span class="line"><span class="cl">  ssl_protocols TLSv1.2<span class="p">;</span>
+</span></span><span class="line"><span class="cl">  ssl_ciphers ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384<span class="p">;</span>
+</span></span><span class="line"><span class="cl">  ssl_prefer_server_ciphers off<span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="c1"># HSTS (ngx_http_headers_module is required) (63072000 seconds)</span>
+</span></span><span class="line"><span class="cl">  add_header Strict-Transport-Security <span class="s2">&#34;max-age=63072000&#34;</span> always<span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  server_name blog.bugraph.com<span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  root /var/www/izhanghongbo.github.io<span class="p">;</span>
+</span></span><span class="line"><span class="cl">  index index.html index.htm index.nginx-debian.html<span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  location / <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    try_files <span class="nv">$uri</span> <span class="nv">$uri</span>/ <span class="o">=</span>404<span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  location /debug <span class="o">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">return</span>  <span class="m">200</span> xforwardedfor:<span class="nv">$proxy_add_x_forwarded_for</span>--remote_addr:<span class="nv">$remote_addr</span>--scheme:<span class="nv">$scheme</span>--host:<span class="nv">$host</span><span class="s2">&#34;;
+</span></span></span><span class="line"><span class="cl"><span class="s2">  }
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">  location /test {
+</span></span></span><span class="line"><span class="cl"><span class="s2">    if (</span><span class="nv">$http_upgrade</span><span class="s2"> != &#34;</span>websocket<span class="s2">&#34;) {
+</span></span></span><span class="line"><span class="cl"><span class="s2">      return 404;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    }
+</span></span></span><span class="line"><span class="cl"><span class="s2">    proxy_redirect off;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    proxy_pass http://127.0.0.1:10000;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    proxy_http_version 1.1;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    proxy_set_header Upgrade </span><span class="nv">$http_upgrade</span><span class="s2">;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    proxy_set_header Connection &#34;</span>upgrade<span class="s2">&#34;;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    proxy_set_header Host </span><span class="nv">$host</span><span class="s2">;
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">    proxy_set_header X-Real-IP </span><span class="nv">$remote_addr</span><span class="s2">;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    proxy_set_header X-Forwarded-For </span><span class="nv">$proxy_add_x_forwarded_for</span><span class="s2">;
+</span></span></span><span class="line"><span class="cl"><span class="s2">  }
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><div id="observablehq-62629335">
+	<div class="observablehq-viewof-edgeColor"></div>
+	<div class="observablehq-viewof-align"></div>
+	<div class="observablehq-chart"></div>
+      </div>
+      <script type="module">
+	import {Runtime, Inspector} from "https://cdn.jsdelivr.net/npm/@observablehq/runtime@4/dist/runtime.js";
+	import define from "https://api.observablehq.com/@d3/sankey-diagram.js?v=3";
+	(new Runtime).module(define, name => {
+	  if (name === "viewof edgeColor") return Inspector.into("#observablehq-62629335 .observablehq-viewof-edgeColor")();
+	  if (name === "viewof align") return Inspector.into("#observablehq-62629335 .observablehq-viewof-align")();
+	  if (name === "chart") return Inspector.into("#observablehq-62629335 .observablehq-chart")();
+	});
+      </script>
+<table>
+    <th>Size in bytes</th>
+    <th>Name</th>
+    <tr>
+        <td>6148</td>
+        <td><a href="/booklist/.DS_Store" target="_blank"> .DS_Store</a></td>
+    </tr>
+    <tr>
+        <td>160</td>
+        <td><a href="/booklist/docker" target="_blank"> docker</a></td>
+    </tr>
+    <tr>
+        <td>64</td>
+        <td><a href="/booklist/javascript" target="_blank"> javascript</a></td>
+    </tr>
+    <tr>
+        <td>64</td>
+        <td><a href="/booklist/math" target="_blank"> math</a></td>
+    </tr>
+    <tr>
+        <td>64</td>
+        <td><a href="/booklist/nodejs" target="_blank"> nodejs</a></td>
+    </tr>
+    <tr>
+        <td>64</td>
+        <td><a href="/booklist/webgl" target="_blank"> webgl</a></td>
+    </tr>
+</table></p>
+<p><a href="https://ericclose.github.io/V2Ray-TLS-WebSocket-Nginx-with-Cloudflare.html" target="_blank" rel="noopener noreffer ">转载</a></p>
+</div>
+
+        <div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2022-08-21</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/cloudfare_v2ray_nginix/index.md" target="_blank">阅读原始文档</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/hello_editorjs/" class="prev" rel="prev" title="EditorJS使用"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>EditorJS使用</a>
+            <a href="/memgraph-install/" class="next" rel="next" title="Memgraph Docker 安装命令">Memgraph Docker 安装命令<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+</article></div>
+            </main></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.13.1/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@8.6.0/dist/index.umd.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":50},"comment":{},"data":{"id-1":"数据可视化","id-2":"数据可视化"},"search":{"algoliaAppID":"PASDMWALPK","algoliaIndex":"index.zh-cn","algoliaSearchKey":"b42948e51daaa93df92381c8e2ac0f93","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

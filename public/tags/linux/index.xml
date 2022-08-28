@@ -1,0 +1,15 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Linux - 标签 - Bu Graph</title>
+        <link>http://blog.bugraph.com/tags/linux/</link>
+        <description>Linux - 标签 - Bu Graph</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sat, 20 Aug 2022 18:46:09 &#43;0800</lastBuildDate><atom:link href="http://blog.bugraph.com/tags/linux/" rel="self" type="application/rss+xml" /><item>
+    <title>Linux免密登录设置</title>
+    <link>http://blog.bugraph.com/linux_ssh_login_without_password/</link>
+    <pubDate>Sat, 20 Aug 2022 18:46:09 &#43;0800</pubDate>
+    <author>Jacob</author>
+    <guid>http://blog.bugraph.com/linux_ssh_login_without_password/</guid>
+    <description><![CDATA[生成秘钥 查看你的本地是否存在 ~/.ssh文件夹，如果不存在则用如下命令生成秘钥 1 ssh-keygen -t rsa 上传公钥到服务器 进入 ～/.ssh文件夹中有id_rsa]]></description>
+</item>
+</channel>
+</rss>

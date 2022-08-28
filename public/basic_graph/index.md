@@ -1,0 +1,214 @@
+# 图可视化
+
+
+## 演示效果
+
+<div id="three-canvas">
+
+</div>
+<script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/three@0.137.0/examples/js/controls/OrbitControls.js"
+></script>
+
+<script>
+
+
+function lineCloud(graph){
+  let points = [];
+  let nodes = graph.nodes;
+  let links = graph.links.forEach((link) => {
+    let startNode = nodes.find((n) => n.id == link.sourceId);
+    let endNode = nodes.find((n) => n.id == link.targetId);
+    points.push(startNode.position);
+    points.push(endNode.position);
+  });
+  const geometry = new THREE.BufferGeometry().setFromPoints(points);
+  const material = new THREE.LineBasicMaterial({ color: "#3498db" });
+  let lines = new THREE.LineSegments(geometry, material);
+  return lines;
+}
+
+function pointCloud(graph)
+ {
+  let pointsGeometry = new THREE.BufferGeometry();
+  let points = [];
+  graph.nodes.forEach((n) => {
+    let vertex = n.position;
+    points.push(vertex);
+  });
+  pointsGeometry.setFromPoints(points);
+
+  // let pointsMaterial = new THREE.PointsMaterial({
+  //   size: 8,
+  //   sizeAttenuation: false,
+  //   color: "#92F22A",
+  //   map: circle_sprite_aa,
+  //   transparent: true,
+  //   alphaTest: 0.5
+  // });
+
+  let pointsMaterial = new THREE.ShaderMaterial({
+    vertexShader: nodeVertextShader,
+    fragmentShader: nodeFragmentShader,
+    transparent: true,
+    alphaTest: 0.1
+  });
+
+  return new THREE.Points(pointsGeometry, pointsMaterial);
+}
+
+
+function parseGraph(data) {
+        var id = 0;
+        var nodes = [];
+        var links = [];
+
+        function traval(root, children) {
+            if (!children) {
+                return;
+            }
+            let node = {
+                id: id,
+                property: {
+                    name: root.name
+                }
+            };
+            node.position = new THREE.Vector3(
+                Math.random() * 5 * 2 - 5,
+                Math.random() * 5 * 2 - 5,
+                Math.random() * 5 * 2 - 5
+            );
+            nodes.push(node);
+            let neibours = root.children
+                .map((c) => {
+                    id++;
+                    let n = {
+                        id: id,
+                        name: c.name
+                    };
+                    n.position = new THREE.Vector3(
+                        Math.random() * 5 * 2 - 5,
+                        Math.random() * 5 * 2 - 5,
+                        Math.random() * 5 * 2 - 5
+                    );
+                    return {
+                        node: n,
+                        children: c.children
+                    };
+                })
+                .forEach((c) => {
+                    nodes.push(c.node);
+                    let link = {
+                        id: node.id + "-" + c.node.id,
+                        sourceId: node.id,
+                        targetId: c.node.id
+                    };
+                    links.push(link);
+                    traval(c, c.children);
+                });
+        }
+
+        traval(data, data.children);
+        return {
+            nodes,
+            links
+        };
+}
+</script>
+
+<script>
+
+
+var data = fetch("flare.json").then(d=>d.json()).then(d=>{
+	let graph = parseGraph(d)
+	nodeCloud = pointCloud(graph)
+	edgeCloud = lineCloud(graph)
+
+	scene.add(nodeCloud);
+        scene.add(edgeCloud);
+})
+
+var nodeVertextShader = `
+precision highp float;
+void main() {
+    vec3 finalPosition = position;
+    vec4 mvPosition = modelViewMatrix * vec4( finalPosition, 1.0 );
+    float vSize = 3.0 * ( 50.0 / -mvPosition.z );
+    gl_PointSize = vSize;
+    gl_Position = projectionMatrix * mvPosition;
+} 
+`
+
+var nodeFragmentShader = `
+void antiAlia(){
+  // anti-aliased support
+  float len = length(gl_PointCoord- vec2(0.5, 0.5));
+  float delta = 0.0, alpha = 1.0;
+  delta = fwidth(len);
+  alpha = smoothstep(.495-delta, 0.495 + delta, len);
+  vec4 bColor = vec4(0.0);
+  gl_FragColor = mix(gl_FragColor, bColor, alpha);
+  gl_FragColor = gl_FragColor * (1.0 - alpha);
+}
+
+void renderCircle(vec4 color){
+    float r = length(gl_PointCoord- vec2(0.5, 0.5)), delta = 0.0, alpha = 1.0;
+    if (r > .5) {
+        discard;
+    }
+    gl_FragColor = color;
+}
+void main() {
+    vec4 color = vec4(231.0/255.0, 76.0/255.0, 60.0/255.0,1.0);
+    float len = length(gl_PointCoord- vec2(0.5, 0.5));
+    renderCircle(color);
+    antiAlia();
+    if ( gl_FragColor.a < ALPHATEST ) discard;
+}
+`
+
+var scene = new THREE.Scene();
+
+// Create a basic perspective camera
+var camera = new THREE.PerspectiveCamera( 75, window.innerWidth/window.innerHeight, 0.1, 1000 );
+camera.position.z = 4;
+
+
+// Create a renderer with Antialiasing
+var renderer = new THREE.WebGLRenderer({antialias:true});
+
+// Configure renderer clear color
+renderer.setClearColor("#000000");
+
+const controls = new THREE.OrbitControls( camera, renderer.domElement );
+
+
+// Configure renderer size
+let width = d3.select("#three-canvas").node().getBoundingClientRect().width
+let height = width/2;
+ 
+renderer.setSize(width,height);
+
+// Append Renderer to DOM
+let canvas = document.getElementById("three-canvas")
+canvas.appendChild( renderer.domElement );
+
+// Render Loop
+var render = function () {
+  requestAnimationFrame( render );
+  controls.update()
+  // Render the scene
+  renderer.render(scene, camera);
+};
+
+render();
+
+</script>
+
+## 代码片段
+
+```js
+
+```
+

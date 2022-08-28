@@ -1,0 +1,31 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>NodeJS - 标签 - Bu Graph</title>
+        <link>http://blog.bugraph.com/tags/nodejs/</link>
+        <description>NodeJS - 标签 - Bu Graph</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sat, 27 Aug 2022 15:28:33 &#43;0800</lastBuildDate><atom:link href="http://blog.bugraph.com/tags/nodejs/" rel="self" type="application/rss+xml" /><item>
+    <title>构建Express应用程序</title>
+    <link>http://blog.bugraph.com/build_an_express_app/</link>
+    <pubDate>Sat, 27 Aug 2022 15:28:33 &#43;0800</pubDate>
+    <author>Jacob</author>
+    <guid>http://blog.bugraph.com/build_an_express_app/</guid>
+    <description><![CDATA[初始化项目 1 npm init 安装Express 1 npm install express --save 以上命令会将 Express 框架安装在当前目录的 node_modules 目录中， node_modules 目录下会自动创建 express 目录。以下几个重要的模块是需要与]]></description>
+</item>
+<item>
+    <title>基于NodeJS构建Docker应用</title>
+    <link>http://blog.bugraph.com/build_a_nodejs_docker/</link>
+    <pubDate>Sat, 27 Aug 2022 14:52:29 &#43;0800</pubDate>
+    <author>Jacob</author>
+    <guid>http://blog.bugraph.com/build_a_nodejs_docker/</guid>
+    <description><![CDATA[创建一个NodeJS程序 1 2 3 4 5 6 7 8 9 10 http.createServer(function (request, response) { // 发送 HTTP 头部 // HTTP 状态值: 200 : OK // 内容类型: text/plain response.writeHead(200, {&#39;Content-Type&#39;: &#39;text/plain&#39;}); // 发送响应数据 &#34;Hello World&#34; response.end(&#39;Hello World\n&#39;); }).listen(8080); 创建Docke]]></description>
+</item>
+<item>
+    <title>Nodejs 基础</title>
+    <link>http://blog.bugraph.com/index.zh-ch/</link>
+    <pubDate>Sat, 27 Aug 2022 14:18:48 &#43;0800</pubDate>
+    <author>Jacob</author>
+    <guid>http://blog.bugraph.com/index.zh-ch/</guid>
+    <description><![CDATA[查看NodeJS 版本 1 node -v 创建一个Http服务器 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 var http = require(&#39;http&#39;); http.createServer(function (request, response) { // 发送 HTTP 头部 // HTTP 状态值: 200 : OK // 内容类型: text/plain response.writeHead(200,]]></description>
+</item>
+</channel>
+</rss>

@@ -1,0 +1,15 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Nginx - 标签 - Bu Graph</title>
+        <link>http://blog.bugraph.com/tags/nginx/</link>
+        <description>Nginx - 标签 - Bu Graph</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sat, 20 Aug 2022 22:36:36 &#43;0800</lastBuildDate><atom:link href="http://blog.bugraph.com/tags/nginx/" rel="self" type="application/rss+xml" /><item>
+    <title>使用htpasswd实现Nginx验证访问</title>
+    <link>http://blog.bugraph.com/ngnix-with-password/</link>
+    <pubDate>Sat, 20 Aug 2022 22:36:36 &#43;0800</pubDate>
+    <author>Jacob</author>
+    <guid>http://blog.bugraph.com/ngnix-with-password/</guid>
+    <description><![CDATA[安装htpasswd 1 yum -y install httpd-tools 生成密码 1 htpasswd -c ./passwd jacob 执行上面这个命令后，会在当前路径下生成一个passwd的文件 配置Nginx 打开/etc/ng]]></description>
+</item>
+</channel>
+</rss>
