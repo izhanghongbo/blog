@@ -822,14 +822,6 @@ ignoreErrors = ["error-remote-getjson", "error-missing-instagram-accesstoken"]
     copyright = "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License."
     [languages.zh-cn.menu]
       [[languages.zh-cn.menu.main]]
-        weight = 4
-        identifier = "books"
-        pre = ""
-        post = ""
-        name = "书籍"
-        url = "/books/"
-        title = ""
-      [[languages.zh-cn.menu.main]]
         weight = 1
         identifier = "posts"
         pre = ""
