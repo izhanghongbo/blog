@@ -1,25 +1,37 @@
 # ForceLayout示例
 
 
-## 演示效果
+{{<snippet 示例>}}
 
-<div id="three-canvas">
-<button onclick="onRun()">运行布局</button>
+```css
+#three-canvas{
+    position:relative
+}
 
-</div>
-<script
-      type="text/javascript"
-      src="https://cdn.jsdelivr.net/npm/three@0.137.0/examples/js/controls/OrbitControls.js"
-></script>
+#three-canvas button{
+    position:absolute
+}
 
+```
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/three@0.137.0/build/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.137.0/examples/js/controls/OrbitControls.js"></script>
+<script src="https://d3js.org/d3.v6.min.js"></script>
 <script
       type="text/javascript"
       src="https://cdn.jsdelivr.net/npm/d3-force-3d@3.0.3/dist/d3-force-3d.min.js"
 ></script>
 
+<div id="three-canvas">
 
-<script>
+<button onclick="onRun()">运行布局</button>
+</div>
 
+</div>
+```
+
+```js
 
 function onTick(){
     console.log(graph)
@@ -60,12 +72,6 @@ function onRun(){
 
     simulation.restart()
 }
-
-
-
-</script>
-
-<script>
 
 function lineCloud(graph){
   let points = [];
@@ -171,7 +177,10 @@ function parseGraph(data) {
         };
 }
 
-var data = fetch("flare.json").then(d=>d.json()).then(d=>{
+var url = (window.location != window.parent.location)
+            ? document.referrer
+            : document.location.href;
+var data = fetch(url+"flare.json").then(d=>d.json()).then(d=>{
 	graph = parseGraph(d)
 	nodeCloud = pointCloud(graph)
 	edgeCloud = lineCloud(graph)
@@ -215,7 +224,6 @@ void main() {
     float len = length(gl_PointCoord- vec2(0.5, 0.5));
     renderCircle(color);
     antiAlia();
-    if ( gl_FragColor.a < ALPHATEST ) discard;
 }
 `
 
@@ -237,7 +245,7 @@ const controls = new THREE.OrbitControls( camera, renderer.domElement );
 
 // Configure renderer size
 let width = d3.select("#three-canvas").node().getBoundingClientRect().width
-let height = width/2;
+let height = 400;
  
 renderer.setSize(width,height);
 
@@ -255,11 +263,9 @@ var render = function () {
 
 render();
 
-</script>
 
-## 代码片段
-
-```js
 
 ```
+
+{{</snippet>}}
 

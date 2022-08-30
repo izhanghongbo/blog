@@ -1,18 +1,18 @@
 # Graph示例
 
 
-## 演示效果
+{{<snippet 示例>}}
 
+```html
+<script src="https://cdn.jsdelivr.net/npm/three@0.137.0/build/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.137.0/examples/js/controls/OrbitControls.js"></script>
+<script src="https://d3js.org/d3.v6.min.js"></script>
 <div id="three-canvas">
 
 </div>
-<script
-      type="text/javascript"
-      src="https://cdn.jsdelivr.net/npm/three@0.137.0/examples/js/controls/OrbitControls.js"
-></script>
+```
 
-<script>
-
+```js
 
 function lineCloud(graph){
   let points = [];
@@ -115,12 +115,11 @@ function parseGraph(data) {
             links
         };
 }
-</script>
 
-<script>
-
-
-var data = fetch("flare.json").then(d=>d.json()).then(d=>{
+var url = (window.location != window.parent.location)
+            ? document.referrer
+            : document.location.href;
+var data = fetch(url+"flare.json").then(d=>d.json()).then(d=>{
 	let graph = parseGraph(d)
 	nodeCloud = pointCloud(graph)
 	edgeCloud = lineCloud(graph)
@@ -164,7 +163,6 @@ void main() {
     float len = length(gl_PointCoord- vec2(0.5, 0.5));
     renderCircle(color);
     antiAlia();
-    if ( gl_FragColor.a < ALPHATEST ) discard;
 }
 `
 
@@ -204,11 +202,10 @@ var render = function () {
 
 render();
 
-</script>
 
-## 代码片段
-
-```js
 
 ```
+
+{{</snippet>}}
+
 

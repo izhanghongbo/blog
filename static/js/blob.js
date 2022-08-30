@@ -10,16 +10,12 @@ function mySnippet(html, js, css, id) {
 	const jsURL = getBlobURL(js, 'text/javascript')
       
 	const source = `
-	  <html>
-	    <head>
-	    
-	    <meta charset="utf-8"/>
-	      ${css && `<link rel="stylesheet" type="text/css" href="${cssURL}" />`}
-	      ${js && `<script src="${jsURL}" type="text/javascript"></script>`}
-	    </head>
+	  <html>	    
+	   ${css && `<link rel="stylesheet" type="text/css" href="${cssURL}" />`}
 	    <body>
 	      ${html || ''}
 	    </body>
+	    ${js && `<script src="${jsURL}" type="text/javascript"></script>`}
 	  </html>
 	`;
 	return getBlobURL(source, 'text/html');

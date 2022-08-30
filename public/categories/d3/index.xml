@@ -9,7 +9,7 @@
     <pubDate>Fri, 26 Aug 2022 22:44:23 &#43;0800</pubDate>
     <author>Jacob</author>
     <guid>http://blog.bugraph.com/basic_forcelayout/</guid>
-    <description><![CDATA[演示效果 运行布局 代码片段]]></description>
+    <description><![CDATA[代码片段 示例 CSS: 1 2 3 4 5 6 7 #three-canvas{ position:relative } #three-canvas button{ position:absolute } HTML: 1 2 3 4 5 6 7 8 9 10 11 12 13 14 &lt;script src=&#34;https://cdn.jsdelivr.net/npm/three@0.137.0/build/three.min.js&#34;&gt;&lt;/script&gt; &lt;script src=&#34;https://cdn.jsdelivr.net/npm/three@0.137.0/examples/js/controls/OrbitControls.js&#34;&gt;&lt;/script&gt; &lt;script src=&#34;https://d3js.org/d3.v6.min.js&#34;&gt;&lt;/script&gt; &lt;script type=&#34;text/javascript&#34; src=&#34;https://cdn.jsdelivr.net/npm/d3-force-3d@3.0.3/dist/d3-force-3d.min.js&#34; &gt;&lt;/script&gt; &lt;div id=&#34;three-canvas&#34;&gt; &lt;button onclick=&#34;onRun()&]]></description>
 </item>
 </channel>
 </rss>
