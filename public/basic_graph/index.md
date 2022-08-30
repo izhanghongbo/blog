@@ -1,6 +1,10 @@
 # Graph示例
 
 
+<script>
+window.dataUrl = window.location.href + "/flare.json"
+</script>
+
 {{<snippet 示例>}}
 
 ```html
@@ -116,10 +120,8 @@ function parseGraph(data) {
         };
 }
 
-var url = (window.location != window.parent.location)
-            ? document.referrer
-            : document.location.href;
-var data = fetch(url+"flare.json").then(d=>d.json()).then(d=>{
+var url = window.parent.dataUrl 
+var data = fetch(url).then(d=>d.json()).then(d=>{
 	let graph = parseGraph(d)
 	nodeCloud = pointCloud(graph)
 	edgeCloud = lineCloud(graph)

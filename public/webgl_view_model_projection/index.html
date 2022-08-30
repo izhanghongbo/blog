@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
         <title>WebGL 模型 视图 投影 - Love Graph</title><meta name="Description" content="Graph"><meta property="og:title" content="WebGL 模型 视图 投影" />
-<meta property="og:description" content="齐次坐标系 模型转换 原文" />
+<meta property="og:description" content="代码片段 WebGL HTML: 1 2 3 4 5 6 7 8 &lt;script&gt; var newScript = document.createElement(&#34;script&#34;); newScript.src = window.parent.MDN_URL; document.head.appendChild(newScript); &lt;/script&gt; &lt;canvas id=&#34;canvas&#34;&gt;&lt;/canvas&gt; 运行结果: 齐次坐标系 模型转换 原文" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://blog.bugraph.com/webgl_view_model_projection/" /><meta property="og:image" content="http://blog.bugraph.com/avatar.png"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2022-08-21T19:06:20+08:00" />
@@ -15,7 +15,7 @@
 <meta name="twitter:image" content="http://blog.bugraph.com/avatar.png"/>
 
 <meta name="twitter:title" content="WebGL 模型 视图 投影"/>
-<meta name="twitter:description" content="齐次坐标系 模型转换 原文"/>
+<meta name="twitter:description" content="代码片段 WebGL HTML: 1 2 3 4 5 6 7 8 &lt;script&gt; var newScript = document.createElement(&#34;script&#34;); newScript.src = window.parent.MDN_URL; document.head.appendChild(newScript); &lt;/script&gt; &lt;canvas id=&#34;canvas&#34;&gt;&lt;/canvas&gt; 运行结果: 齐次坐标系 模型转换 原文"/>
 <meta name="application-name" content="LoveIt">
 <meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c">
 
@@ -30,7 +30,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/blog.bugraph.com\/webgl_view_model_projection\/"
-        },"image": ["http:\/\/blog.bugraph.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "WebGL","wordcount":  11 ,
+        },"image": ["http:\/\/blog.bugraph.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "WebGL","wordcount":  42 ,
         "url": "http:\/\/blog.bugraph.com\/webgl_view_model_projection\/","datePublished": "2022-08-21T19:06:20+08:00","dateModified": "2022-08-21T19:06:20+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": "http:\/\/blog.bugraph.com\/images\/avatar.png"},"author": {
@@ -106,7 +106,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">WebGL 模型 视图 投影</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Jacob</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/webgl/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>WebGL</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-08-21">2022-08-21</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 11 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-08-21">2022-08-21</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 42 字&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 1 分钟&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
                 <div class="details-summary toc-title">
@@ -119,6 +119,66 @@
   </ul>
 </nav></div>
             </div><div class="content" id="content"><script>
+window.MDN_URL = window.location.href + "/MDN.json"
+</script>
+
+<h4>代码片段 WebGL</h4>
+
+
+
+
+
+<p><strong>HTML:</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">newScript</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s2">&#34;script&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nx">newScript</span><span class="p">.</span><span class="nx">src</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">parent</span><span class="p">.</span><span class="nx">MDN_URL</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="nb">document</span><span class="p">.</span><span class="nx">head</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">newScript</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">canvas</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;canvas&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">canvas</span><span class="p">&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<b>运行结果:</b><br>
+
+<iframe id="WebGL" allowfullscreen
+      style="width:100%;height:400px;"></iframe>
+<script src="/js/blob.js" type="text/javascript"></script> 
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', function() {
+   mySnippet('\n\n\n\u003cscript\u003e\n\nvar newScript = document.createElement(\u0022script\u0022);\nnewScript.src = window.parent.MDN_URL;\ndocument.head.appendChild(newScript);\n\n\u003c\/script\u003e\n\u003ccanvas id=\u0022canvas\u0022\u003e\u003c\/canvas\u003e\n\n\n\n\n', '\n\n\n\n\n', '\n\n\n\n\n', 'WebGL');
+}, false);
+</script> 
+<script>
 
 
 
@@ -724,10 +784,10 @@ CubeDemo.prototype.setupProgram = function() {
 
 CubeDemo.prototype.computePerspectiveMatrix = function() {
   
-  var fieldOfViewInRadians = Math.PI * 0.9;
+  var fieldOfViewInRadians = Math.PI * 0.1;
   var aspectRatio = window.innerWidth / window.innerHeight;
   var nearClippingPlaneDistance = 1;
-  var farClippingPlaneDistance = 500;
+  var farClippingPlaneDistance = 50;
   
   this.transforms.projection = MDN.perspectiveMatrix(
     fieldOfViewInRadians,

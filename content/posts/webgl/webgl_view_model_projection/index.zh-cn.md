@@ -5,6 +5,30 @@ draft: false
 tags: ["WebGL"]
 categories: ["WebGL"]
 ---
+
+<script>
+window.MDN_URL = window.location.href + "/MDN.json"
+</script>
+
+{{<snippet WebGL >}}
+
+```html
+<script>
+
+var newScript = document.createElement("script");
+newScript.src = window.parent.MDN_URL;
+document.head.appendChild(newScript);
+
+</script>
+<canvas id="canvas"></canvas>
+
+
+```
+
+{{</snippet>}}
+
+
+
 {{<MDN>}}
 
 # 齐次坐标系
@@ -228,10 +252,10 @@ CubeDemo.prototype.setupProgram = function() {
 
 CubeDemo.prototype.computePerspectiveMatrix = function() {
   
-  var fieldOfViewInRadians = Math.PI * 0.9;
+  var fieldOfViewInRadians = Math.PI * 0.1;
   var aspectRatio = window.innerWidth / window.innerHeight;
   var nearClippingPlaneDistance = 1;
-  var farClippingPlaneDistance = 500;
+  var farClippingPlaneDistance = 50;
   
   this.transforms.projection = MDN.perspectiveMatrix(
     fieldOfViewInRadians,
