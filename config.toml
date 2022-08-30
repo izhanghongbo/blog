@@ -114,7 +114,9 @@ ignoreErrors = ["error-remote-getjson", "error-missing-instagram-accesstoken"]
   images = ["/avatar.png"]
 
   custom_js = [
-    "js/custom.js",
+    "https://unpkg.com/react@16/umd/react.production.min.js",
+    "https://unpkg.com/react-dom@16/umd/react-dom.production.min.js",
+    "https://unpkg.com/babel-standalone@6/babel.min.js",
     "https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js",
     "https://d3js.org/d3.v6.min.js"]
   [params.program]

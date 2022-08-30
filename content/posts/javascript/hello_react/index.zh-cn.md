@@ -50,3 +50,6 @@ draft: false
 
 ## 新建react代码
 在`static/js/posts/`目目录下创建以文章title为名的文件
+
+
+{{< MDN >}}
