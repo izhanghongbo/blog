@@ -33,7 +33,7 @@
     <pubDate>Sun, 21 Aug 2022 19:06:20 &#43;0800</pubDate>
     <author>Jacob</author>
     <guid>http://blog.bugraph.com/webgl_view_model_projection/</guid>
-    <description><![CDATA[代码片段 WebGL HTML: 1 2 3 4 5 6 7 8 &lt;script&gt; var newScript = document.createElement(&#34;script&#34;); newScript.src = window.parent.MDN_URL; document.head.appendChild(newScript); &lt;/script&gt; &lt;canvas id=&#34;canvas&#34;&gt;&lt;/canvas&gt; 运行结果: 齐次坐标系 模型转换 原文]]></description>
+    <description><![CDATA[代码片段 WebGL HTML: 1 2 3 4 5 6 7 &lt;script&gt; var MDN =window.parent.MDN &lt;/script&gt; &lt;canvas id=&#34;canvas&#34;&gt;&lt;/canvas&gt; JS: 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49]]></description>
 </item>
 <item>
     <title>WebGL示例</title>

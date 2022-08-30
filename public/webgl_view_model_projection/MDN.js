@@ -44,15 +44,12 @@ MDN.createWebGLProgram = function (gl, vertexSource, fragmentSource) {
   return MDN.linkProgram( gl, vertexShader, fragmentShader );
 }
 
-MDN.createWebGLProgramFromIds = function (gl, vertexSourceId, fragmentSourceId) {
-  
-  var vertexSourceEl = document.getElementById(vertexSourceId);
-  var fragmentSourceEl = document.getElementById(fragmentSourceId);
-  
+MDN.createWebGLProgramFromContent = function (gl, vertexSource, fragmentSource) {
+    
   return MDN.createWebGLProgram(
     gl,
-    vertexSourceEl.innerHTML,
-    fragmentSourceEl.innerHTML
+    vertexSource,
+    fragmentSource 
   );
 }
 
