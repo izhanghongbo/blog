@@ -7,7 +7,7 @@ categories: ["WebGL"]
 ---
 {{<MDN>}}
 
-## 齐次坐标系
+# 齐次坐标系
 
 <canvas id="canvas"></canvas>
 
@@ -148,7 +148,7 @@ box.draw({
 
 </script>
 
-## 视图矩阵
+## 模型转换
 
 <canvas id="canvas-cube"></canvas>
 
@@ -160,7 +160,6 @@ box.draw({
     // The transformation matrix
     uniform mat4 model;
     uniform mat4 projection;
-    uniform mat4 view;
 
     // Pass the color attribute down to the fragment shader
     varying vec4 vColor;
@@ -171,7 +170,7 @@ box.draw({
       vColor = color;
       
       // Multiply the 
-      gl_Position = projection *view *model * vec4(position, 1.0);
+      gl_Position = projection * model * vec4(position, 1.0);
     }
 </script>
 
@@ -188,12 +187,11 @@ box.draw({
 
 <script>
 
-
 function CubeDemo () {
   
   // Prep the canvas
   this.canvas = document.getElementById("canvas-cube");
-  this.canvas.width = 400;
+  this.canvas.width = 400
   this.canvas.height = 400;
   
   // Grab a context
@@ -218,7 +216,6 @@ CubeDemo.prototype.setupProgram = function() {
   
   // Save the attribute and uniform locations
   this.locations.model = gl.getUniformLocation(webglProgram, "model");
-  this.locations.view = gl.getUniformLocation(webglProgram, "view");
   this.locations.projection = gl.getUniformLocation(webglProgram, "projection");
   this.locations.position = gl.getAttribLocation(webglProgram, "position");
   this.locations.color = gl.getAttribLocation(webglProgram, "color");
@@ -231,10 +228,10 @@ CubeDemo.prototype.setupProgram = function() {
 
 CubeDemo.prototype.computePerspectiveMatrix = function() {
   
-  var fieldOfViewInRadians = Math.PI * 0.2;
+  var fieldOfViewInRadians = Math.PI * 0.9;
   var aspectRatio = window.innerWidth / window.innerHeight;
   var nearClippingPlaneDistance = 1;
-  var farClippingPlaneDistance = 100;
+  var farClippingPlaneDistance = 500;
   
   this.transforms.projection = MDN.perspectiveMatrix(
     fieldOfViewInRadians,
@@ -244,39 +241,19 @@ CubeDemo.prototype.computePerspectiveMatrix = function() {
   );
 };
 
-CubeDemo.prototype.computeViewMatrix = function( now ) {
-
-  var moveInAndOut = 20 * Math.sin(now * 0.002);
-  var moveLeftAndRight = 15 * Math.sin(now * 0.0017);
-  
-  // Move the camera around
-  var position = MDN.translateMatrix(moveLeftAndRight, 0, 50 + moveInAndOut );
-  
-  // Multiply together, make sure and read them in opposite order
-  var matrix = MDN.multiplyArrayOfMatrices([
-    
-    //Exercise: rotate the camera view
-    position
-  ]);
-  
-  // Inverse the operation for camera movements, because we are actually
-  // moving the geometry in the scene, not the camera itself.
-  this.transforms.view = MDN.invertMatrix( matrix );
-};
-
 CubeDemo.prototype.computeModelMatrix = function( now ) {
 
   //Scale up
   var scale = MDN.scaleMatrix(5, 5, 5);
   
   // Rotate a slight tilt
-  var rotateX = MDN.rotateXMatrix( Math.PI * 0.2 );
+  var rotateX = MDN.rotateXMatrix( now * 0.0003 );
   
   // Rotate according to time
-  var rotateY = MDN.rotateYMatrix( Math.PI * 0.2 );
+  var rotateY = MDN.rotateYMatrix( now * 0.0005 );
 
   // Move slightly down
-  var position = MDN.translateMatrix(0, 0, 0);
+  var position = MDN.translateMatrix(0, 0, -20);
   
   // Multiply together, make sure and read them in opposite order
   this.transforms.model = MDN.multiplyArrayOfMatrices([
@@ -299,7 +276,6 @@ CubeDemo.prototype.draw = function() {
   
   // Compute our matrices
   this.computeModelMatrix( now );
-  this.computeViewMatrix( now );
   this.computePerspectiveMatrix( 0.5 );
   
   // Update the data going to the GPU
@@ -319,7 +295,6 @@ CubeDemo.prototype.updateAttributesAndUniforms = function() {
   // Setup the color uniform that will be shared across all triangles
   gl.uniformMatrix4fv(this.locations.model, false, new Float32Array(this.transforms.model));
   gl.uniformMatrix4fv(this.locations.projection, false, new Float32Array(this.transforms.projection));
-  gl.uniformMatrix4fv(this.locations.view, false, new Float32Array(this.transforms.view));
   
   // Set the positions attribute
   gl.enableVertexAttribArray(this.locations.position);
@@ -340,202 +315,6 @@ var cube = new CubeDemo();
 cube.draw();
 
 </script>	
-
-```js
-<canvas id="canvas-cube"></canvas>
-
-<script id="vertex-shader-cube" type="x-shader/x-vertex">
-    // Each point has a position and color
-    attribute vec3 position;
-    attribute vec4 color;
-    
-    // The transformation matrix
-    uniform mat4 model;
-    uniform mat4 projection;
-    uniform mat4 view;
-
-    // Pass the color attribute down to the fragment shader
-    varying vec4 vColor;
-
-    void main() {
-      
-      //Pass the color down to the fragment shader
-      vColor = color;
-      
-      // Multiply the 
-      gl_Position = projection *view *model * vec4(position, 1.0);
-    }
-</script>
-
-  <!-- The fragment shader determines the color of the final pixel by setting gl_FragColor -->
-<script id="fragment-shader-cube" type="x-shader/x-fragment">
-    precision mediump float;
-    varying vec4 vColor;
-    
-    void main() {
-      gl_FragColor = vColor;
-      // gl_FragColor = vec4(1.0, 0.0, 0.0, 1.0);
-    }
-</script>
-
-<script>
-
-
-function CubeDemo () {
-  
-  // Prep the canvas
-  this.canvas = document.getElementById("canvas-cube");
-  this.canvas.width = 400;
-  this.canvas.height = 400;
-  
-  // Grab a context
-  this.gl = MDN.createContext(this.canvas);
-
-  this.transforms = {}; // All of the matrix transforms
-  this.locations = {}; //All of the shader locations
-  
-  // Get the rest going
-  this.buffers = MDN.createBuffersForCube(this.gl, MDN.createCubeData() );
-  this.webglProgram = this.setupProgram();
-  
-}
-
-CubeDemo.prototype.setupProgram = function() {
-  
-  var gl = this.gl;
-    
-  // Setup a WebGL program
-  var webglProgram = MDN.createWebGLProgramFromIds(gl, "vertex-shader-cube", "fragment-shader-cube");
-  gl.useProgram(webglProgram);
-  
-  // Save the attribute and uniform locations
-  this.locations.model = gl.getUniformLocation(webglProgram, "model");
-  this.locations.view = gl.getUniformLocation(webglProgram, "view");
-  this.locations.projection = gl.getUniformLocation(webglProgram, "projection");
-  this.locations.position = gl.getAttribLocation(webglProgram, "position");
-  this.locations.color = gl.getAttribLocation(webglProgram, "color");
-  
-  // Tell WebGL to test the depth when drawing
-  gl.enable(gl.DEPTH_TEST);
-  
-  return webglProgram;
-};
-
-CubeDemo.prototype.computePerspectiveMatrix = function() {
-  
-  var fieldOfViewInRadians = Math.PI * 0.2;
-  var aspectRatio = window.innerWidth / window.innerHeight;
-  var nearClippingPlaneDistance = 1;
-  var farClippingPlaneDistance = 100;
-  
-  this.transforms.projection = MDN.perspectiveMatrix(
-    fieldOfViewInRadians,
-    aspectRatio,
-    nearClippingPlaneDistance,
-    farClippingPlaneDistance
-  );
-};
-
-CubeDemo.prototype.computeViewMatrix = function( now ) {
-
-  var moveInAndOut = 20 * Math.sin(now * 0.002);
-  var moveLeftAndRight = 15 * Math.sin(now * 0.0017);
-  
-  // Move the camera around
-  var position = MDN.translateMatrix(moveLeftAndRight, 0, 50 + moveInAndOut );
-  
-  // Multiply together, make sure and read them in opposite order
-  var matrix = MDN.multiplyArrayOfMatrices([
-    
-    //Exercise: rotate the camera view
-    position
-  ]);
-  
-  // Inverse the operation for camera movements, because we are actually
-  // moving the geometry in the scene, not the camera itself.
-  this.transforms.view = MDN.invertMatrix( matrix );
-};
-
-CubeDemo.prototype.computeModelMatrix = function( now ) {
-
-  //Scale up
-  var scale = MDN.scaleMatrix(5, 5, 5);
-  
-  // Rotate a slight tilt
-  var rotateX = MDN.rotateXMatrix( Math.PI * 0.2 );
-  
-  // Rotate according to time
-  var rotateY = MDN.rotateYMatrix( Math.PI * 0.2 );
-
-  // Move slightly down
-  var position = MDN.translateMatrix(0, 0, 0);
-  
-  // Multiply together, make sure and read them in opposite order
-  this.transforms.model = MDN.multiplyArrayOfMatrices([
-    position, // step 4
-    rotateY,  // step 3
-    rotateX,  // step 2
-    scale     // step 1
-  ]);
-  
-  
-  // Performance caveat: in real production code it's best not to create
-  // new arrays and objects in a loop. This example chooses code clarity
-  // over performance.
-};
-
-CubeDemo.prototype.draw = function() {
-  
-  var gl = this.gl;
-  var now = Date.now();
-  
-  // Compute our matrices
-  this.computeModelMatrix( now );
-  this.computeViewMatrix( now );
-  this.computePerspectiveMatrix( 0.5 );
-  
-  // Update the data going to the GPU
-  this.updateAttributesAndUniforms();
-  
-  // Perform the actual draw
-  gl.drawElements(gl.TRIANGLES, 36, gl.UNSIGNED_SHORT, 0);
-  
-  // Run the draw as a loop
-  requestAnimationFrame( this.draw.bind(this) );
-};
-
-CubeDemo.prototype.updateAttributesAndUniforms = function() {
-
-  var gl = this.gl;
-  
-  // Setup the color uniform that will be shared across all triangles
-  gl.uniformMatrix4fv(this.locations.model, false, new Float32Array(this.transforms.model));
-  gl.uniformMatrix4fv(this.locations.projection, false, new Float32Array(this.transforms.projection));
-  gl.uniformMatrix4fv(this.locations.view, false, new Float32Array(this.transforms.view));
-  
-  // Set the positions attribute
-  gl.enableVertexAttribArray(this.locations.position);
-  gl.bindBuffer(gl.ARRAY_BUFFER, this.buffers.positions);
-  gl.vertexAttribPointer(this.locations.position, 3, gl.FLOAT, false, 0, 0);
-  
-  // Set the colors attribute
-  gl.enableVertexAttribArray(this.locations.color);
-  gl.bindBuffer(gl.ARRAY_BUFFER, this.buffers.colors);
-  gl.vertexAttribPointer(this.locations.color, 4, gl.FLOAT, false, 0, 0);
-  
-  gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, this.buffers.elements );
-  
-};
-
-var cube = new CubeDemo();
-
-cube.draw();
-
-</script>	
-
-
-```
-
 
 
 

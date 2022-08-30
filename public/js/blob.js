@@ -12,7 +12,7 @@ function mySnippet(html, js, css, id) {
 	const source = `
 	  <html>	    
 	   ${css && `<link rel="stylesheet" type="text/css" href="${cssURL}" />`}
-	    <body>
+	    <body style="margin:0px">
 	      ${html || ''}
 	    </body>
 	    ${js && `<script src="${jsURL}" type="text/javascript"></script>`}
