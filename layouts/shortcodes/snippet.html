@@ -1,5 +1,5 @@
 
-<h4>代码片段 {{ .Get 0 }}</h4>
+<h4>{{ .Get 0 }} 代码片段 </h4>
 {{ $content := .Inner }}
 {{ $content := replaceRE "```html" "\n **HTML:** \n```html" $content }}
 {{ $content := replaceRE "```css" "\n **CSS:** \n```css" $content }}

@@ -4,8 +4,8 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
-        <title>WebGL 模型 视图 投影 - Love Graph</title><meta name="Description" content="Graph"><meta property="og:title" content="WebGL 模型 视图 投影" />
-<meta property="og:description" content="代码片段 WebGL HTML: 1 2 3 4 5 6 7 &lt;script&gt; var MDN =window.parent.MDN &lt;/script&gt; &lt;canvas id=&#34;canvas&#34;&gt;&lt;/canvas&gt; JS: 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49" />
+        <title>WebGL 模型 视图 投影 - 图可视化</title><meta name="Description" content="Graph"><meta property="og:title" content="WebGL 模型 视图 投影" />
+<meta property="og:description" content="WebGL 代码片段 CSS: 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 .group{ position:absolute; } .group label{ color:white; } .group canvas{ position:absolute; } .group .slidecontainer{ position:absolute; } HTML: 1 2 3 4 5 6 7 8 9 10 11 12 13 &lt;script&gt; var MDN =window.parent.MDN &lt;/script&gt; &lt;div class=&#34;group&#34;&gt; &lt;canvas id=&#34;canvas&#34;&gt;&lt;/canvas&gt; &lt;div class=&#34;slidecontainer&#34;&gt; &lt;label for=&#34;slider&#34;&gt;W&lt;/label&gt; &lt;input id=&#34;slider&#34; type=&#34;range&#34; step=&#34;0.1&#34; min=&#34;0.5&#34; max=&#34;10&#34;" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://blog.bugraph.com/webgl_view_model_projection/" /><meta property="og:image" content="http://blog.bugraph.com/avatar.png"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2022-08-21T19:06:20+08:00" />
@@ -15,7 +15,7 @@
 <meta name="twitter:image" content="http://blog.bugraph.com/avatar.png"/>
 
 <meta name="twitter:title" content="WebGL 模型 视图 投影"/>
-<meta name="twitter:description" content="代码片段 WebGL HTML: 1 2 3 4 5 6 7 &lt;script&gt; var MDN =window.parent.MDN &lt;/script&gt; &lt;canvas id=&#34;canvas&#34;&gt;&lt;/canvas&gt; JS: 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49"/>
+<meta name="twitter:description" content="WebGL 代码片段 CSS: 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 .group{ position:absolute; } .group label{ color:white; } .group canvas{ position:absolute; } .group .slidecontainer{ position:absolute; } HTML: 1 2 3 4 5 6 7 8 9 10 11 12 13 &lt;script&gt; var MDN =window.parent.MDN &lt;/script&gt; &lt;div class=&#34;group&#34;&gt; &lt;canvas id=&#34;canvas&#34;&gt;&lt;/canvas&gt; &lt;div class=&#34;slidecontainer&#34;&gt; &lt;label for=&#34;slider&#34;&gt;W&lt;/label&gt; &lt;input id=&#34;slider&#34; type=&#34;range&#34; step=&#34;0.1&#34; min=&#34;0.5&#34; max=&#34;10&#34;"/>
 <meta name="application-name" content="LoveIt">
 <meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c">
 
@@ -30,7 +30,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/blog.bugraph.com\/webgl_view_model_projection\/"
-        },"image": ["http:\/\/blog.bugraph.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "WebGL","wordcount":  1439 ,
+        },"image": ["http:\/\/blog.bugraph.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "WebGL","wordcount":  1681 ,
         "url": "http:\/\/blog.bugraph.com\/webgl_view_model_projection\/","datePublished": "2022-08-21T19:06:20+08:00","dateModified": "2022-08-21T19:06:20+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": "http:\/\/blog.bugraph.com\/images\/avatar.png"},"author": {
@@ -46,7 +46,7 @@
 <header class="desktop" id="header-desktop">
     <div class="header-wrapper">
         <div class="header-title">
-            <a href="/" title="Love Graph"><span id="id-1" class="typeit"></span></a>
+            <a href="/" title="图可视化"><span id="id-1" class="typeit"></span></a>
         </div>
         <div class="menu">
             <div class="menu-inner"><a class="menu-item" href="/posts/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
@@ -69,7 +69,7 @@
     <div class="header-container">
         <div class="header-wrapper">
             <div class="header-title">
-                <a href="/" title="Love Graph"><span id="id-2" class="typeit"></span></a>
+                <a href="/" title="图可视化"><span id="id-2" class="typeit"></span></a>
             </div>
             <div class="menu-toggle" id="menu-toggle-mobile">
                 <span></span><span></span><span></span>
@@ -106,8 +106,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">WebGL 模型 视图 投影</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Jacob</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/webgl/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>WebGL</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-08-21">2022-08-21</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 1439 字&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 3 分钟&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-08-21">2022-08-21</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 1681 字&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 4 分钟&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
                 <div class="details-summary toc-title">
                     <span>目录</span>
@@ -117,22 +117,67 @@
             </div><div class="content" id="content"><script src="MDN.js">
 </script>
 
-<h4>代码片段 WebGL</h4>
+<h4>WebGL 代码片段 </h4>
 
 
 
 
 
-<p><strong>HTML:</strong></p>
+<p><strong>CSS:</strong></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-css" data-lang="css"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">.</span><span class="nc">group</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">position</span><span class="p">:</span><span class="kc">absolute</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">.</span><span class="nc">group</span> <span class="nt">label</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">color</span><span class="p">:</span><span class="kc">white</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">.</span><span class="nc">group</span> <span class="nt">canvas</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl"> <span class="k">position</span><span class="p">:</span><span class="kc">absolute</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">.</span><span class="nc">group</span> <span class="p">.</span><span class="nc">slidecontainer</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl"> <span class="k">position</span><span class="p">:</span><span class="kc">absolute</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>HTML:</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
@@ -141,7 +186,13 @@
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;group&#34;</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">canvas</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;canvas&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">canvas</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;slidecontainer&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">label</span> <span class="na">for</span><span class="o">=</span><span class="s">&#34;slider&#34;</span><span class="p">&gt;</span>W<span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">input</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;slider&#34;</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;range&#34;</span> <span class="na">step</span><span class="o">=</span><span class="s">&#34;0.1&#34;</span> <span class="na">min</span><span class="o">=</span><span class="s">&#34;0.5&#34;</span> <span class="na">max</span><span class="o">=</span><span class="s">&#34;10&#34;</span> <span class="na">value</span><span class="o">=</span><span class="s">&#34;1&#34;</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;slider&#34;</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;myRange&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p><strong>JS:</strong></p>
@@ -271,9 +322,89 @@
 </span><span class="lnt">122
 </span><span class="lnt">123
 </span><span class="lnt">124
+</span><span class="lnt">125
+</span><span class="lnt">126
+</span><span class="lnt">127
+</span><span class="lnt">128
+</span><span class="lnt">129
+</span><span class="lnt">130
+</span><span class="lnt">131
+</span><span class="lnt">132
+</span><span class="lnt">133
+</span><span class="lnt">134
+</span><span class="lnt">135
+</span><span class="lnt">136
+</span><span class="lnt">137
+</span><span class="lnt">138
+</span><span class="lnt">139
+</span><span class="lnt">140
+</span><span class="lnt">141
+</span><span class="lnt">142
+</span><span class="lnt">143
+</span><span class="lnt">144
+</span><span class="lnt">145
+</span><span class="lnt">146
+</span><span class="lnt">147
+</span><span class="lnt">148
+</span><span class="lnt">149
+</span><span class="lnt">150
+</span><span class="lnt">151
+</span><span class="lnt">152
+</span><span class="lnt">153
+</span><span class="lnt">154
+</span><span class="lnt">155
+</span><span class="lnt">156
+</span><span class="lnt">157
+</span><span class="lnt">158
+</span><span class="lnt">159
+</span><span class="lnt">160
+</span><span class="lnt">161
+</span><span class="lnt">162
+</span><span class="lnt">163
+</span><span class="lnt">164
+</span><span class="lnt">165
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">w</span>  <span class="o">=</span> <span class="mf">1.0</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&#34;slider&#34;</span><span class="p">).</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;change&#39;</span><span class="p">,(</span><span class="nx">event</span><span class="p">)=&gt;{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">w</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">value</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">box</span><span class="p">.</span><span class="nx">draw</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nx">top</span>    <span class="o">:</span> <span class="mf">0.5</span><span class="p">,</span>             <span class="c1">// x
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">bottom</span> <span class="o">:</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">,</span>            <span class="c1">// x
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">left</span>   <span class="o">:</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">,</span>            <span class="c1">// y
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">right</span>  <span class="o">:</span> <span class="mf">0.5</span><span class="p">,</span>             <span class="c1">// y
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">w</span>      <span class="o">:</span> <span class="nx">w</span><span class="p">,</span>             <span class="c1">// w - 放大这个盒子
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">  <span class="nx">depth</span>  <span class="o">:</span> <span class="mi">0</span><span class="p">,</span>               <span class="c1">// z
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">color</span>  <span class="o">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="c1">// red
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">});</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">box</span><span class="p">.</span><span class="nx">draw</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nx">top</span>    <span class="o">:</span> <span class="mf">0.9</span><span class="p">,</span>             <span class="c1">// x
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">bottom</span> <span class="o">:</span> <span class="mi">0</span><span class="p">,</span>               <span class="c1">// x
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">left</span>   <span class="o">:</span> <span class="o">-</span><span class="mf">0.9</span><span class="p">,</span>            <span class="c1">// y
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">right</span>  <span class="o">:</span> <span class="mf">0.9</span><span class="p">,</span>             <span class="c1">// y
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">w</span>      <span class="o">:</span> <span class="nx">w</span><span class="p">,</span>             <span class="c1">// w - 放大这个盒子
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">  <span class="nx">depth</span>  <span class="o">:</span> <span class="mf">0.5</span><span class="p">,</span>             <span class="c1">// z
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">color</span>  <span class="o">:</span> <span class="p">[</span><span class="mf">0.4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="c1">// green
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">});</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">box</span><span class="p">.</span><span class="nx">draw</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nx">top</span>    <span class="o">:</span> <span class="mi">1</span><span class="p">,</span>               <span class="c1">// x
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">bottom</span> <span class="o">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>              <span class="c1">// x
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">left</span>   <span class="o">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>              <span class="c1">// y
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">right</span>  <span class="o">:</span> <span class="mi">1</span><span class="p">,</span>               <span class="c1">// y
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">w</span>      <span class="o">:</span> <span class="nx">w</span><span class="p">,</span>             <span class="c1">// w - 放大这个盒子
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">  <span class="nx">depth</span>  <span class="o">:</span> <span class="mf">0.5</span><span class="p">,</span>            <span class="c1">// z
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">color</span>  <span class="o">:</span> <span class="p">[</span><span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="c1">// blue
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">});</span>
+</span></span><span class="line"><span class="cl"><span class="p">});</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">WebGLBox</span><span class="p">()</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">
@@ -359,9 +490,11 @@
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">  <span class="c1">// 在屏幕上绘制该三角形
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">gl</span><span class="p">.</span><span class="nx">drawArrays</span><span class="p">(</span><span class="nx">gl</span><span class="p">.</span><span class="nx">TRIANGLES</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">6</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">box</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">WebGLBox</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="nx">box</span><span class="p">.</span><span class="nx">draw</span><span class="p">({</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">  <span class="nx">top</span>    <span class="o">:</span> <span class="mf">0.5</span><span class="p">,</span>             <span class="c1">// x
@@ -394,7 +527,7 @@
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">right</span>  <span class="o">:</span> <span class="mi">1</span><span class="p">,</span>               <span class="c1">// y
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">w</span>      <span class="o">:</span> <span class="nx">w</span><span class="p">,</span>             <span class="c1">// w - 放大这个盒子
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>
-</span></span><span class="line"><span class="cl">  <span class="nx">depth</span>  <span class="o">:</span> <span class="mf">0.5</span><span class="p">,</span>            <span class="c1">// z
+</span></span><span class="line"><span class="cl">  <span class="nx">depth</span>  <span class="o">:</span> <span class="o">-</span><span class="mf">1.5</span><span class="p">,</span>            <span class="c1">// z
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">color</span>  <span class="o">:</span> <span class="p">[</span><span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="c1">// blue
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">});</span>
 </span></span></code></pre></td></tr></table>
@@ -423,11 +556,11 @@
 <script src="/js/blob.js" type="text/javascript"></script> 
 <script type="text/javascript">
 document.addEventListener('DOMContentLoaded', function() {
-   mySnippet('\n\n\n\u003cscript\u003e\n\nvar MDN =window.parent.MDN\n\n\u003c\/script\u003e\n\n\u003ccanvas id=\u0022canvas\u0022\u003e\u003c\/canvas\u003e\n\n\n\n\n\n\n\n', '\n\n\n\n\n\nvar w  = 1.0\n\nfunction WebGLBox() {\n\n  \/\/ 设置 canvas 和 WebGL 上下文\n  this.canvas = document.getElementById(\u0027canvas\u0027);\n  \/\/ let width = d3.select(\u0022#content\u0022).node().getBoundingClientRect().width\n  this.canvas.width = 800;\n  this.canvas.height = 400;\n  this.gl = MDN.createContext(canvas);\n\n  var gl = this.gl;\n\n  \/\/ 设置一个 WebGL 程序，任何 MDN 对象相关的部分在本文之外定义\n\n  var vertexShader = `\n    \/\/ The individual position vertex\n    attribute vec4 position;\n\n    void main() {\n      \n      \/\/ the gl_Position is the final position in clip space after the vertex shader modifies it\n      gl_Position = position;\n    }\n  `\n\n  var fragmentShader = `\n    precision mediump float;\n    uniform vec4 color;\n    \n    void main() {\n      gl_FragColor = color;\n    }\n  `\n  this.webglProgram = MDN.createWebGLProgramFromContent(gl,vertexShader,fragmentShader);\n  gl.useProgram(this.webglProgram);\n\n  \/\/ 保存 attribute 和 uniform 位置\n  this.positionLocation = gl.getAttribLocation(this.webglProgram, \u0027position\u0027);\n  this.colorLocation = gl.getUniformLocation(this.webglProgram, \u0027color\u0027);\n\n  \/\/ 告诉 WebGL 在绘制时测试深度，所以如果一个正方形后面有另一个正方形\n  \/\/ 另一个正方形不会被绘制\n  gl.enable(gl.DEPTH_TEST);\n\n}\n\nWebGLBox.prototype.draw = function(settings) {\n\n  \/\/ 创建一下 attribute 数据; 这些是最终绘制到屏幕上的三角形\n  \/\/ 有两个形成一个正方形\n\n var data = new Float32Array([\n\n  \/\/Triangle 1\n  settings.left,  settings.bottom, settings.depth, settings.w,\n  settings.right, settings.bottom, settings.depth, settings.w,\n  settings.left,  settings.top,    settings.depth, settings.w,\n\n  \/\/Triangle 2\n  settings.left,  settings.top,    settings.depth, settings.w,\n  settings.right, settings.bottom, settings.depth, settings.w,\n  settings.right, settings.top,    settings.depth, settings.w\n ]);\n\n  \/\/ 使用 WebGL 将其绘制到屏幕上\n\n  \/\/ 性能要点：为每个绘制创建新的缓冲器很慢\n  \/\/ 这个方法仅用于说明\n\n  var gl = this.gl;\n\n  \/\/ 创建一个缓冲区并绑定数据\n  var buffer = gl.createBuffer();\n  gl.bindBuffer(gl.ARRAY_BUFFER, buffer);\n  gl.bufferData(gl.ARRAY_BUFFER, data, gl.STATIC_DRAW);\n\n  \/\/ 设置指向 attribute 数据的指针（三角形）\n  gl.enableVertexAttribArray(this.positionLocation);\n  gl.vertexAttribPointer(this.positionLocation, 4, gl.FLOAT, false, 0, 0);\n\n  \/\/ 设置将在所有三角形之间共享的 color uniform\n  gl.uniform4fv(this.colorLocation, settings.color);\n\n  \/\/ 在屏幕上绘制该三角形\n  gl.drawArrays(gl.TRIANGLES, 0, 6);\n}\n\nvar box = new WebGLBox();\nbox.draw({\n\n  top    : 0.5,             \/\/ x\n  bottom : -0.5,            \/\/ x\n  left   : -0.5,            \/\/ y\n  right  : 0.5,             \/\/ y\n  w      : w,             \/\/ w - 放大这个盒子\n\n  depth  : 0,               \/\/ z\n  color  : [1, 0.4, 0.4, 1] \/\/ red\n});\n\nbox.draw({\n\n  top    : 0.9,             \/\/ x\n  bottom : 0,               \/\/ x\n  left   : -0.9,            \/\/ y\n  right  : 0.9,             \/\/ y\n  w      : w,             \/\/ w - 放大这个盒子\n\n  depth  : 0.5,             \/\/ z\n  color  : [0.4, 1, 0.4, 1] \/\/ green\n});\n\nbox.draw({\n\n  top    : 1,               \/\/ x\n  bottom : -1,              \/\/ x\n  left   : -1,              \/\/ y\n  right  : 1,               \/\/ y\n  w      : w,             \/\/ w - 放大这个盒子\n\n  depth  : 0.5,            \/\/ z\n  color  : [0.4, 0.4, 1, 1] \/\/ blue\n});\n\n\n\n\n', '\n\n\n\n\n\n\n\n', 'WebGL');
+   mySnippet('\n\n\n\n\n\n\u003cscript\u003e\n\nvar MDN =window.parent.MDN\n\n\u003c\/script\u003e\n\n\u003cdiv class=\u0022group\u0022\u003e\n\u003ccanvas id=\u0022canvas\u0022\u003e\u003c\/canvas\u003e\n\u003cdiv class=\u0022slidecontainer\u0022\u003e\n  \u003clabel for=\u0022slider\u0022\u003eW\u003c\/label\u003e\n  \u003cinput id=\u0022slider\u0022 type=\u0022range\u0022 step=\u00220.1\u0022 min=\u00220.5\u0022 max=\u002210\u0022 value=\u00221\u0022 class=\u0022slider\u0022 id=\u0022myRange\u0022\u003e\n\u003c\/div\u003e\n\u003cdiv\u003e\n\n\n\n\n\n\n\n\n', '\n\n\n\n\n\n\n\n\nvar w  = 1.0\n\ndocument.getElementById(\u0022slider\u0022).addEventListener(\u0027change\u0027,(event)=\u003e{\n  w = event.target.value\n  box.draw({\n\n  top    : 0.5,             \/\/ x\n  bottom : -0.5,            \/\/ x\n  left   : -0.5,            \/\/ y\n  right  : 0.5,             \/\/ y\n  w      : w,             \/\/ w - 放大这个盒子\n\n  depth  : 0,               \/\/ z\n  color  : [1, 0.4, 0.4, 1] \/\/ red\n});\n\nbox.draw({\n\n  top    : 0.9,             \/\/ x\n  bottom : 0,               \/\/ x\n  left   : -0.9,            \/\/ y\n  right  : 0.9,             \/\/ y\n  w      : w,             \/\/ w - 放大这个盒子\n\n  depth  : 0.5,             \/\/ z\n  color  : [0.4, 1, 0.4, 1] \/\/ green\n});\n\nbox.draw({\n\n  top    : 1,               \/\/ x\n  bottom : -1,              \/\/ x\n  left   : -1,              \/\/ y\n  right  : 1,               \/\/ y\n  w      : w,             \/\/ w - 放大这个盒子\n\n  depth  : 0.5,            \/\/ z\n  color  : [0.4, 0.4, 1, 1] \/\/ blue\n});\n});\n\nfunction WebGLBox() {\n\n  \/\/ 设置 canvas 和 WebGL 上下文\n  this.canvas = document.getElementById(\u0027canvas\u0027);\n  \/\/ let width = d3.select(\u0022#content\u0022).node().getBoundingClientRect().width\n  this.canvas.width = 800;\n  this.canvas.height = 400;\n  this.gl = MDN.createContext(canvas);\n\n  var gl = this.gl;\n\n  \/\/ 设置一个 WebGL 程序，任何 MDN 对象相关的部分在本文之外定义\n\n  var vertexShader = `\n    \/\/ The individual position vertex\n    attribute vec4 position;\n\n    void main() {\n      \n      \/\/ the gl_Position is the final position in clip space after the vertex shader modifies it\n      gl_Position = position;\n    }\n  `\n\n  var fragmentShader = `\n    precision mediump float;\n    uniform vec4 color;\n    \n    void main() {\n      gl_FragColor = color;\n    }\n  `\n  this.webglProgram = MDN.createWebGLProgramFromContent(gl,vertexShader,fragmentShader);\n  gl.useProgram(this.webglProgram);\n\n  \/\/ 保存 attribute 和 uniform 位置\n  this.positionLocation = gl.getAttribLocation(this.webglProgram, \u0027position\u0027);\n  this.colorLocation = gl.getUniformLocation(this.webglProgram, \u0027color\u0027);\n\n  \/\/ 告诉 WebGL 在绘制时测试深度，所以如果一个正方形后面有另一个正方形\n  \/\/ 另一个正方形不会被绘制\n  gl.enable(gl.DEPTH_TEST);\n\n}\n\nWebGLBox.prototype.draw = function(settings) {\n\n  \/\/ 创建一下 attribute 数据; 这些是最终绘制到屏幕上的三角形\n  \/\/ 有两个形成一个正方形\n\n var data = new Float32Array([\n\n  \/\/Triangle 1\n  settings.left,  settings.bottom, settings.depth, settings.w,\n  settings.right, settings.bottom, settings.depth, settings.w,\n  settings.left,  settings.top,    settings.depth, settings.w,\n\n  \/\/Triangle 2\n  settings.left,  settings.top,    settings.depth, settings.w,\n  settings.right, settings.bottom, settings.depth, settings.w,\n  settings.right, settings.top,    settings.depth, settings.w\n ]);\n\n  \/\/ 使用 WebGL 将其绘制到屏幕上\n\n  \/\/ 性能要点：为每个绘制创建新的缓冲器很慢\n  \/\/ 这个方法仅用于说明\n\n  var gl = this.gl;\n\n  \/\/ 创建一个缓冲区并绑定数据\n  var buffer = gl.createBuffer();\n  gl.bindBuffer(gl.ARRAY_BUFFER, buffer);\n  gl.bufferData(gl.ARRAY_BUFFER, data, gl.STATIC_DRAW);\n\n  \/\/ 设置指向 attribute 数据的指针（三角形）\n  gl.enableVertexAttribArray(this.positionLocation);\n  gl.vertexAttribPointer(this.positionLocation, 4, gl.FLOAT, false, 0, 0);\n\n  \/\/ 设置将在所有三角形之间共享的 color uniform\n  gl.uniform4fv(this.colorLocation, settings.color);\n\n  \/\/ 在屏幕上绘制该三角形\n  gl.drawArrays(gl.TRIANGLES, 0, 6);\n\n}\n\nvar box = new WebGLBox();\n\nbox.draw({\n\n  top    : 0.5,             \/\/ x\n  bottom : -0.5,            \/\/ x\n  left   : -0.5,            \/\/ y\n  right  : 0.5,             \/\/ y\n  w      : w,             \/\/ w - 放大这个盒子\n\n  depth  : 0,               \/\/ z\n  color  : [1, 0.4, 0.4, 1] \/\/ red\n});\n\nbox.draw({\n\n  top    : 0.9,             \/\/ x\n  bottom : 0,               \/\/ x\n  left   : -0.9,            \/\/ y\n  right  : 0.9,             \/\/ y\n  w      : w,             \/\/ w - 放大这个盒子\n\n  depth  : 0.5,             \/\/ z\n  color  : [0.4, 1, 0.4, 1] \/\/ green\n});\n\nbox.draw({\n\n  top    : 1,               \/\/ x\n  bottom : -1,              \/\/ x\n  left   : -1,              \/\/ y\n  right  : 1,               \/\/ y\n  w      : w,             \/\/ w - 放大这个盒子\n\n  depth  : -1.5,            \/\/ z\n  color  : [0.4, 0.4, 1, 1] \/\/ blue\n});\n\n\n\n\n', '\n\n\n\n.group{\n  position:absolute;\n}\n\n.group label{\n  color:white;\n}\n\n.group canvas{\n position:absolute;\n}\n\n.group .slidecontainer{\n position:absolute; \n}\n\n\n\n\n\n\n\n\n\n', 'WebGL');
 }, false);
 </script> 
 
-<h4>代码片段 Cube</h4>
+<h4>Cube 代码片段 </h4>
 
 
 
@@ -883,5 +1016,5 @@ document.addEventListener('DOMContentLoaded', function() {
             </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
                 <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
             </a>
-        </div><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.13.1/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@8.6.0/dist/index.umd.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":50},"comment":{},"data":{"id-1":"Love Graph","id-2":"Love Graph"},"search":{"algoliaAppID":"PASDMWALPK","algoliaIndex":"index.zh-cn","algoliaSearchKey":"b42948e51daaa93df92381c8e2ac0f93","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+        </div><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.13.1/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@8.6.0/dist/index.umd.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":50},"comment":{},"data":{"id-1":"图可视化","id-2":"图可视化"},"search":{"algoliaAppID":"PASDMWALPK","algoliaIndex":"index.zh-cn","algoliaSearchKey":"b42948e51daaa93df92381c8e2ac0f93","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
 </html>

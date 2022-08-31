@@ -2,7 +2,7 @@
 
 
 <script>
-window.dataUrl = window.location.href + "/flare.json"
+window.dataUrl = window.location.href + "flare.json"
 </script>
 
 {{<snippet 示例>}}

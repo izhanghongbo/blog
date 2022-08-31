@@ -1,0 +1,1659 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>Neo4j D3 图可视化 - 图可视化</title><meta name="Description" content="Graph"><meta property="og:title" content="Neo4j D3 图可视化" />
+<meta property="og:description" content="Neo4j-静态数据 代码片段 CSS: 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://blog.bugraph.com/neo4j-d3-visualization/" /><meta property="og:image" content="http://blog.bugraph.com/avatar.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-08-26T22:44:23+08:00" />
+<meta property="article:modified_time" content="2022-08-26T22:44:23+08:00" /><meta property="og:site_name" content="LoveIt" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="http://blog.bugraph.com/avatar.png"/>
+
+<meta name="twitter:title" content="Neo4j D3 图可视化"/>
+<meta name="twitter:description" content="Neo4j-静态数据 代码片段 CSS: 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c">
+
+<link rel="icon" href="/images/avatar.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://blog.bugraph.com/neo4j-d3-visualization/" /><link rel="prev" href="http://blog.bugraph.com/basic_rxjs/" /><link rel="next" href="http://blog.bugraph.com/mathbox_hello_world/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Neo4j D3 图可视化",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/blog.bugraph.com\/neo4j-d3-visualization\/"
+        },"image": ["http:\/\/blog.bugraph.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Neo4j, D3, Threejs","wordcount":  2349 ,
+        "url": "http:\/\/blog.bugraph.com\/neo4j-d3-visualization\/","datePublished": "2022-08-26T22:44:23+08:00","dateModified": "2022-08-26T22:44:23+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": "http:\/\/blog.bugraph.com\/images\/avatar.png"},"author": {
+                "@type": "Person",
+                "name": "Jacob"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><script type="text/javascript" src="https://unpkg.com/react@16/umd/react.production.min.js"></script><script type="text/javascript" src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script><script type="text/javascript" src="https://unpkg.com/babel-standalone@6/babel.min.js"></script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script><script type="text/javascript" src="https://d3js.org/d3.v6.min.js"></script>
+
+<header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="图可视化"><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="图可视化"><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Neo4j D3 图可视化</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Jacob</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/d3/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>D3</a>&nbsp;<a href="/categories/neo4j/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Neo4j</a>&nbsp;<a href="/categories/graph/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Graph</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-08-26">2022-08-26</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 2349 字&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 5 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents"></nav></div>
+            </div><div class="content" id="content"><script>
+window.dataUrl = window.location.href + "data.json"
+window.libs = window.location.href + "libs"
+</script>
+
+<h4>Neo4j-静态数据 代码片段 </h4>
+
+
+
+
+
+<p><strong>CSS:</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">  1
+</span><span class="lnt">  2
+</span><span class="lnt">  3
+</span><span class="lnt">  4
+</span><span class="lnt">  5
+</span><span class="lnt">  6
+</span><span class="lnt">  7
+</span><span class="lnt">  8
+</span><span class="lnt">  9
+</span><span class="lnt"> 10
+</span><span class="lnt"> 11
+</span><span class="lnt"> 12
+</span><span class="lnt"> 13
+</span><span class="lnt"> 14
+</span><span class="lnt"> 15
+</span><span class="lnt"> 16
+</span><span class="lnt"> 17
+</span><span class="lnt"> 18
+</span><span class="lnt"> 19
+</span><span class="lnt"> 20
+</span><span class="lnt"> 21
+</span><span class="lnt"> 22
+</span><span class="lnt"> 23
+</span><span class="lnt"> 24
+</span><span class="lnt"> 25
+</span><span class="lnt"> 26
+</span><span class="lnt"> 27
+</span><span class="lnt"> 28
+</span><span class="lnt"> 29
+</span><span class="lnt"> 30
+</span><span class="lnt"> 31
+</span><span class="lnt"> 32
+</span><span class="lnt"> 33
+</span><span class="lnt"> 34
+</span><span class="lnt"> 35
+</span><span class="lnt"> 36
+</span><span class="lnt"> 37
+</span><span class="lnt"> 38
+</span><span class="lnt"> 39
+</span><span class="lnt"> 40
+</span><span class="lnt"> 41
+</span><span class="lnt"> 42
+</span><span class="lnt"> 43
+</span><span class="lnt"> 44
+</span><span class="lnt"> 45
+</span><span class="lnt"> 46
+</span><span class="lnt"> 47
+</span><span class="lnt"> 48
+</span><span class="lnt"> 49
+</span><span class="lnt"> 50
+</span><span class="lnt"> 51
+</span><span class="lnt"> 52
+</span><span class="lnt"> 53
+</span><span class="lnt"> 54
+</span><span class="lnt"> 55
+</span><span class="lnt"> 56
+</span><span class="lnt"> 57
+</span><span class="lnt"> 58
+</span><span class="lnt"> 59
+</span><span class="lnt"> 60
+</span><span class="lnt"> 61
+</span><span class="lnt"> 62
+</span><span class="lnt"> 63
+</span><span class="lnt"> 64
+</span><span class="lnt"> 65
+</span><span class="lnt"> 66
+</span><span class="lnt"> 67
+</span><span class="lnt"> 68
+</span><span class="lnt"> 69
+</span><span class="lnt"> 70
+</span><span class="lnt"> 71
+</span><span class="lnt"> 72
+</span><span class="lnt"> 73
+</span><span class="lnt"> 74
+</span><span class="lnt"> 75
+</span><span class="lnt"> 76
+</span><span class="lnt"> 77
+</span><span class="lnt"> 78
+</span><span class="lnt"> 79
+</span><span class="lnt"> 80
+</span><span class="lnt"> 81
+</span><span class="lnt"> 82
+</span><span class="lnt"> 83
+</span><span class="lnt"> 84
+</span><span class="lnt"> 85
+</span><span class="lnt"> 86
+</span><span class="lnt"> 87
+</span><span class="lnt"> 88
+</span><span class="lnt"> 89
+</span><span class="lnt"> 90
+</span><span class="lnt"> 91
+</span><span class="lnt"> 92
+</span><span class="lnt"> 93
+</span><span class="lnt"> 94
+</span><span class="lnt"> 95
+</span><span class="lnt"> 96
+</span><span class="lnt"> 97
+</span><span class="lnt"> 98
+</span><span class="lnt"> 99
+</span><span class="lnt">100
+</span><span class="lnt">101
+</span><span class="lnt">102
+</span><span class="lnt">103
+</span><span class="lnt">104
+</span><span class="lnt">105
+</span><span class="lnt">106
+</span><span class="lnt">107
+</span><span class="lnt">108
+</span><span class="lnt">109
+</span><span class="lnt">110
+</span><span class="lnt">111
+</span><span class="lnt">112
+</span><span class="lnt">113
+</span><span class="lnt">114
+</span><span class="lnt">115
+</span><span class="lnt">116
+</span><span class="lnt">117
+</span><span class="lnt">118
+</span><span class="lnt">119
+</span><span class="lnt">120
+</span><span class="lnt">121
+</span><span class="lnt">122
+</span><span class="lnt">123
+</span><span class="lnt">124
+</span><span class="lnt">125
+</span><span class="lnt">126
+</span><span class="lnt">127
+</span><span class="lnt">128
+</span><span class="lnt">129
+</span><span class="lnt">130
+</span><span class="lnt">131
+</span><span class="lnt">132
+</span><span class="lnt">133
+</span><span class="lnt">134
+</span><span class="lnt">135
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-css" data-lang="css"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">#</span><span class="nn">neo4j-d3</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">width</span><span class="p">:</span> <span class="mi">100</span><span class="kt">%</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">height</span><span class="p">:</span> <span class="mi">100</span><span class="kt">%</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">.</span><span class="nc">neo4jd3-graph</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">border</span><span class="p">:</span> <span class="mi">1</span><span class="kt">px</span> <span class="kc">solid</span> <span class="mh">#ddd</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">border-radius</span><span class="p">:</span> <span class="mi">5</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">.</span><span class="nc">neo4jd3-info</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">font-size</span><span class="p">:</span> <span class="mi">16</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">padding</span><span class="p">:</span> <span class="mi">10</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">position</span><span class="p">:</span> <span class="kc">absolute</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">.</span><span class="nc">neo4jd3-info</span> <span class="nt">a</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">border</span><span class="p">:</span> <span class="mi">1</span><span class="kt">px</span> <span class="kc">solid</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">display</span><span class="p">:</span> <span class="kc">inline-block</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">font-size</span><span class="p">:</span> <span class="mi">14</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">line-height</span><span class="p">:</span> <span class="mf">1.428571429</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">margin-left</span><span class="p">:</span> <span class="mi">5</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">margin-top</span><span class="p">:</span> <span class="mi">5</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">padding</span><span class="p">:</span> <span class="mi">6</span><span class="kt">px</span> <span class="mi">12</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">.</span><span class="nc">neo4jd3-info</span> <span class="nt">a</span><span class="p">.</span><span class="nc">class</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">color</span><span class="p">:</span> <span class="kc">white</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">.</span><span class="nc">neo4jd3-info</span> <span class="nt">a</span><span class="p">.</span><span class="nc">property</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">background-color</span><span class="p">:</span> <span class="mh">#fff</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">border-color</span><span class="p">:</span> <span class="mh">#ccc</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">color</span><span class="p">:</span> <span class="mh">#333</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">.</span><span class="nc">neo4jd3-info</span> <span class="nt">a</span><span class="p">.</span><span class="nc">btn</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">margin-left</span><span class="p">:</span> <span class="mi">5</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">margin-top</span><span class="p">:</span> <span class="mi">5</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">opacity</span><span class="p">:</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">.</span><span class="nc">neo4jd3-info</span> <span class="nt">a</span><span class="p">.</span><span class="nc">info</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">background-color</span><span class="p">:</span> <span class="nb">rgb</span><span class="p">(</span><span class="mi">165</span><span class="p">,</span> <span class="mi">171</span><span class="p">,</span> <span class="mi">182</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="k">border</span><span class="p">:</span> <span class="mi">1</span><span class="kt">px</span> <span class="kc">solid</span> <span class="nb">rgb</span><span class="p">(</span><span class="mi">154</span><span class="p">,</span> <span class="mi">161</span><span class="p">,</span> <span class="mi">172</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="k">color</span><span class="p">:</span> <span class="kc">white</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">.</span><span class="nc">node</span><span class="p">.</span><span class="nc">node-highlighted</span> <span class="p">.</span><span class="nc">ring</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kp">-ms-</span><span class="k">filter</span><span class="p">:</span> <span class="s2">&#34;progid:DXImageTransform.Microsoft.Alpha(Opacity=50)&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">filter</span><span class="p">:</span> <span class="nf">alpha</span><span class="p">(</span><span class="n">opacity</span><span class="err">=</span><span class="mi">50</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="k">opacity</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">stroke</span><span class="p">:</span> <span class="mh">#888</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">stroke-width</span><span class="p">:</span> <span class="mi">12</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">.</span><span class="nc">node</span> <span class="p">.</span><span class="nc">outline</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">cursor</span><span class="p">:</span> <span class="kc">pointer</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">fill</span><span class="p">:</span> <span class="nb">rgb</span><span class="p">(</span><span class="mi">165</span><span class="p">,</span> <span class="mi">171</span><span class="p">,</span> <span class="mi">182</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">pointer-events</span><span class="p">:</span> <span class="kc">all</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">stroke</span><span class="p">:</span> <span class="nb">rgb</span><span class="p">(</span><span class="mi">154</span><span class="p">,</span> <span class="mi">161</span><span class="p">,</span> <span class="mi">172</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">stroke-width</span><span class="p">:</span> <span class="mi">2</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">.</span><span class="nc">node</span> <span class="p">.</span><span class="nc">ring</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">fill</span><span class="p">:</span> <span class="kc">none</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="kp">-ms-</span><span class="k">filter</span><span class="p">:</span> <span class="s2">&#34;progid:DXImageTransform.Microsoft.Alpha(Opacity=0)&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">filter</span><span class="p">:</span> <span class="nf">alpha</span><span class="p">(</span><span class="n">opacity</span><span class="err">=</span><span class="mi">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="k">opacity</span><span class="p">:</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">stroke</span><span class="p">:</span> <span class="mh">#6ac6ff</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">stroke-width</span><span class="p">:</span> <span class="mi">8</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">.</span><span class="nc">node</span> <span class="p">.</span><span class="nc">context-menu-item</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">cursor</span><span class="p">:</span> <span class="kc">pointer</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">display</span><span class="p">:</span> <span class="kc">none</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">.</span><span class="nc">node</span> <span class="p">.</span><span class="nc">context-menu-item</span><span class="p">.</span><span class="nc">context-show</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">display</span><span class="p">:</span> <span class="kc">block</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">.</span><span class="nc">node</span> <span class="p">.</span><span class="nc">context-menu-item</span><span class="p">:</span><span class="nd">hover</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">fill</span><span class="p">:</span> <span class="nb">rgb</span><span class="p">(</span><span class="mi">185</span><span class="p">,</span> <span class="mi">185</span><span class="p">,</span> <span class="mi">185</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">.</span><span class="nc">node</span><span class="p">.</span><span class="nc">selected</span> <span class="p">.</span><span class="nc">ring</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl"><span class="p">.</span><span class="nc">node</span><span class="p">:</span><span class="nd">hover</span> <span class="p">.</span><span class="nc">ring</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kp">-ms-</span><span class="k">filter</span><span class="p">:</span> <span class="s2">&#34;progid:DXImageTransform.Microsoft.Alpha(Opacity=30)&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">filter</span><span class="p">:</span> <span class="nf">alpha</span><span class="p">(</span><span class="n">opacity</span><span class="err">=</span><span class="mi">30</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="k">opacity</span><span class="p">:</span> <span class="mf">0.3</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">.</span><span class="nc">node</span><span class="p">.</span><span class="nc">selected</span> <span class="p">.</span><span class="nc">ring</span> <span class="p">.</span><span class="nc">context-menu-item</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl"><span class="p">.</span><span class="nc">node</span><span class="p">:</span><span class="nd">hover</span> <span class="p">.</span><span class="nc">ring</span> <span class="p">.</span><span class="nc">context-menu-item</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">fill</span><span class="p">:</span> <span class="nb">rgb</span><span class="p">(</span><span class="mi">185</span><span class="p">,</span> <span class="mi">185</span><span class="p">,</span> <span class="mi">185</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">.</span><span class="nc">relationship</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">cursor</span><span class="p">:</span> <span class="kc">default</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">.</span><span class="nc">relationship</span><span class="p">.</span><span class="nc">relationship-highlighted</span> <span class="p">.</span><span class="nc">text</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">fill</span><span class="p">:</span> <span class="nb">rgb</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="k">font-size</span><span class="p">:</span> <span class="mi">12</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">font-weight</span><span class="p">:</span> <span class="kc">bold</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">.</span><span class="nc">relationship</span><span class="p">.</span><span class="nc">relationship-highlighted</span> <span class="p">.</span><span class="nc">outline</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">fill</span><span class="p">:</span> <span class="nb">rgb</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">.</span><span class="nc">relationship</span> <span class="nt">line</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">stroke</span><span class="p">:</span> <span class="mh">#aaa</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">.</span><span class="nc">relationship</span> <span class="p">.</span><span class="nc">outline</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">cursor</span><span class="p">:</span> <span class="kc">default</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">.</span><span class="nc">relationship</span> <span class="p">.</span><span class="nc">overlay</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">cursor</span><span class="p">:</span> <span class="kc">default</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">fill</span><span class="p">:</span> <span class="mh">#6ac6ff</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="kp">-ms-</span><span class="k">filter</span><span class="p">:</span> <span class="s2">&#34;progid:DXImageTransform.Microsoft.Alpha(Opacity=0)&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">filter</span><span class="p">:</span> <span class="nf">alpha</span><span class="p">(</span><span class="n">opacity</span><span class="err">=</span><span class="mi">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="k">opacity</span><span class="p">:</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">.</span><span class="nc">relationship</span> <span class="nt">text</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">cursor</span><span class="p">:</span> <span class="kc">default</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">fill</span><span class="p">:</span><span class="kc">gray</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">.</span><span class="nc">relationship</span> <span class="p">.</span><span class="nc">active_text</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">fill</span><span class="p">:</span> <span class="nb">rgb</span><span class="p">(</span><span class="mi">253</span><span class="p">,</span> <span class="mi">204</span><span class="p">,</span> <span class="mi">89</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">.</span><span class="nc">relationship</span><span class="p">.</span><span class="nc">selected</span> <span class="p">.</span><span class="nc">overlay</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl"><span class="p">.</span><span class="nc">relationship</span><span class="p">:</span><span class="nd">hover</span> <span class="p">.</span><span class="nc">overlay</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kp">-ms-</span><span class="k">filter</span><span class="p">:</span> <span class="s2">&#34;progid:DXImageTransform.Microsoft.Alpha(Opacity=30)&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">filter</span><span class="p">:</span> <span class="nf">alpha</span><span class="p">(</span><span class="n">opacity</span><span class="err">=</span><span class="mi">30</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="k">opacity</span><span class="p">:</span> <span class="mf">0.3</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nt">svg</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">cursor</span><span class="p">:</span> <span class="kc">pointer</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">.</span><span class="nc">iconfont-kg-neo4j3d</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">font-size</span><span class="p">:</span> <span class="mi">20</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">font-weight</span><span class="p">:</span> <span class="kc">bold</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>HTML:</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;https://d3js.org/d3.v7.min.js&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">div</span> 
+</span></span><span class="line"><span class="cl">    <span class="na">id</span><span class="o">=</span><span class="s">&#34;neo4j-d3&#34;</span> 
+</span></span><span class="line"><span class="cl">    <span class="na">ref</span><span class="o">=</span><span class="s">&#34;neo4j-d3&#34;</span> 
+</span></span><span class="line"><span class="cl"><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>JS:</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">  1
+</span><span class="lnt">  2
+</span><span class="lnt">  3
+</span><span class="lnt">  4
+</span><span class="lnt">  5
+</span><span class="lnt">  6
+</span><span class="lnt">  7
+</span><span class="lnt">  8
+</span><span class="lnt">  9
+</span><span class="lnt"> 10
+</span><span class="lnt"> 11
+</span><span class="lnt"> 12
+</span><span class="lnt"> 13
+</span><span class="lnt"> 14
+</span><span class="lnt"> 15
+</span><span class="lnt"> 16
+</span><span class="lnt"> 17
+</span><span class="lnt"> 18
+</span><span class="lnt"> 19
+</span><span class="lnt"> 20
+</span><span class="lnt"> 21
+</span><span class="lnt"> 22
+</span><span class="lnt"> 23
+</span><span class="lnt"> 24
+</span><span class="lnt"> 25
+</span><span class="lnt"> 26
+</span><span class="lnt"> 27
+</span><span class="lnt"> 28
+</span><span class="lnt"> 29
+</span><span class="lnt"> 30
+</span><span class="lnt"> 31
+</span><span class="lnt"> 32
+</span><span class="lnt"> 33
+</span><span class="lnt"> 34
+</span><span class="lnt"> 35
+</span><span class="lnt"> 36
+</span><span class="lnt"> 37
+</span><span class="lnt"> 38
+</span><span class="lnt"> 39
+</span><span class="lnt"> 40
+</span><span class="lnt"> 41
+</span><span class="lnt"> 42
+</span><span class="lnt"> 43
+</span><span class="lnt"> 44
+</span><span class="lnt"> 45
+</span><span class="lnt"> 46
+</span><span class="lnt"> 47
+</span><span class="lnt"> 48
+</span><span class="lnt"> 49
+</span><span class="lnt"> 50
+</span><span class="lnt"> 51
+</span><span class="lnt"> 52
+</span><span class="lnt"> 53
+</span><span class="lnt"> 54
+</span><span class="lnt"> 55
+</span><span class="lnt"> 56
+</span><span class="lnt"> 57
+</span><span class="lnt"> 58
+</span><span class="lnt"> 59
+</span><span class="lnt"> 60
+</span><span class="lnt"> 61
+</span><span class="lnt"> 62
+</span><span class="lnt"> 63
+</span><span class="lnt"> 64
+</span><span class="lnt"> 65
+</span><span class="lnt"> 66
+</span><span class="lnt"> 67
+</span><span class="lnt"> 68
+</span><span class="lnt"> 69
+</span><span class="lnt"> 70
+</span><span class="lnt"> 71
+</span><span class="lnt"> 72
+</span><span class="lnt"> 73
+</span><span class="lnt"> 74
+</span><span class="lnt"> 75
+</span><span class="lnt"> 76
+</span><span class="lnt"> 77
+</span><span class="lnt"> 78
+</span><span class="lnt"> 79
+</span><span class="lnt"> 80
+</span><span class="lnt"> 81
+</span><span class="lnt"> 82
+</span><span class="lnt"> 83
+</span><span class="lnt"> 84
+</span><span class="lnt"> 85
+</span><span class="lnt"> 86
+</span><span class="lnt"> 87
+</span><span class="lnt"> 88
+</span><span class="lnt"> 89
+</span><span class="lnt"> 90
+</span><span class="lnt"> 91
+</span><span class="lnt"> 92
+</span><span class="lnt"> 93
+</span><span class="lnt"> 94
+</span><span class="lnt"> 95
+</span><span class="lnt"> 96
+</span><span class="lnt"> 97
+</span><span class="lnt"> 98
+</span><span class="lnt"> 99
+</span><span class="lnt">100
+</span><span class="lnt">101
+</span><span class="lnt">102
+</span><span class="lnt">103
+</span><span class="lnt">104
+</span><span class="lnt">105
+</span><span class="lnt">106
+</span><span class="lnt">107
+</span><span class="lnt">108
+</span><span class="lnt">109
+</span><span class="lnt">110
+</span><span class="lnt">111
+</span><span class="lnt">112
+</span><span class="lnt">113
+</span><span class="lnt">114
+</span><span class="lnt">115
+</span><span class="lnt">116
+</span><span class="lnt">117
+</span><span class="lnt">118
+</span><span class="lnt">119
+</span><span class="lnt">120
+</span><span class="lnt">121
+</span><span class="lnt">122
+</span><span class="lnt">123
+</span><span class="lnt">124
+</span><span class="lnt">125
+</span><span class="lnt">126
+</span><span class="lnt">127
+</span><span class="lnt">128
+</span><span class="lnt">129
+</span><span class="lnt">130
+</span><span class="lnt">131
+</span><span class="lnt">132
+</span><span class="lnt">133
+</span><span class="lnt">134
+</span><span class="lnt">135
+</span><span class="lnt">136
+</span><span class="lnt">137
+</span><span class="lnt">138
+</span><span class="lnt">139
+</span><span class="lnt">140
+</span><span class="lnt">141
+</span><span class="lnt">142
+</span><span class="lnt">143
+</span><span class="lnt">144
+</span><span class="lnt">145
+</span><span class="lnt">146
+</span><span class="lnt">147
+</span><span class="lnt">148
+</span><span class="lnt">149
+</span><span class="lnt">150
+</span><span class="lnt">151
+</span><span class="lnt">152
+</span><span class="lnt">153
+</span><span class="lnt">154
+</span><span class="lnt">155
+</span><span class="lnt">156
+</span><span class="lnt">157
+</span><span class="lnt">158
+</span><span class="lnt">159
+</span><span class="lnt">160
+</span><span class="lnt">161
+</span><span class="lnt">162
+</span><span class="lnt">163
+</span><span class="lnt">164
+</span><span class="lnt">165
+</span><span class="lnt">166
+</span><span class="lnt">167
+</span><span class="lnt">168
+</span><span class="lnt">169
+</span><span class="lnt">170
+</span><span class="lnt">171
+</span><span class="lnt">172
+</span><span class="lnt">173
+</span><span class="lnt">174
+</span><span class="lnt">175
+</span><span class="lnt">176
+</span><span class="lnt">177
+</span><span class="lnt">178
+</span><span class="lnt">179
+</span><span class="lnt">180
+</span><span class="lnt">181
+</span><span class="lnt">182
+</span><span class="lnt">183
+</span><span class="lnt">184
+</span><span class="lnt">185
+</span><span class="lnt">186
+</span><span class="lnt">187
+</span><span class="lnt">188
+</span><span class="lnt">189
+</span><span class="lnt">190
+</span><span class="lnt">191
+</span><span class="lnt">192
+</span><span class="lnt">193
+</span><span class="lnt">194
+</span><span class="lnt">195
+</span><span class="lnt">196
+</span><span class="lnt">197
+</span><span class="lnt">198
+</span><span class="lnt">199
+</span><span class="lnt">200
+</span><span class="lnt">201
+</span><span class="lnt">202
+</span><span class="lnt">203
+</span><span class="lnt">204
+</span><span class="lnt">205
+</span><span class="lnt">206
+</span><span class="lnt">207
+</span><span class="lnt">208
+</span><span class="lnt">209
+</span><span class="lnt">210
+</span><span class="lnt">211
+</span><span class="lnt">212
+</span><span class="lnt">213
+</span><span class="lnt">214
+</span><span class="lnt">215
+</span><span class="lnt">216
+</span><span class="lnt">217
+</span><span class="lnt">218
+</span><span class="lnt">219
+</span><span class="lnt">220
+</span><span class="lnt">221
+</span><span class="lnt">222
+</span><span class="lnt">223
+</span><span class="lnt">224
+</span><span class="lnt">225
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">loadScriptSync</span> <span class="p">(</span><span class="nx">src</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">// get some kind of XMLHttpRequest
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="kd">var</span> <span class="nx">xhrObj</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">XMLHttpRequest</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">// open and send a synchronous request
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">xhrObj</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span><span class="nx">src</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">xhrObj</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">// add the returned content to a newly created script tag
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="kd">var</span> <span class="nx">se</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;script&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">se</span><span class="p">.</span><span class="nx">type</span> <span class="o">=</span> <span class="s2">&#34;text/javascript&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">se</span><span class="p">.</span><span class="nx">text</span> <span class="o">=</span> <span class="nx">xhrObj</span><span class="p">.</span><span class="nx">responseText</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s1">&#39;head&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">].</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">se</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// function loadCssSync (src) {
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 	// add the returned content to a newly created script tag
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 	var se = document.createElement(&#39;link&#39;);
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 	se.type = &#34;text/css&#34;;
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 	se.rel=&#34;stylesheet&#34;
+</span></span></span><span class="line"><span class="cl"><span class="c1">//          se.href = src;	
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 	document.getElementsByTagName(&#39;head&#39;)[0].appendChild(se);
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">// }
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">libs</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">parent</span><span class="p">.</span><span class="nx">libs</span>
+</span></span><span class="line"><span class="cl"><span class="nx">loadScriptSync</span><span class="p">(</span><span class="nx">libs</span><span class="o">+</span><span class="s2">&#34;/neo4jd3.js&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">url</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">parent</span><span class="p">.</span><span class="nx">dataUrl</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="kr">const</span> <span class="nx">neo4jData</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;results&#34;</span><span class="o">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">                <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="s2">&#34;columns&#34;</span><span class="o">:</span> <span class="p">[</span><span class="s2">&#34;user&#34;</span><span class="p">,</span> <span class="s2">&#34;entity&#34;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">                    <span class="s2">&#34;data&#34;</span><span class="o">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">                        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                            <span class="s2">&#34;graph&#34;</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                                <span class="s2">&#34;nodes&#34;</span><span class="o">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">                                    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                                        <span class="s2">&#34;id&#34;</span><span class="o">:</span> <span class="s2">&#34;1&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                        <span class="s2">&#34;labels&#34;</span><span class="o">:</span> <span class="p">[</span><span class="s2">&#34;Project&#34;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">                                        <span class="s2">&#34;properties&#34;</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                                            <span class="s2">&#34;name&#34;</span><span class="o">:</span> <span class="s2">&#34;neo4j&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                            <span class="s2">&#34;title&#34;</span><span class="o">:</span> <span class="s2">&#34;neo4jd3.js&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                            <span class="s2">&#34;description&#34;</span><span class="o">:</span> <span class="s2">&#34;Neo4j graph visualization using D3.js.&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                            <span class="s2">&#34;url&#34;</span><span class="o">:</span> <span class="s2">&#34;https://eisman.github.io/neo4jd3&#34;</span>
+</span></span><span class="line"><span class="cl">                                        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">                                    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">                                    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                                        <span class="s2">&#34;id&#34;</span><span class="o">:</span> <span class="s2">&#34;2&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                        <span class="s2">&#34;labels&#34;</span><span class="o">:</span> <span class="p">[</span><span class="s2">&#34;website&#34;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">                                        <span class="s2">&#34;properties&#34;</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                                            <span class="s2">&#34;name&#34;</span><span class="o">:</span> <span class="s2">&#34;github&#34;</span>
+</span></span><span class="line"><span class="cl">                                        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">                                    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">                                    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                                        <span class="s2">&#34;id&#34;</span><span class="o">:</span> <span class="s2">&#34;3&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                        <span class="s2">&#34;labels&#34;</span><span class="o">:</span> <span class="p">[</span><span class="s2">&#34;website&#34;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">                                        <span class="s2">&#34;properties&#34;</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                                            <span class="s2">&#34;name&#34;</span><span class="o">:</span> <span class="s2">&#34;Google&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">                                    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">                                    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                                        <span class="s2">&#34;id&#34;</span><span class="o">:</span> <span class="s2">&#34;4&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                        <span class="s2">&#34;labels&#34;</span><span class="o">:</span> <span class="p">[</span><span class="s2">&#34;website&#34;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">                                        <span class="s2">&#34;properties&#34;</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                                            <span class="s2">&#34;name&#34;</span><span class="o">:</span> <span class="s2">&#34;fb&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">                                    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">                                    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                                        <span class="s2">&#34;id&#34;</span><span class="o">:</span> <span class="s2">&#34;5&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                        <span class="s2">&#34;labels&#34;</span><span class="o">:</span> <span class="p">[</span><span class="s2">&#34;website&#34;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">                                        <span class="s2">&#34;properties&#34;</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                                            <span class="s2">&#34;name&#34;</span><span class="o">:</span> <span class="s2">&#34;ali&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">                                    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">                                    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                                        <span class="s2">&#34;id&#34;</span><span class="o">:</span> <span class="s2">&#34;6&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                        <span class="s2">&#34;labels&#34;</span><span class="o">:</span> <span class="p">[</span><span class="s2">&#34;website&#34;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">                                        <span class="s2">&#34;properties&#34;</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                                            <span class="s2">&#34;name&#34;</span><span class="o">:</span> <span class="s2">&#34;jd&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">                                    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">                                    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                                        <span class="s2">&#34;id&#34;</span><span class="o">:</span> <span class="s2">&#34;7&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                        <span class="s2">&#34;labels&#34;</span><span class="o">:</span> <span class="p">[</span><span class="s2">&#34;users&#34;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">                                        <span class="s2">&#34;properties&#34;</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                                            <span class="s2">&#34;name&#34;</span><span class="o">:</span> <span class="s2">&#34;刘强东&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">                                    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">                                    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                                        <span class="s2">&#34;id&#34;</span><span class="o">:</span> <span class="s2">&#34;8&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                        <span class="s2">&#34;labels&#34;</span><span class="o">:</span> <span class="p">[</span><span class="s2">&#34;users&#34;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">                                        <span class="s2">&#34;properties&#34;</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                                            <span class="s2">&#34;name&#34;</span><span class="o">:</span> <span class="s2">&#34;马云&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">                                    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">                                    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                                        <span class="s2">&#34;id&#34;</span><span class="o">:</span> <span class="s2">&#34;9&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                        <span class="s2">&#34;labels&#34;</span><span class="o">:</span> <span class="p">[</span><span class="s2">&#34;users&#34;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">                                        <span class="s2">&#34;properties&#34;</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                                            <span class="s2">&#34;name&#34;</span><span class="o">:</span> <span class="s2">&#34;张勇 逍遥子&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">                                    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">                                <span class="p">],</span>
+</span></span><span class="line"><span class="cl">                                <span class="s2">&#34;relationships&#34;</span><span class="o">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">                                    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                                        <span class="s2">&#34;id&#34;</span><span class="o">:</span> <span class="s2">&#34;1&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                        <span class="s2">&#34;type&#34;</span><span class="o">:</span> <span class="s2">&#34;DEVELOPES&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                        <span class="s2">&#34;startNode&#34;</span><span class="o">:</span> <span class="s2">&#34;1&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                        <span class="s2">&#34;endNode&#34;</span><span class="o">:</span> <span class="s2">&#34;2&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                        <span class="s2">&#34;properties&#34;</span><span class="o">:</span> <span class="p">{}</span>
+</span></span><span class="line"><span class="cl">                                    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">                                    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                                        <span class="s2">&#34;id&#34;</span><span class="o">:</span> <span class="s2">&#34;2&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                        <span class="s2">&#34;type&#34;</span><span class="o">:</span> <span class="s2">&#34;DEVELOPES&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                        <span class="s2">&#34;startNode&#34;</span><span class="o">:</span> <span class="s2">&#34;1&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                        <span class="s2">&#34;endNode&#34;</span><span class="o">:</span> <span class="s2">&#34;3&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                        <span class="s2">&#34;properties&#34;</span><span class="o">:</span> <span class="p">{}</span>
+</span></span><span class="line"><span class="cl">                                    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">                                    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                                        <span class="s2">&#34;id&#34;</span><span class="o">:</span> <span class="s2">&#34;3&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                        <span class="s2">&#34;type&#34;</span><span class="o">:</span> <span class="s2">&#34;DEVELOPES&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                        <span class="s2">&#34;startNode&#34;</span><span class="o">:</span> <span class="s2">&#34;1&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                        <span class="s2">&#34;endNode&#34;</span><span class="o">:</span> <span class="s2">&#34;4&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                        <span class="s2">&#34;properties&#34;</span><span class="o">:</span> <span class="p">{}</span>
+</span></span><span class="line"><span class="cl">                                    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">                                    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                                        <span class="s2">&#34;id&#34;</span><span class="o">:</span> <span class="s2">&#34;4&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                        <span class="s2">&#34;type&#34;</span><span class="o">:</span> <span class="s2">&#34;DEVELOPES&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                        <span class="s2">&#34;startNode&#34;</span><span class="o">:</span> <span class="s2">&#34;1&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                        <span class="s2">&#34;endNode&#34;</span><span class="o">:</span> <span class="s2">&#34;5&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                        <span class="s2">&#34;properties&#34;</span><span class="o">:</span> <span class="p">{}</span>
+</span></span><span class="line"><span class="cl">                                    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">                                    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                                        <span class="s2">&#34;id&#34;</span><span class="o">:</span> <span class="s2">&#34;5&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                        <span class="s2">&#34;type&#34;</span><span class="o">:</span> <span class="s2">&#34;DEVELOPES&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                        <span class="s2">&#34;startNode&#34;</span><span class="o">:</span> <span class="s2">&#34;1&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                        <span class="s2">&#34;endNode&#34;</span><span class="o">:</span> <span class="s2">&#34;6&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                        <span class="s2">&#34;properties&#34;</span><span class="o">:</span> <span class="p">{}</span>
+</span></span><span class="line"><span class="cl">                                    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">                                    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                                        <span class="s2">&#34;id&#34;</span><span class="o">:</span> <span class="s2">&#34;6&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                        <span class="s2">&#34;type&#34;</span><span class="o">:</span> <span class="s2">&#34;possess&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                        <span class="s2">&#34;startNode&#34;</span><span class="o">:</span> <span class="s2">&#34;7&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                        <span class="s2">&#34;endNode&#34;</span><span class="o">:</span> <span class="s2">&#34;6&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                        <span class="s2">&#34;properties&#34;</span><span class="o">:</span> <span class="p">{}</span>
+</span></span><span class="line"><span class="cl">                                    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">                                    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                                        <span class="s2">&#34;id&#34;</span><span class="o">:</span> <span class="s2">&#34;7&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                        <span class="s2">&#34;type&#34;</span><span class="o">:</span> <span class="s2">&#34;possess&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                        <span class="s2">&#34;startNode&#34;</span><span class="o">:</span> <span class="s2">&#34;8&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                        <span class="s2">&#34;endNode&#34;</span><span class="o">:</span> <span class="s2">&#34;5&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                        <span class="s2">&#34;properties&#34;</span><span class="o">:</span> <span class="p">{}</span>
+</span></span><span class="line"><span class="cl">                                    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">                                    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                                        <span class="s2">&#34;id&#34;</span><span class="o">:</span> <span class="s2">&#34;8&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                        <span class="s2">&#34;type&#34;</span><span class="o">:</span> <span class="s2">&#34;possess&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                        <span class="s2">&#34;startNode&#34;</span><span class="o">:</span> <span class="s2">&#34;9&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                        <span class="s2">&#34;endNode&#34;</span><span class="o">:</span> <span class="s2">&#34;5&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                        <span class="s2">&#34;properties&#34;</span><span class="o">:</span> <span class="p">{}</span>
+</span></span><span class="line"><span class="cl">                                    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">                                    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                                        <span class="s2">&#34;id&#34;</span><span class="o">:</span> <span class="s2">&#34;9&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                        <span class="s2">&#34;type&#34;</span><span class="o">:</span> <span class="s2">&#34;上级&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                        <span class="s2">&#34;startNode&#34;</span><span class="o">:</span> <span class="s2">&#34;8&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                        <span class="s2">&#34;endNode&#34;</span><span class="o">:</span> <span class="s2">&#34;9&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                        <span class="s2">&#34;properties&#34;</span><span class="o">:</span> <span class="p">{}</span>
+</span></span><span class="line"><span class="cl">                                    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">                                    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                                        <span class="s2">&#34;id&#34;</span><span class="o">:</span> <span class="s2">&#34;10&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                        <span class="s2">&#34;type&#34;</span><span class="o">:</span> <span class="s2">&#34;上级&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                        <span class="s2">&#34;startNode&#34;</span><span class="o">:</span> <span class="s2">&#34;9&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                        <span class="s2">&#34;endNode&#34;</span><span class="o">:</span> <span class="s2">&#34;8&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                        <span class="s2">&#34;properties&#34;</span><span class="o">:</span> <span class="p">{}</span>
+</span></span><span class="line"><span class="cl">                                    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">                                    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                                        <span class="s2">&#34;id&#34;</span><span class="o">:</span> <span class="s2">&#34;11&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                        <span class="s2">&#34;type&#34;</span><span class="o">:</span> <span class="s2">&#34;tools&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                        <span class="s2">&#34;startNode&#34;</span><span class="o">:</span> <span class="s2">&#34;1&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                        <span class="s2">&#34;endNode&#34;</span><span class="o">:</span> <span class="s2">&#34;1&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                        <span class="s2">&#34;properties&#34;</span><span class="o">:</span> <span class="p">{}</span>
+</span></span><span class="line"><span class="cl">                                    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">                                <span class="p">]</span>
+</span></span><span class="line"><span class="cl">                            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">                        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">                    <span class="p">]</span>
+</span></span><span class="line"><span class="cl">                <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="p">],</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;errors&#34;</span><span class="o">:</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">neo4jd3</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Neo4jd3</span><span class="p">(</span><span class="s1">&#39;#neo4j-d3&#39;</span><span class="p">,</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">highlight</span><span class="o">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="kr">class</span><span class="o">:</span> <span class="s1">&#39;Project&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">property</span><span class="o">:</span> <span class="s1">&#39;name&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">value</span><span class="o">:</span> <span class="s1">&#39;neo4jd3&#39;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">},</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="kr">class</span><span class="o">:</span> <span class="s1">&#39;User&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">property</span><span class="o">:</span> <span class="s1">&#39;userId&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">value</span><span class="o">:</span> <span class="s1">&#39;eisman&#39;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">],</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">minCollision</span><span class="o">:</span> <span class="mi">60</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">neo4jData</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">nodeRadius</span><span class="o">:</span> <span class="mi">25</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">onNodeDoubleClick</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">,</span> <span class="nx">node</span><span class="p">,</span> <span class="nx">d3</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">switch</span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">id</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">case</span> <span class="s1">&#39;25&#39;</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">                <span class="c1">// Google
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                <span class="nb">window</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">properties</span><span class="p">.</span><span class="nx">url</span><span class="p">,</span> <span class="s1">&#39;_blank&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">                <span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="k">default</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">                <span class="kd">var</span> <span class="nx">maxNodes</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="nx">data</span> <span class="o">=</span> <span class="nx">neo4jd3</span><span class="p">.</span><span class="nx">randomD3Data</span><span class="p">(</span><span class="nx">node</span><span class="p">,</span> <span class="nx">maxNodes</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">                <span class="nx">neo4jd3</span><span class="p">.</span><span class="nx">updateWithD3Data</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">                <span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">zoomFit</span><span class="o">:</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl"><span class="p">});</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<b>运行结果:</b><br>
+
+<iframe id="Neo4j-静态数据" allowfullscreen
+      style="width:100%;height:400px;"></iframe>
+<script src="/js/blob.js" type="text/javascript"></script> 
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', function() {
+   mySnippet('\n\n\n\n\n\n\n\n\u003cscript src=\u0022https:\/\/d3js.org\/d3.v7.min.js\u0022\u003e\u003c\/script\u003e\n\n\n\u003cdiv \n    id=\u0022neo4j-d3\u0022 \n    ref=\u0022neo4j-d3\u0022 \n\u003e\n\u003c\/div\u003e\n\n\n\n\n\n\n\n', '\n\n\n\n\n\n\n\n\n\n\nfunction loadScriptSync (src) {\n\t\/\/ get some kind of XMLHttpRequest\n\tvar xhrObj = new XMLHttpRequest()\n\t\/\/ open and send a synchronous request\n\txhrObj.open(\u0027GET\u0027,src, false);\n\txhrObj.send(\u0027\u0027);\n\t\/\/ add the returned content to a newly created script tag\n\tvar se = document.createElement(\u0027script\u0027);\n\tse.type = \u0022text\/javascript\u0022;\n\tse.text = xhrObj.responseText;\n\tdocument.getElementsByTagName(\u0027head\u0027)[0].appendChild(se);\n\n}\n\n\/\/ function loadCssSync (src) {\n\/\/ \t\/\/ add the returned content to a newly created script tag\n\/\/ \tvar se = document.createElement(\u0027link\u0027);\n\/\/ \tse.type = \u0022text\/css\u0022;\n\/\/ \tse.rel=\u0022stylesheet\u0022\n\/\/          se.href = src;\t\n\/\/ \tdocument.getElementsByTagName(\u0027head\u0027)[0].appendChild(se);\n\n\/\/ }\n\n\nlibs = window.parent.libs\nloadScriptSync(libs\u002b\u0022\/neo4jd3.js\u0022)\n\n\n\nurl = window.parent.dataUrl\n\n const neo4jData = {\n            \u0022results\u0022: [\n                {\n                    \u0022columns\u0022: [\u0022user\u0022, \u0022entity\u0022],\n                    \u0022data\u0022: [\n                        {\n                            \u0022graph\u0022: {\n                                \u0022nodes\u0022: [\n                                    {\n                                        \u0022id\u0022: \u00221\u0022,\n                                        \u0022labels\u0022: [\u0022Project\u0022],\n                                        \u0022properties\u0022: {\n                                            \u0022name\u0022: \u0022neo4j\u0022,\n                                            \u0022title\u0022: \u0022neo4jd3.js\u0022,\n                                            \u0022description\u0022: \u0022Neo4j graph visualization using D3.js.\u0022,\n                                            \u0022url\u0022: \u0022https:\/\/eisman.github.io\/neo4jd3\u0022\n                                        }\n                                    },\n                                    {\n                                        \u0022id\u0022: \u00222\u0022,\n                                        \u0022labels\u0022: [\u0022website\u0022],\n                                        \u0022properties\u0022: {\n                                            \u0022name\u0022: \u0022github\u0022\n                                        }\n                                    },\n                                    {\n                                        \u0022id\u0022: \u00223\u0022,\n                                        \u0022labels\u0022: [\u0022website\u0022],\n                                        \u0022properties\u0022: {\n                                            \u0022name\u0022: \u0022Google\u0022,\n                                        }\n                                    },\n                                    {\n                                        \u0022id\u0022: \u00224\u0022,\n                                        \u0022labels\u0022: [\u0022website\u0022],\n                                        \u0022properties\u0022: {\n                                            \u0022name\u0022: \u0022fb\u0022,\n                                        }\n                                    },\n                                    {\n                                        \u0022id\u0022: \u00225\u0022,\n                                        \u0022labels\u0022: [\u0022website\u0022],\n                                        \u0022properties\u0022: {\n                                            \u0022name\u0022: \u0022ali\u0022,\n                                        }\n                                    },\n                                    {\n                                        \u0022id\u0022: \u00226\u0022,\n                                        \u0022labels\u0022: [\u0022website\u0022],\n                                        \u0022properties\u0022: {\n                                            \u0022name\u0022: \u0022jd\u0022,\n                                        }\n                                    },\n                                    {\n                                        \u0022id\u0022: \u00227\u0022,\n                                        \u0022labels\u0022: [\u0022users\u0022],\n                                        \u0022properties\u0022: {\n                                            \u0022name\u0022: \u0022刘强东\u0022,\n                                        }\n                                    },\n                                    {\n                                        \u0022id\u0022: \u00228\u0022,\n                                        \u0022labels\u0022: [\u0022users\u0022],\n                                        \u0022properties\u0022: {\n                                            \u0022name\u0022: \u0022马云\u0022,\n                                        }\n                                    },\n                                    {\n                                        \u0022id\u0022: \u00229\u0022,\n                                        \u0022labels\u0022: [\u0022users\u0022],\n                                        \u0022properties\u0022: {\n                                            \u0022name\u0022: \u0022张勇 逍遥子\u0022,\n                                        }\n                                    },\n                                ],\n                                \u0022relationships\u0022: [\n                                    {\n                                        \u0022id\u0022: \u00221\u0022,\n                                        \u0022type\u0022: \u0022DEVELOPES\u0022,\n                                        \u0022startNode\u0022: \u00221\u0022,\n                                        \u0022endNode\u0022: \u00222\u0022,\n                                        \u0022properties\u0022: {}\n                                    },\n                                    {\n                                        \u0022id\u0022: \u00222\u0022,\n                                        \u0022type\u0022: \u0022DEVELOPES\u0022,\n                                        \u0022startNode\u0022: \u00221\u0022,\n                                        \u0022endNode\u0022: \u00223\u0022,\n                                        \u0022properties\u0022: {}\n                                    },\n                                    {\n                                        \u0022id\u0022: \u00223\u0022,\n                                        \u0022type\u0022: \u0022DEVELOPES\u0022,\n                                        \u0022startNode\u0022: \u00221\u0022,\n                                        \u0022endNode\u0022: \u00224\u0022,\n                                        \u0022properties\u0022: {}\n                                    },\n                                    {\n                                        \u0022id\u0022: \u00224\u0022,\n                                        \u0022type\u0022: \u0022DEVELOPES\u0022,\n                                        \u0022startNode\u0022: \u00221\u0022,\n                                        \u0022endNode\u0022: \u00225\u0022,\n                                        \u0022properties\u0022: {}\n                                    },\n                                    {\n                                        \u0022id\u0022: \u00225\u0022,\n                                        \u0022type\u0022: \u0022DEVELOPES\u0022,\n                                        \u0022startNode\u0022: \u00221\u0022,\n                                        \u0022endNode\u0022: \u00226\u0022,\n                                        \u0022properties\u0022: {}\n                                    },\n                                    {\n                                        \u0022id\u0022: \u00226\u0022,\n                                        \u0022type\u0022: \u0022possess\u0022,\n                                        \u0022startNode\u0022: \u00227\u0022,\n                                        \u0022endNode\u0022: \u00226\u0022,\n                                        \u0022properties\u0022: {}\n                                    },\n                                    {\n                                        \u0022id\u0022: \u00227\u0022,\n                                        \u0022type\u0022: \u0022possess\u0022,\n                                        \u0022startNode\u0022: \u00228\u0022,\n                                        \u0022endNode\u0022: \u00225\u0022,\n                                        \u0022properties\u0022: {}\n                                    },\n                                    {\n                                        \u0022id\u0022: \u00228\u0022,\n                                        \u0022type\u0022: \u0022possess\u0022,\n                                        \u0022startNode\u0022: \u00229\u0022,\n                                        \u0022endNode\u0022: \u00225\u0022,\n                                        \u0022properties\u0022: {}\n                                    },\n                                    {\n                                        \u0022id\u0022: \u00229\u0022,\n                                        \u0022type\u0022: \u0022上级\u0022,\n                                        \u0022startNode\u0022: \u00228\u0022,\n                                        \u0022endNode\u0022: \u00229\u0022,\n                                        \u0022properties\u0022: {}\n                                    },\n                                    {\n                                        \u0022id\u0022: \u002210\u0022,\n                                        \u0022type\u0022: \u0022上级\u0022,\n                                        \u0022startNode\u0022: \u00229\u0022,\n                                        \u0022endNode\u0022: \u00228\u0022,\n                                        \u0022properties\u0022: {}\n                                    },\n                                    {\n                                        \u0022id\u0022: \u002211\u0022,\n                                        \u0022type\u0022: \u0022tools\u0022,\n                                        \u0022startNode\u0022: \u00221\u0022,\n                                        \u0022endNode\u0022: \u00221\u0022,\n                                        \u0022properties\u0022: {}\n                                    },\n                                ]\n                            }\n                        }\n                    ]\n                }\n            ],\n            \u0022errors\u0022: []\n        }\n\nvar neo4jd3 = new Neo4jd3(\u0027#neo4j-d3\u0027, {\n    highlight: [\n        {\n            class: \u0027Project\u0027,\n            property: \u0027name\u0027,\n            value: \u0027neo4jd3\u0027\n        }, {\n            class: \u0027User\u0027,\n            property: \u0027userId\u0027,\n            value: \u0027eisman\u0027\n        }\n    ],\n    minCollision: 60,\n    neo4jData,\n    nodeRadius: 25,\n    onNodeDoubleClick: function(e, node, d3) {\n        switch(node.id) {\n            case \u002725\u0027:\n                \/\/ Google\n                window.open(node.properties.url, \u0027_blank\u0027);\n                break;\n            default:\n                var maxNodes = 5,\n                    data = neo4jd3.randomD3Data(node, maxNodes);\n                neo4jd3.updateWithD3Data(data);\n                break;\n        }\n    },\n    zoomFit: true\n});\n\n\n\n\n', '\n\n\n\n\n#neo4j-d3 {\n  width: 100%;\n  height: 100%;\n}\n\n.neo4jd3-graph {\n  border: 1px solid #ddd;\n  border-radius: 5px;\n}\n\n.neo4jd3-info {\n  font-size: 16px;\n  padding: 10px;\n  position: absolute;\n}\n.neo4jd3-info a {\n  border: 1px solid;\n  display: inline-block;\n  font-size: 14px;\n  line-height: 1.428571429;\n  margin-left: 5px;\n  margin-top: 5px;\n  padding: 6px 12px;\n}\n.neo4jd3-info a.class {\n  color: white;\n}\n.neo4jd3-info a.property {\n  background-color: #fff;\n  border-color: #ccc;\n  color: #333;\n}\n.neo4jd3-info a.btn {\n  margin-left: 5px;\n  margin-top: 5px;\n  opacity: 1;\n}\n.neo4jd3-info a.info {\n  background-color: rgb(165, 171, 182);\n  border: 1px solid rgb(154, 161, 172);\n  color: white;\n}\n\n.node.node-highlighted .ring {\n  -ms-filter: \u0022progid:DXImageTransform.Microsoft.Alpha(Opacity=50)\u0022;\n  filter: alpha(opacity=50);\n  opacity: 0.5;\n  stroke: #888;\n  stroke-width: 12px;\n}\n.node .outline {\n  cursor: pointer;\n  fill: rgb(165, 171, 182);\n  pointer-events: all;\n  stroke: rgb(154, 161, 172);\n  stroke-width: 2px;\n}\n.node .ring {\n  fill: none;\n  -ms-filter: \u0022progid:DXImageTransform.Microsoft.Alpha(Opacity=0)\u0022;\n  filter: alpha(opacity=0);\n  opacity: 0;\n  stroke: #6ac6ff;\n  stroke-width: 8px;\n}\n.node .context-menu-item {\n  cursor: pointer;\n  display: none;\n}\n.node .context-menu-item.context-show {\n  display: block;\n}\n.node .context-menu-item:hover {\n  fill: rgb(185, 185, 185);\n}\n\n.node.selected .ring,\n.node:hover .ring {\n  -ms-filter: \u0022progid:DXImageTransform.Microsoft.Alpha(Opacity=30)\u0022;\n  filter: alpha(opacity=30);\n  opacity: 0.3;\n}\n.node.selected .ring .context-menu-item,\n.node:hover .ring .context-menu-item {\n  fill: rgb(185, 185, 185);\n}\n\n.relationship {\n  cursor: default;\n}\n.relationship.relationship-highlighted .text {\n  fill: rgb(255, 0, 0);\n  font-size: 12px;\n  font-weight: bold;\n}\n.relationship.relationship-highlighted .outline {\n  fill: rgb(255, 0, 0);\n}\n.relationship line {\n  stroke: #aaa;\n}\n.relationship .outline {\n  cursor: default;\n}\n.relationship .overlay {\n  cursor: default;\n  fill: #6ac6ff;\n  -ms-filter: \u0022progid:DXImageTransform.Microsoft.Alpha(Opacity=0)\u0022;\n  filter: alpha(opacity=0);\n  opacity: 0;\n}\n.relationship text {\n  cursor: default;\n  fill:gray;\n}\n.relationship .active_text {\n  fill: rgb(253, 204, 89);\n}\n\n.relationship.selected .overlay,\n.relationship:hover .overlay {\n  -ms-filter: \u0022progid:DXImageTransform.Microsoft.Alpha(Opacity=30)\u0022;\n  filter: alpha(opacity=30);\n  opacity: 0.3;\n}\n\nsvg {\n  cursor: pointer;\n}\n\n.iconfont-kg-neo4j3d {\n  font-size: 20px;\n  font-weight: bold;\n}\n\n\n\n\n\n\n\n\n\n\n', 'Neo4j-静态数据');
+}, false);
+</script> 
+
+<h4>控制面板 代码片段 </h4>
+
+
+
+
+
+<p><strong>CSS:</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-css" data-lang="css"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nt">iframe</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="k">height</span><span class="p">:</span><span class="mi">200</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">.</span><span class="nc">control</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="k">color</span><span class="p">:</span><span class="kc">white</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">#</span><span class="nn">info</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">text-align</span><span class="p">:</span> <span class="kc">left</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>HTML:</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;control&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">form</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;info&#34;</span> <span class="na">onsubmit </span><span class="o">=</span> <span class="s">&#34;return false&#34;</span> <span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  服务器: <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;text&#34;</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;server&#34;</span> <span class="na">value</span><span class="o">=</span><span class="s">&#34;http://localhost:11010&#34;</span> <span class="p">/&gt;&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  用户名: <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;text&#34;</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;name&#34;</span> <span class="na">value</span><span class="o">=</span><span class="s">&#34;neo4j&#34;</span> <span class="p">/&gt;&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  密 码: <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;text&#34;</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;password&#34;</span> <span class="na">value</span><span class="o">=</span><span class="s">&#34;123456&#34;</span> <span class="p">/&gt;&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">button</span> <span class="na">onclick</span><span class="o">=</span><span class="s">&#34;sendConnectionData()&#34;</span> <span class="p">&gt;</span>连接服务器<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">&lt;</span><span class="nt">button</span> <span class="na">onclick</span><span class="o">=</span><span class="s">&#34;sendCommand(&#39;cmd&#39;,&#39;match (n) return n limit 10&#39;)&#34;</span><span class="p">&gt;</span>查询类别<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">&lt;</span><span class="nt">button</span> <span class="na">onclick</span><span class="o">=</span><span class="s">&#34;sendCommand(&#39;cmd&#39;,&#39;match (n)-[r]-(m) return * limit 10&#39;)&#34;</span><span class="p">&gt;</span>查询关系<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>JS:</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">iframeWrap</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">parent</span><span class="p">.</span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;#控制面板&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">   <span class="kr">debugger</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">iframeWrap</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">height</span> <span class="o">=</span> <span class="s2">&#34;200px&#34;</span>
+</span></span><span class="line"><span class="cl"> <span class="nx">setTimeout</span><span class="p">(()=&gt;{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">sendConnectionData</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"> <span class="p">},</span><span class="mi">1000</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nx">setTimeout</span><span class="p">(()=&gt;{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">sendCommand</span><span class="p">(</span><span class="s2">&#34;cmd&#34;</span><span class="p">,</span><span class="s2">&#34;match (n) return n limit 10&#34;</span><span class="p">)</span> 
+</span></span><span class="line"><span class="cl"> <span class="p">},</span><span class="mi">1000</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="kd">function</span> <span class="nx">sendConnectionData</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">var</span> <span class="nx">formEl</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">forms</span><span class="p">.</span><span class="nx">info</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">var</span> <span class="nx">formData</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">FormData</span><span class="p">(</span><span class="nx">formEl</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">var</span> <span class="nx">server</span> <span class="o">=</span> <span class="nx">formData</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;server&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">var</span> <span class="nx">name</span> <span class="o">=</span> <span class="nx">formData</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">var</span> <span class="nx">password</span> <span class="o">=</span> <span class="nx">formData</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;password&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	
+</span></span><span class="line"><span class="cl">	<span class="kd">let</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">{</span><span class="nx">server</span><span class="p">,</span><span class="nx">name</span><span class="p">,</span><span class="nx">password</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">sendCommand</span><span class="p">(</span><span class="s1">&#39;db&#39;</span><span class="p">,</span><span class="nx">data</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="kd">function</span> <span class="nx">sendCommand</span><span class="p">(</span><span class="nx">cmd</span><span class="p">,</span><span class="nx">data</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">iframeWrap</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">parent</span><span class="p">.</span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;#Neo4j-数据库数据&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">const</span> <span class="nx">parentData</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">cmd</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">data</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">iframeWrap</span><span class="p">.</span><span class="nx">contentWindow</span><span class="p">.</span><span class="nx">postMessage</span><span class="p">(</span><span class="nx">parentData</span><span class="p">,</span> <span class="s1">&#39;*&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  
+</span></span></code></pre></td></tr></table>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<b>运行结果:</b><br>
+
+<iframe id="控制面板" allowfullscreen
+      style="width:100%;height:400px;"></iframe>
+<script src="/js/blob.js" type="text/javascript"></script> 
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', function() {
+   mySnippet('\n\n\n\n\n\n\u003cdiv class=\u0022control\u0022\u003e\n\u003cform id=\u0022info\u0022 onsubmit = \u0022return false\u0022 \u003e\n  服务器: \u003cinput type=\u0022text\u0022 name=\u0022server\u0022 value=\u0022http:\/\/localhost:11010\u0022 \/\u003e\u003c\/p\u003e\n  用户名: \u003cinput type=\u0022text\u0022 name=\u0022name\u0022 value=\u0022neo4j\u0022 \/\u003e\u003c\/p\u003e\n  密 码: \u003cinput type=\u0022text\u0022 name=\u0022password\u0022 value=\u0022123456\u0022 \/\u003e\u003c\/p\u003e\n  \u003cbutton onclick=\u0022sendConnectionData()\u0022 \u003e连接服务器\u003c\/button\u003e\n\u003c\/form\u003e\n\u003cdiv\u003e\n\t\u003cbutton onclick=\u0022sendCommand(\u0027cmd\u0027,\u0027match (n) return n limit 10\u0027)\u0022\u003e查询类别\u003c\/button\u003e\n\t\u003cbutton onclick=\u0022sendCommand(\u0027cmd\u0027,\u0027match (n)-[r]-(m) return * limit 10\u0027)\u0022\u003e查询关系\u003c\/button\u003e\n\u003c\/div\u003e\n\u003c\/div\u003e\n\n\n\n\n\n', '\n\n\n\n\n\n\n\n\n\n  const iframeWrap = window.parent.document.querySelector(\u0027#控制面板\u0027);\n   debugger\n  iframeWrap.style.height = \u0022200px\u0022\n setTimeout(()=\u003e{\n\tsendConnectionData()\n },1000)\n\n  setTimeout(()=\u003e{\n\tsendCommand(\u0022cmd\u0022,\u0022match (n) return n limit 10\u0022) \n },1000)\n\n function sendConnectionData(){\n\tvar formEl = document.forms.info;\n\tvar formData = new FormData(formEl);\n\tvar server = formData.get(\u0027server\u0027);\n\tvar name = formData.get(\u0027name\u0027);\n\tvar password = formData.get(\u0027password\u0027);\n\t\n\tlet data = {server,name,password}\n\tsendCommand(\u0027db\u0027,data)\n\n }\n\n function sendCommand(cmd,data){\n  const iframeWrap = window.parent.document.querySelector(\u0027#Neo4j-数据库数据\u0027);\n    const parentData = {\n        cmd,\n\tdata\n    }\n    iframeWrap.contentWindow.postMessage(parentData, \u0027*\u0027)\n }\n  \n\n\n\n', '\n\n\n\niframe{\n\theight:200px;\n}\n\n.control{\n\tcolor:white\n}\n\n#info{\n            text-align: left; \n}\n\n\n\n\n\n\n\n\n\n', '控制面板');
+}, false);
+</script> 
+
+<h4>Neo4j-数据库数据 代码片段 </h4>
+
+
+
+
+
+<p><strong>CSS:</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">  1
+</span><span class="lnt">  2
+</span><span class="lnt">  3
+</span><span class="lnt">  4
+</span><span class="lnt">  5
+</span><span class="lnt">  6
+</span><span class="lnt">  7
+</span><span class="lnt">  8
+</span><span class="lnt">  9
+</span><span class="lnt"> 10
+</span><span class="lnt"> 11
+</span><span class="lnt"> 12
+</span><span class="lnt"> 13
+</span><span class="lnt"> 14
+</span><span class="lnt"> 15
+</span><span class="lnt"> 16
+</span><span class="lnt"> 17
+</span><span class="lnt"> 18
+</span><span class="lnt"> 19
+</span><span class="lnt"> 20
+</span><span class="lnt"> 21
+</span><span class="lnt"> 22
+</span><span class="lnt"> 23
+</span><span class="lnt"> 24
+</span><span class="lnt"> 25
+</span><span class="lnt"> 26
+</span><span class="lnt"> 27
+</span><span class="lnt"> 28
+</span><span class="lnt"> 29
+</span><span class="lnt"> 30
+</span><span class="lnt"> 31
+</span><span class="lnt"> 32
+</span><span class="lnt"> 33
+</span><span class="lnt"> 34
+</span><span class="lnt"> 35
+</span><span class="lnt"> 36
+</span><span class="lnt"> 37
+</span><span class="lnt"> 38
+</span><span class="lnt"> 39
+</span><span class="lnt"> 40
+</span><span class="lnt"> 41
+</span><span class="lnt"> 42
+</span><span class="lnt"> 43
+</span><span class="lnt"> 44
+</span><span class="lnt"> 45
+</span><span class="lnt"> 46
+</span><span class="lnt"> 47
+</span><span class="lnt"> 48
+</span><span class="lnt"> 49
+</span><span class="lnt"> 50
+</span><span class="lnt"> 51
+</span><span class="lnt"> 52
+</span><span class="lnt"> 53
+</span><span class="lnt"> 54
+</span><span class="lnt"> 55
+</span><span class="lnt"> 56
+</span><span class="lnt"> 57
+</span><span class="lnt"> 58
+</span><span class="lnt"> 59
+</span><span class="lnt"> 60
+</span><span class="lnt"> 61
+</span><span class="lnt"> 62
+</span><span class="lnt"> 63
+</span><span class="lnt"> 64
+</span><span class="lnt"> 65
+</span><span class="lnt"> 66
+</span><span class="lnt"> 67
+</span><span class="lnt"> 68
+</span><span class="lnt"> 69
+</span><span class="lnt"> 70
+</span><span class="lnt"> 71
+</span><span class="lnt"> 72
+</span><span class="lnt"> 73
+</span><span class="lnt"> 74
+</span><span class="lnt"> 75
+</span><span class="lnt"> 76
+</span><span class="lnt"> 77
+</span><span class="lnt"> 78
+</span><span class="lnt"> 79
+</span><span class="lnt"> 80
+</span><span class="lnt"> 81
+</span><span class="lnt"> 82
+</span><span class="lnt"> 83
+</span><span class="lnt"> 84
+</span><span class="lnt"> 85
+</span><span class="lnt"> 86
+</span><span class="lnt"> 87
+</span><span class="lnt"> 88
+</span><span class="lnt"> 89
+</span><span class="lnt"> 90
+</span><span class="lnt"> 91
+</span><span class="lnt"> 92
+</span><span class="lnt"> 93
+</span><span class="lnt"> 94
+</span><span class="lnt"> 95
+</span><span class="lnt"> 96
+</span><span class="lnt"> 97
+</span><span class="lnt"> 98
+</span><span class="lnt"> 99
+</span><span class="lnt">100
+</span><span class="lnt">101
+</span><span class="lnt">102
+</span><span class="lnt">103
+</span><span class="lnt">104
+</span><span class="lnt">105
+</span><span class="lnt">106
+</span><span class="lnt">107
+</span><span class="lnt">108
+</span><span class="lnt">109
+</span><span class="lnt">110
+</span><span class="lnt">111
+</span><span class="lnt">112
+</span><span class="lnt">113
+</span><span class="lnt">114
+</span><span class="lnt">115
+</span><span class="lnt">116
+</span><span class="lnt">117
+</span><span class="lnt">118
+</span><span class="lnt">119
+</span><span class="lnt">120
+</span><span class="lnt">121
+</span><span class="lnt">122
+</span><span class="lnt">123
+</span><span class="lnt">124
+</span><span class="lnt">125
+</span><span class="lnt">126
+</span><span class="lnt">127
+</span><span class="lnt">128
+</span><span class="lnt">129
+</span><span class="lnt">130
+</span><span class="lnt">131
+</span><span class="lnt">132
+</span><span class="lnt">133
+</span><span class="lnt">134
+</span><span class="lnt">135
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-css" data-lang="css"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">#</span><span class="nn">neo4j-d3</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">width</span><span class="p">:</span> <span class="mi">100</span><span class="kt">%</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">height</span><span class="p">:</span> <span class="mi">100</span><span class="kt">%</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">.</span><span class="nc">neo4jd3-graph</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">border</span><span class="p">:</span> <span class="mi">1</span><span class="kt">px</span> <span class="kc">solid</span> <span class="mh">#ddd</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">border-radius</span><span class="p">:</span> <span class="mi">5</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">.</span><span class="nc">neo4jd3-info</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">font-size</span><span class="p">:</span> <span class="mi">16</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">padding</span><span class="p">:</span> <span class="mi">10</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">position</span><span class="p">:</span> <span class="kc">absolute</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">.</span><span class="nc">neo4jd3-info</span> <span class="nt">a</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">border</span><span class="p">:</span> <span class="mi">1</span><span class="kt">px</span> <span class="kc">solid</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">display</span><span class="p">:</span> <span class="kc">inline-block</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">font-size</span><span class="p">:</span> <span class="mi">14</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">line-height</span><span class="p">:</span> <span class="mf">1.428571429</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">margin-left</span><span class="p">:</span> <span class="mi">5</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">margin-top</span><span class="p">:</span> <span class="mi">5</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">padding</span><span class="p">:</span> <span class="mi">6</span><span class="kt">px</span> <span class="mi">12</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">.</span><span class="nc">neo4jd3-info</span> <span class="nt">a</span><span class="p">.</span><span class="nc">class</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">color</span><span class="p">:</span> <span class="kc">white</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">.</span><span class="nc">neo4jd3-info</span> <span class="nt">a</span><span class="p">.</span><span class="nc">property</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">background-color</span><span class="p">:</span> <span class="mh">#fff</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">border-color</span><span class="p">:</span> <span class="mh">#ccc</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">color</span><span class="p">:</span> <span class="mh">#333</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">.</span><span class="nc">neo4jd3-info</span> <span class="nt">a</span><span class="p">.</span><span class="nc">btn</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">margin-left</span><span class="p">:</span> <span class="mi">5</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">margin-top</span><span class="p">:</span> <span class="mi">5</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">opacity</span><span class="p">:</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">.</span><span class="nc">neo4jd3-info</span> <span class="nt">a</span><span class="p">.</span><span class="nc">info</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">background-color</span><span class="p">:</span> <span class="nb">rgb</span><span class="p">(</span><span class="mi">165</span><span class="p">,</span> <span class="mi">171</span><span class="p">,</span> <span class="mi">182</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="k">border</span><span class="p">:</span> <span class="mi">1</span><span class="kt">px</span> <span class="kc">solid</span> <span class="nb">rgb</span><span class="p">(</span><span class="mi">154</span><span class="p">,</span> <span class="mi">161</span><span class="p">,</span> <span class="mi">172</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="k">color</span><span class="p">:</span> <span class="kc">white</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">.</span><span class="nc">node</span><span class="p">.</span><span class="nc">node-highlighted</span> <span class="p">.</span><span class="nc">ring</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kp">-ms-</span><span class="k">filter</span><span class="p">:</span> <span class="s2">&#34;progid:DXImageTransform.Microsoft.Alpha(Opacity=50)&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">filter</span><span class="p">:</span> <span class="nf">alpha</span><span class="p">(</span><span class="n">opacity</span><span class="err">=</span><span class="mi">50</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="k">opacity</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">stroke</span><span class="p">:</span> <span class="mh">#888</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">stroke-width</span><span class="p">:</span> <span class="mi">12</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">.</span><span class="nc">node</span> <span class="p">.</span><span class="nc">outline</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">cursor</span><span class="p">:</span> <span class="kc">pointer</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">fill</span><span class="p">:</span> <span class="nb">rgb</span><span class="p">(</span><span class="mi">165</span><span class="p">,</span> <span class="mi">171</span><span class="p">,</span> <span class="mi">182</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">pointer-events</span><span class="p">:</span> <span class="kc">all</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">stroke</span><span class="p">:</span> <span class="nb">rgb</span><span class="p">(</span><span class="mi">154</span><span class="p">,</span> <span class="mi">161</span><span class="p">,</span> <span class="mi">172</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">stroke-width</span><span class="p">:</span> <span class="mi">2</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">.</span><span class="nc">node</span> <span class="p">.</span><span class="nc">ring</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">fill</span><span class="p">:</span> <span class="kc">none</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="kp">-ms-</span><span class="k">filter</span><span class="p">:</span> <span class="s2">&#34;progid:DXImageTransform.Microsoft.Alpha(Opacity=0)&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">filter</span><span class="p">:</span> <span class="nf">alpha</span><span class="p">(</span><span class="n">opacity</span><span class="err">=</span><span class="mi">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="k">opacity</span><span class="p">:</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">stroke</span><span class="p">:</span> <span class="mh">#6ac6ff</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">stroke-width</span><span class="p">:</span> <span class="mi">8</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">.</span><span class="nc">node</span> <span class="p">.</span><span class="nc">context-menu-item</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">cursor</span><span class="p">:</span> <span class="kc">pointer</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">display</span><span class="p">:</span> <span class="kc">none</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">.</span><span class="nc">node</span> <span class="p">.</span><span class="nc">context-menu-item</span><span class="p">.</span><span class="nc">context-show</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">display</span><span class="p">:</span> <span class="kc">block</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">.</span><span class="nc">node</span> <span class="p">.</span><span class="nc">context-menu-item</span><span class="p">:</span><span class="nd">hover</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">fill</span><span class="p">:</span> <span class="nb">rgb</span><span class="p">(</span><span class="mi">185</span><span class="p">,</span> <span class="mi">185</span><span class="p">,</span> <span class="mi">185</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">.</span><span class="nc">node</span><span class="p">.</span><span class="nc">selected</span> <span class="p">.</span><span class="nc">ring</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl"><span class="p">.</span><span class="nc">node</span><span class="p">:</span><span class="nd">hover</span> <span class="p">.</span><span class="nc">ring</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kp">-ms-</span><span class="k">filter</span><span class="p">:</span> <span class="s2">&#34;progid:DXImageTransform.Microsoft.Alpha(Opacity=30)&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">filter</span><span class="p">:</span> <span class="nf">alpha</span><span class="p">(</span><span class="n">opacity</span><span class="err">=</span><span class="mi">30</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="k">opacity</span><span class="p">:</span> <span class="mf">0.3</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">.</span><span class="nc">node</span><span class="p">.</span><span class="nc">selected</span> <span class="p">.</span><span class="nc">ring</span> <span class="p">.</span><span class="nc">context-menu-item</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl"><span class="p">.</span><span class="nc">node</span><span class="p">:</span><span class="nd">hover</span> <span class="p">.</span><span class="nc">ring</span> <span class="p">.</span><span class="nc">context-menu-item</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">fill</span><span class="p">:</span> <span class="nb">rgb</span><span class="p">(</span><span class="mi">185</span><span class="p">,</span> <span class="mi">185</span><span class="p">,</span> <span class="mi">185</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">.</span><span class="nc">relationship</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">cursor</span><span class="p">:</span> <span class="kc">default</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">.</span><span class="nc">relationship</span><span class="p">.</span><span class="nc">relationship-highlighted</span> <span class="p">.</span><span class="nc">text</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">fill</span><span class="p">:</span> <span class="nb">rgb</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="k">font-size</span><span class="p">:</span> <span class="mi">12</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">font-weight</span><span class="p">:</span> <span class="kc">bold</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">.</span><span class="nc">relationship</span><span class="p">.</span><span class="nc">relationship-highlighted</span> <span class="p">.</span><span class="nc">outline</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">fill</span><span class="p">:</span> <span class="nb">rgb</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">.</span><span class="nc">relationship</span> <span class="nt">line</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">stroke</span><span class="p">:</span> <span class="mh">#aaa</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">.</span><span class="nc">relationship</span> <span class="p">.</span><span class="nc">outline</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">cursor</span><span class="p">:</span> <span class="kc">default</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">.</span><span class="nc">relationship</span> <span class="p">.</span><span class="nc">overlay</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">cursor</span><span class="p">:</span> <span class="kc">default</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">fill</span><span class="p">:</span> <span class="mh">#6ac6ff</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="kp">-ms-</span><span class="k">filter</span><span class="p">:</span> <span class="s2">&#34;progid:DXImageTransform.Microsoft.Alpha(Opacity=0)&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">filter</span><span class="p">:</span> <span class="nf">alpha</span><span class="p">(</span><span class="n">opacity</span><span class="err">=</span><span class="mi">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="k">opacity</span><span class="p">:</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">.</span><span class="nc">relationship</span> <span class="nt">text</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">cursor</span><span class="p">:</span> <span class="kc">default</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">fill</span><span class="p">:</span><span class="kc">gray</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">.</span><span class="nc">relationship</span> <span class="p">.</span><span class="nc">active_text</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">fill</span><span class="p">:</span> <span class="nb">rgb</span><span class="p">(</span><span class="mi">253</span><span class="p">,</span> <span class="mi">204</span><span class="p">,</span> <span class="mi">89</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">.</span><span class="nc">relationship</span><span class="p">.</span><span class="nc">selected</span> <span class="p">.</span><span class="nc">overlay</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl"><span class="p">.</span><span class="nc">relationship</span><span class="p">:</span><span class="nd">hover</span> <span class="p">.</span><span class="nc">overlay</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kp">-ms-</span><span class="k">filter</span><span class="p">:</span> <span class="s2">&#34;progid:DXImageTransform.Microsoft.Alpha(Opacity=30)&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">filter</span><span class="p">:</span> <span class="nf">alpha</span><span class="p">(</span><span class="n">opacity</span><span class="err">=</span><span class="mi">30</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="k">opacity</span><span class="p">:</span> <span class="mf">0.3</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nt">svg</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">cursor</span><span class="p">:</span> <span class="kc">pointer</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">.</span><span class="nc">iconfont-kg-neo4j3d</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">font-size</span><span class="p">:</span> <span class="mi">20</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">font-weight</span><span class="p">:</span> <span class="kc">bold</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>HTML:</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;https://d3js.org/d3.v7.min.js&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;https://cdn.jsdelivr.net/npm/neo4j-driver@4.4.7/lib/browser/neo4j-web.min.js&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">div</span> 
+</span></span><span class="line"><span class="cl">    <span class="na">id</span><span class="o">=</span><span class="s">&#34;neo4j-d3&#34;</span> 
+</span></span><span class="line"><span class="cl">    <span class="na">ref</span><span class="o">=</span><span class="s">&#34;neo4j-d3&#34;</span> 
+</span></span><span class="line"><span class="cl"><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>JS:</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span><span class="lnt">73
+</span><span class="lnt">74
+</span><span class="lnt">75
+</span><span class="lnt">76
+</span><span class="lnt">77
+</span><span class="lnt">78
+</span><span class="lnt">79
+</span><span class="lnt">80
+</span><span class="lnt">81
+</span><span class="lnt">82
+</span><span class="lnt">83
+</span><span class="lnt">84
+</span><span class="lnt">85
+</span><span class="lnt">86
+</span><span class="lnt">87
+</span><span class="lnt">88
+</span><span class="lnt">89
+</span><span class="lnt">90
+</span><span class="lnt">91
+</span><span class="lnt">92
+</span><span class="lnt">93
+</span><span class="lnt">94
+</span><span class="lnt">95
+</span><span class="lnt">96
+</span><span class="lnt">97
+</span><span class="lnt">98
+</span><span class="lnt">99
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">loadScriptSync</span> <span class="p">(</span><span class="nx">src</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">// get some kind of XMLHttpRequest
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="kd">var</span> <span class="nx">xhrObj</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">XMLHttpRequest</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">// open and send a synchronous request
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">xhrObj</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span><span class="nx">src</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">xhrObj</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">// add the returned content to a newly created script tag
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="kd">var</span> <span class="nx">se</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;script&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">se</span><span class="p">.</span><span class="nx">type</span> <span class="o">=</span> <span class="s2">&#34;text/javascript&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">se</span><span class="p">.</span><span class="nx">text</span> <span class="o">=</span> <span class="nx">xhrObj</span><span class="p">.</span><span class="nx">responseText</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s1">&#39;head&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">].</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">se</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// function loadCssSync (src) {
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 	// add the returned content to a newly created script tag
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 	var se = document.createElement(&#39;link&#39;);
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 	se.type = &#34;text/css&#34;;
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 	se.rel=&#34;stylesheet&#34;
+</span></span></span><span class="line"><span class="cl"><span class="c1">//          se.href = src;	
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 	document.getElementsByTagName(&#39;head&#39;)[0].appendChild(se);
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">// }
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">libs</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">parent</span><span class="p">.</span><span class="nx">libs</span>
+</span></span><span class="line"><span class="cl"><span class="nx">loadScriptSync</span><span class="p">(</span><span class="nx">libs</span><span class="o">+</span><span class="s2">&#34;/neo4jd3.js&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// async function  executeCommand(cmd){
+</span></span></span><span class="line"><span class="cl"><span class="c1">//       var authToken = neo4j.auth.basic(&#39;neo4j&#39;, &#39;123456&#39;)
+</span></span></span><span class="line"><span class="cl"><span class="c1">//       var driver = neo4j.driver(&#39;bolt://localhost:11009&#39;, authToken, {
+</span></span></span><span class="line"><span class="cl"><span class="c1">//         encrypted: false
+</span></span></span><span class="line"><span class="cl"><span class="c1">//       })
+</span></span></span><span class="line"><span class="cl"><span class="c1">//       var session = driver.session()
+</span></span></span><span class="line"><span class="cl"><span class="c1">//       let data = await session.run(cmd, {})
+</span></span></span><span class="line"><span class="cl"><span class="c1">//       console.log(data)
+</span></span></span><span class="line"><span class="cl"><span class="c1">// }
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="kr">async</span> <span class="kd">function</span> <span class="nx">executeCommand</span><span class="p">(</span><span class="nx">info</span><span class="p">,</span><span class="nx">cmd</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="nx">command</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="s2">&#34;statements&#34;</span> <span class="o">:</span> <span class="p">[</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="s2">&#34;statement&#34;</span> <span class="o">:</span> <span class="nx">cmd</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	<span class="s2">&#34;resultDataContents&#34;</span><span class="o">:</span> <span class="p">[</span><span class="s2">&#34;graph&#34;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">	<span class="s2">&#34;parameters&#34;</span> <span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span> <span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="kd">var</span> <span class="nx">encript</span> <span class="o">=</span> <span class="nx">btoa</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">info</span><span class="p">.</span><span class="nx">name</span><span class="si">}</span><span class="sb">:</span><span class="si">${</span><span class="nx">info</span><span class="p">.</span><span class="nx">password</span><span class="si">}</span><span class="sb">`</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">let</span> <span class="nx">params</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">method</span><span class="o">:</span> <span class="s1">&#39;post&#39;</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">		<span class="nx">headers</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="s1">&#39;Authorization&#39;</span><span class="o">:</span> <span class="sb">`Basic </span><span class="si">${</span><span class="nx">encript</span><span class="si">}</span><span class="sb">`</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">			<span class="s1">&#39;Content-Type&#39;</span><span class="o">:</span> <span class="s1">&#39;application/json&#39;</span>
+</span></span><span class="line"><span class="cl">		<span class="p">},</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">body</span><span class="o">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">command</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">//http://localhost:11010
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">data</span> <span class="o">=</span> <span class="kr">await</span> <span class="nx">fetch</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">info</span><span class="p">.</span><span class="nx">server</span><span class="si">}</span><span class="sb">/db/neo4j/tx`</span><span class="p">,</span><span class="nx">params</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span><span class="nx">r</span><span class="p">=&gt;</span><span class="nx">r</span><span class="p">.</span><span class="nx">json</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="nx">data</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">url</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">parent</span><span class="p">.</span><span class="nx">dataUrl</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//  executeCommand(&#34;match (n)-[r]-(m) return * limit 10&#34;).then((data)=&gt;{
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 	display(data)
+</span></span></span><span class="line"><span class="cl"><span class="c1">//  })
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"> <span class="kd">function</span> <span class="nx">display</span><span class="p">(</span><span class="nx">neo4jData</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">neo4jd3</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Neo4jd3</span><span class="p">(</span><span class="s1">&#39;#neo4j-d3&#39;</span><span class="p">,</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">highlight</span><span class="o">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="kr">class</span><span class="o">:</span> <span class="s1">&#39;&#34;Officer&#34;&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">property</span><span class="o">:</span> <span class="s1">&#39;name&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">value</span><span class="o">:</span> <span class="s1">&#39;neo4jd3&#39;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">],</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">minCollision</span><span class="o">:</span> <span class="mi">60</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">neo4jData</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">nodeRadius</span><span class="o">:</span> <span class="mi">25</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">zoomFit</span><span class="o">:</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl"><span class="p">});</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">info</span>  
+</span></span><span class="line"><span class="cl"><span class="nb">window</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;message&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">let</span> <span class="p">{</span><span class="nx">cmd</span><span class="p">,</span><span class="nx">data</span><span class="p">}</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">data</span>
+</span></span><span class="line"><span class="cl">	<span class="kr">debugger</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">info</span> <span class="o">=</span> <span class="nx">data</span> <span class="o">&amp;&amp;</span> <span class="nx">data</span><span class="p">.</span><span class="nx">server</span> <span class="o">?</span><span class="nx">data</span><span class="o">:</span><span class="nx">info</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">executeCommand</span><span class="p">(</span><span class="nx">info</span><span class="p">,</span><span class="nx">data</span><span class="p">).</span><span class="nx">then</span><span class="p">((</span><span class="nx">data</span><span class="p">)=&gt;{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">display</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"> <span class="p">})</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="p">})</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<b>运行结果:</b><br>
+
+<iframe id="Neo4j-数据库数据" allowfullscreen
+      style="width:100%;height:400px;"></iframe>
+<script src="/js/blob.js" type="text/javascript"></script> 
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', function() {
+   mySnippet('\n\n\n\n\n\n\n\n\u003cscript src=\u0022https:\/\/d3js.org\/d3.v7.min.js\u0022\u003e\u003c\/script\u003e\n\u003cscript src=\u0022https:\/\/cdn.jsdelivr.net\/npm\/neo4j-driver@4.4.7\/lib\/browser\/neo4j-web.min.js\u0022\u003e\u003c\/script\u003e\n\n\u003cdiv \n    id=\u0022neo4j-d3\u0022 \n    ref=\u0022neo4j-d3\u0022 \n\u003e\n\u003c\/div\u003e\n\n\n\n\n\n\n\n', '\n\n\n\n\n\n\n\n\n\n\nfunction loadScriptSync (src) {\n\t\/\/ get some kind of XMLHttpRequest\n\tvar xhrObj = new XMLHttpRequest()\n\t\/\/ open and send a synchronous request\n\txhrObj.open(\u0027GET\u0027,src, false);\n\txhrObj.send(\u0027\u0027);\n\t\/\/ add the returned content to a newly created script tag\n\tvar se = document.createElement(\u0027script\u0027);\n\tse.type = \u0022text\/javascript\u0022;\n\tse.text = xhrObj.responseText;\n\tdocument.getElementsByTagName(\u0027head\u0027)[0].appendChild(se);\n\n}\n\n\/\/ function loadCssSync (src) {\n\/\/ \t\/\/ add the returned content to a newly created script tag\n\/\/ \tvar se = document.createElement(\u0027link\u0027);\n\/\/ \tse.type = \u0022text\/css\u0022;\n\/\/ \tse.rel=\u0022stylesheet\u0022\n\/\/          se.href = src;\t\n\/\/ \tdocument.getElementsByTagName(\u0027head\u0027)[0].appendChild(se);\n\n\/\/ }\n\n\nlibs = window.parent.libs\nloadScriptSync(libs\u002b\u0022\/neo4jd3.js\u0022)\n\n\n\/\/ async function  executeCommand(cmd){\n\/\/       var authToken = neo4j.auth.basic(\u0027neo4j\u0027, \u0027123456\u0027)\n\/\/       var driver = neo4j.driver(\u0027bolt:\/\/localhost:11009\u0027, authToken, {\n\/\/         encrypted: false\n\/\/       })\n\/\/       var session = driver.session()\n\/\/       let data = await session.run(cmd, {})\n\/\/       console.log(data)\n\/\/ }\n\nasync function executeCommand(info,cmd){\n\n\tcommand = {\n\t\u0022statements\u0022 : [ {\n\t\u0022statement\u0022 : cmd,\n\t\u0022resultDataContents\u0022: [\u0022graph\u0022],\n\t\u0022parameters\u0022 : {\n\n\t}\n\t} ]\n}\n\n\tvar encript = btoa(`${info.name}:${info.password}`)\n\tlet params = {\n\t\tmethod: \u0027post\u0027, \n\t\theaders: {\n\t\t\t\u0027Authorization\u0027: `Basic ${encript}`, \n\t\t\t\u0027Content-Type\u0027: \u0027application\/json\u0027\n\t\t},\n\t\tbody: JSON.stringify(command)\n\t}\n\t\/\/http:\/\/localhost:11010\n\tdata = await fetch(`${info.server}\/db\/neo4j\/tx`,params).then(r=\u003er.json())\n\treturn data;\n}\n\n\nurl = window.parent.dataUrl\n\/\/  executeCommand(\u0022match (n)-[r]-(m) return * limit 10\u0022).then((data)=\u003e{\n\/\/ \tdisplay(data)\n\/\/  })\n\n function display(neo4jData){\n\nvar neo4jd3 = new Neo4jd3(\u0027#neo4j-d3\u0027, {\n    highlight: [\n        {\n            class: \u0027\u0022Officer\u0022\u0027,\n            property: \u0027name\u0027,\n            value: \u0027neo4jd3\u0027\n        }\n    ],\n    minCollision: 60,\n    neo4jData,\n    nodeRadius: 25,\n    zoomFit: true\n});\n}\n\nvar info  \nwindow.addEventListener(\u0027message\u0027, function (e) {\n\tlet {cmd,data} = e.data\n\tdebugger\n\tinfo = data \u0026\u0026 data.server ?data:info\n        executeCommand(info,data).then((data)=\u003e{\n\tdisplay(data)\n })\n \n})\n\n\n\n\n', '\n\n\n\n\n#neo4j-d3 {\n  width: 100%;\n  height: 100%;\n}\n\n.neo4jd3-graph {\n  border: 1px solid #ddd;\n  border-radius: 5px;\n}\n\n.neo4jd3-info {\n  font-size: 16px;\n  padding: 10px;\n  position: absolute;\n}\n.neo4jd3-info a {\n  border: 1px solid;\n  display: inline-block;\n  font-size: 14px;\n  line-height: 1.428571429;\n  margin-left: 5px;\n  margin-top: 5px;\n  padding: 6px 12px;\n}\n.neo4jd3-info a.class {\n  color: white;\n}\n.neo4jd3-info a.property {\n  background-color: #fff;\n  border-color: #ccc;\n  color: #333;\n}\n.neo4jd3-info a.btn {\n  margin-left: 5px;\n  margin-top: 5px;\n  opacity: 1;\n}\n.neo4jd3-info a.info {\n  background-color: rgb(165, 171, 182);\n  border: 1px solid rgb(154, 161, 172);\n  color: white;\n}\n\n.node.node-highlighted .ring {\n  -ms-filter: \u0022progid:DXImageTransform.Microsoft.Alpha(Opacity=50)\u0022;\n  filter: alpha(opacity=50);\n  opacity: 0.5;\n  stroke: #888;\n  stroke-width: 12px;\n}\n.node .outline {\n  cursor: pointer;\n  fill: rgb(165, 171, 182);\n  pointer-events: all;\n  stroke: rgb(154, 161, 172);\n  stroke-width: 2px;\n}\n.node .ring {\n  fill: none;\n  -ms-filter: \u0022progid:DXImageTransform.Microsoft.Alpha(Opacity=0)\u0022;\n  filter: alpha(opacity=0);\n  opacity: 0;\n  stroke: #6ac6ff;\n  stroke-width: 8px;\n}\n.node .context-menu-item {\n  cursor: pointer;\n  display: none;\n}\n.node .context-menu-item.context-show {\n  display: block;\n}\n.node .context-menu-item:hover {\n  fill: rgb(185, 185, 185);\n}\n\n.node.selected .ring,\n.node:hover .ring {\n  -ms-filter: \u0022progid:DXImageTransform.Microsoft.Alpha(Opacity=30)\u0022;\n  filter: alpha(opacity=30);\n  opacity: 0.3;\n}\n.node.selected .ring .context-menu-item,\n.node:hover .ring .context-menu-item {\n  fill: rgb(185, 185, 185);\n}\n\n.relationship {\n  cursor: default;\n}\n.relationship.relationship-highlighted .text {\n  fill: rgb(255, 0, 0);\n  font-size: 12px;\n  font-weight: bold;\n}\n.relationship.relationship-highlighted .outline {\n  fill: rgb(255, 0, 0);\n}\n.relationship line {\n  stroke: #aaa;\n}\n.relationship .outline {\n  cursor: default;\n}\n.relationship .overlay {\n  cursor: default;\n  fill: #6ac6ff;\n  -ms-filter: \u0022progid:DXImageTransform.Microsoft.Alpha(Opacity=0)\u0022;\n  filter: alpha(opacity=0);\n  opacity: 0;\n}\n.relationship text {\n  cursor: default;\n  fill:gray;\n}\n.relationship .active_text {\n  fill: rgb(253, 204, 89);\n}\n\n.relationship.selected .overlay,\n.relationship:hover .overlay {\n  -ms-filter: \u0022progid:DXImageTransform.Microsoft.Alpha(Opacity=30)\u0022;\n  filter: alpha(opacity=30);\n  opacity: 0.3;\n}\n\nsvg {\n  cursor: pointer;\n}\n\n.iconfont-kg-neo4j3d {\n  font-size: 20px;\n  font-weight: bold;\n}\n\n\n\n\n\n\n\n\n\n\n', 'Neo4j-数据库数据');
+}, false);
+</script> 
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2022-08-26</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/neo4j-d3-visualization/index.md" target="_blank">阅读原始文档</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/neo4j/">Neo4j</a>,&nbsp;<a href="/tags/d3/">D3</a>,&nbsp;<a href="/tags/threejs/">Threejs</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/basic_rxjs/" class="prev" rel="prev" title="RXJS 基础"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>RXJS 基础</a>
+            <a href="/mathbox_hello_world/" class="next" rel="next" title="Mathbox示例">Mathbox示例<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+</article></div>
+            </main></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.13.1/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@8.6.0/dist/index.umd.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":50},"comment":{},"data":{"id-1":"图可视化","id-2":"图可视化"},"search":{"algoliaAppID":"PASDMWALPK","algoliaIndex":"index.zh-cn","algoliaSearchKey":"b42948e51daaa93df92381c8e2ac0f93","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

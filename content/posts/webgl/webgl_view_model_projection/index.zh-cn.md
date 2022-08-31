@@ -11,6 +11,26 @@ categories: ["WebGL"]
 
 {{<snippet WebGL >}}
 
+```css
+
+.group{
+  position:absolute;
+}
+
+.group label{
+  color:white;
+}
+
+.group canvas{
+ position:absolute;
+}
+
+.group .slidecontainer{
+ position:absolute; 
+}
+
+```
+
 ```html
 <script>
 
@@ -18,13 +38,59 @@ var MDN =window.parent.MDN
 
 </script>
 
+<div class="group">
 <canvas id="canvas"></canvas>
+<div class="slidecontainer">
+  <label for="slider">W</label>
+  <input id="slider" type="range" step="0.1" min="0.5" max="10" value="1" class="slider" id="myRange">
+</div>
+<div>
+
 
 
 ```
 
 ```js
 var w  = 1.0
+
+document.getElementById("slider").addEventListener('change',(event)=>{
+  w = event.target.value
+  box.draw({
+
+  top    : 0.5,             // x
+  bottom : -0.5,            // x
+  left   : -0.5,            // y
+  right  : 0.5,             // y
+  w      : w,             // w - 放大这个盒子
+
+  depth  : 0,               // z
+  color  : [1, 0.4, 0.4, 1] // red
+});
+
+box.draw({
+
+  top    : 0.9,             // x
+  bottom : 0,               // x
+  left   : -0.9,            // y
+  right  : 0.9,             // y
+  w      : w,             // w - 放大这个盒子
+
+  depth  : 0.5,             // z
+  color  : [0.4, 1, 0.4, 1] // green
+});
+
+box.draw({
+
+  top    : 1,               // x
+  bottom : -1,              // x
+  left   : -1,              // y
+  right  : 1,               // y
+  w      : w,             // w - 放大这个盒子
+
+  depth  : 0.5,            // z
+  color  : [0.4, 0.4, 1, 1] // blue
+});
+});
 
 function WebGLBox() {
 
@@ -110,9 +176,11 @@ WebGLBox.prototype.draw = function(settings) {
 
   // 在屏幕上绘制该三角形
   gl.drawArrays(gl.TRIANGLES, 0, 6);
+
 }
 
 var box = new WebGLBox();
+
 box.draw({
 
   top    : 0.5,             // x
@@ -145,7 +213,7 @@ box.draw({
   right  : 1,               // y
   w      : w,             // w - 放大这个盒子
 
-  depth  : 0.5,            // z
+  depth  : -1.5,            // z
   color  : [0.4, 0.4, 1, 1] // blue
 });
 

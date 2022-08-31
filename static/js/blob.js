@@ -15,7 +15,7 @@ function mySnippet(html, js, css, id) {
 	    <body style="margin:0px">
 	      ${html || ''}
 	    </body>
-	    ${js && `<script src="${jsURL}" type="text/javascript"></script>`}
+	    ${js && `<script async src="${jsURL}" type="text/javascript"></script>`}
 	  </html>
 	`;
 	return getBlobURL(source, 'text/html');

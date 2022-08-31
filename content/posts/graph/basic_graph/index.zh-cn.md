@@ -1,86 +1,27 @@
 ---
-title: "ForceLayout示例"
+title: "Graph示例"
 date: 2022-08-26T22:44:23+08:00
 draft: false
-tags: ["Layout","D3", "Threejs"]
-categories: ["D3"]
+tags: ["Threejs", "WebGL"]
+categories: ["Threejs"]
 ---
 
 <script>
-window.dataUrl = window.location.href + "/flare.json"
+window.dataUrl = window.location.href + "flare.json"
 </script>
 
 {{<snippet 示例>}}
-
-```css
-#three-canvas{
-    position:relative
-}
-
-#three-canvas button{
-    position:absolute
-}
-
-```
 
 ```html
 <script src="https://cdn.jsdelivr.net/npm/three@0.137.0/build/three.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/three@0.137.0/examples/js/controls/OrbitControls.js"></script>
 <script src="https://d3js.org/d3.v6.min.js"></script>
-<script
-      type="text/javascript"
-      src="https://cdn.jsdelivr.net/npm/d3-force-3d@3.0.3/dist/d3-force-3d.min.js"
-></script>
-
 <div id="three-canvas">
-
-<button onclick="onRun()">运行布局</button>
-</div>
 
 </div>
 ```
 
 ```js
-
-function onTick(){
-    console.log(graph)
-    
-    let positions = pointsGeometry.attributes.position.array
-    for(let i = 0;i< positions.length;i+=3){
-        positions[i] = nodes[i/3].x/100
-        positions[i+1] = nodes[i/3].y/100
-        positions[i+2] = 0
-    }
-   pointsGeometry.attributes.position.needsUpdate = true
-
-linePositions = lineGeometry.attributes.position.array
-   graph.links.forEach((l,idx)=>{
-    let startNode = l.source
-    let endNode = l.target
-
-    linePositions[idx *6] = startNode.x/100;
-    linePositions[idx *6 +1] = startNode.y/100;
-    linePositions[idx * 6+2] = 0;
-
-    linePositions[idx *6 + 3] = endNode.x/100;
-    linePositions[idx *6+ 4] = endNode.y/100;
-    linePositions[idx *6+ 5] = 0;
-   })
-      lineGeometry.attributes.position.needsUpdate = true
-}
-
-
-function onRun(){
-    nodes = graph.nodes
-    links = graph.links
-    simulation = d3.forceSimulation(nodes)
-    .force("charge", d3.forceManyBody())
-    .force("link", d3.forceLink(links).strength(0.05))
-    // .force("center", d3.forceCenter())
-    .force("tick", onTick);
-
-    simulation.restart()
-}
 
 function lineCloud(graph){
   let points = [];
@@ -91,15 +32,15 @@ function lineCloud(graph){
     points.push(startNode.position);
     points.push(endNode.position);
   });
-  lineGeometry = new THREE.BufferGeometry().setFromPoints(points);
+  const geometry = new THREE.BufferGeometry().setFromPoints(points);
   const material = new THREE.LineBasicMaterial({ color: "#3498db" });
-  let lines = new THREE.LineSegments(lineGeometry, material);
+  let lines = new THREE.LineSegments(geometry, material);
   return lines;
 }
 
 function pointCloud(graph)
  {
-  pointsGeometry = new THREE.BufferGeometry();
+  let pointsGeometry = new THREE.BufferGeometry();
   let points = [];
   graph.nodes.forEach((n) => {
     let vertex = n.position;
@@ -169,8 +110,6 @@ function parseGraph(data) {
                     nodes.push(c.node);
                     let link = {
                         id: node.id + "-" + c.node.id,
-                        source: node,
-                        target: c.node,
                         sourceId: node.id,
                         targetId: c.node.id
                     };
@@ -188,7 +127,7 @@ function parseGraph(data) {
 
 var url = window.parent.dataUrl 
 var data = fetch(url).then(d=>d.json()).then(d=>{
-	graph = parseGraph(d)
+	let graph = parseGraph(d)
 	nodeCloud = pointCloud(graph)
 	edgeCloud = lineCloud(graph)
 
@@ -252,7 +191,7 @@ const controls = new THREE.OrbitControls( camera, renderer.domElement );
 
 // Configure renderer size
 let width = d3.select("#three-canvas").node().getBoundingClientRect().width
-let height = 400;
+let height = width/2;
  
 renderer.setSize(width,height);
 
@@ -275,3 +214,4 @@ render();
 ```
 
 {{</snippet>}}
+
