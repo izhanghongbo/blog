@@ -12,6 +12,14 @@
     <description><![CDATA[示例 代码片段 HTML: 1 2 3 4 5 6 &lt;script src=&#34;https://cdn.jsdelivr.net/npm/three@0.137.0/build/three.min.js&#34;&gt;&lt;/script&gt; &lt;script src=&#34;https://cdn.jsdelivr.net/npm/three@0.137.0/examples/js/controls/OrbitControls.js&#34;&gt;&lt;/script&gt; &lt;script src=&#34;https://d3js.org/d3.v6.min.js&#34;&gt;&lt;/script&gt; &lt;div id=&#34;three-canvas&#34;&gt; &lt;/div&gt; JS: 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47]]></description>
 </item>
 <item>
+    <title>Mathbox绘制线条</title>
+    <link>http://blog.bugraph.com/mathbox_vector/</link>
+    <pubDate>Fri, 26 Aug 2022 22:44:23 &#43;0800</pubDate>
+    <author>Jacob</author>
+    <guid>http://blog.bugraph.com/mathbox_vector/</guid>
+    <description><![CDATA[Mathbox 代码片段 CSS: 1 2 3 4 canvas{ height:100%; } HTML: 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 &lt;script type=&#34;text/javascript&#34; src=&#34;https://cdn.jsdelivr.net/npm/three@0.137.0/build/three.min.js&#34; &gt;&lt;/script&gt; &lt;script type=&#34;text/javascript&#34; src=&#34;https://cdn.jsdelivr.net/npm/three@0.137.0/examples/js/controls/OrbitControls.js&#34; &gt;&lt;/script&gt; &lt;script type=&#34;text/javascript&#34; src=&#34;https://cdn.jsdelivr.net/npm/mathbox@latest/build/bundle/mathbox.js&#34; &gt;&lt;/script&gt; &lt;div id=&#34;three-canvas&#34;&gt; &lt;/div&gt; JS: 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 //绘]]></description>
+</item>
+<item>
     <title>Mathbox示例</title>
     <link>http://blog.bugraph.com/mathbox_hello_world/</link>
     <pubDate>Fri, 26 Aug 2022 22:44:23 &#43;0800</pubDate>

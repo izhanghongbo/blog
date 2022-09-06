@@ -280,12 +280,26 @@
 
 <b>运行结果:</b><br>
 
+<script>
+      function iframeLoaded() {
+      var iFrameID = document.getElementById("示例");
+      var height = "" || 400
+      if(iFrameID) {
+            
+            iFrameID.style.height = height + "px";
+      }   
+  }
+</script>
+
 <iframe id="示例" allowfullscreen
-      style="width:100%;height:400px;"></iframe>
+      onload="iframeLoaded()"
+      style="width:100%;height:100%;"></iframe>
 <script src="/js/blob.js" type="text/javascript"></script> 
 <script type="text/javascript">
+
 document.addEventListener('DOMContentLoaded', function() {
    mySnippet('\n\n\n\n\n\n\u003cscript src=\u0022https:\/\/cdn.jsdelivr.net\/npm\/three@0.137.0\/build\/three.min.js\u0022\u003e\u003c\/script\u003e\n\u003cscript src=\u0022https:\/\/cdn.jsdelivr.net\/npm\/three@0.137.0\/examples\/js\/controls\/OrbitControls.js\u0022\u003e\u003c\/script\u003e\n\u003cscript src=\u0022https:\/\/cdn.jsdelivr.net\/npm\/mathbox@latest\/build\/bundle\/mathbox.js\u0022\u003e\u003c\/script\u003e\n\u003cscript src=\u0022https:\/\/d3js.org\/d3.v6.min.js\u0022\u003e\u003c\/script\u003e\n\u003clink rel=\u0022stylesheet\u0022 href=\u0022https:\/\/cdn.jsdelivr.net\/npm\/bootstrap@5.2.0\/dist\/css\/bootstrap.min.css\u0022 integrity=\u0022sha384-gH2yIJqKdNHPEq0n4Mqa\/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl\/vI1Bx\u0022 crossorigin=\u0022anonymous\u0022\u003e\n\n\n\u003cdiv id=\u0022three-canvas\u0022\u003e\n\n\u003c\/div\u003e\n\n\n\n\n', '\n\n\n\n\n\n\n\n\n\nvar scene = new THREE.Scene();\n\n\/\/ Create a basic perspective camera\nvar camera = new THREE.PerspectiveCamera( 75, window.innerWidth\/window.innerHeight, 0.1, 1000 );\ncamera.position.z = 4;\n\n\/\/ Create a renderer with Antialiasing\nvar renderer = new THREE.WebGLRenderer({antialias:true});\n\n\/\/ Configure renderer clear color\nrenderer.setClearColor(\u0022#000000\u0022);\n\n\/\/ Configure renderer size\nlet width = d3.select(\u0022#three-canvas\u0022).node().getBoundingClientRect().width \nrenderer.setSize(width,400);\n\n\/\/ Append Renderer to DOM\nlet canvas = document.getElementById(\u0022three-canvas\u0022)\ncanvas.appendChild( renderer.domElement );\n\n\/\/ ------------------------------------------------\n\/\/ FUN STARTS HERE\n\/\/ ------------------------------------------------\n\n\/\/ Create a Cube Mesh with basic material\nvar geometry = new THREE.BoxGeometry( 1, 1, 1 );\nvar material = new THREE.MeshBasicMaterial( { color: \u0022#433F81\u0022 } );\nvar cube = new THREE.Mesh( geometry, material );\n\n\/\/ Add cube to Scene\nscene.add( cube );\n\n\/\/ Render Loop\nvar render = function () {\n  requestAnimationFrame( render );\n\n  cube.rotation.x \u002b= 0.01;\n  cube.rotation.y \u002b= 0.01;\n\n  \/\/ Render the scene\n  renderer.render(scene, camera);\n};\n\nrender();\n\n\n', '\n\n\n\ncanvas{\n\theight:100%;\n}\n\n\n\n\n\n\n\n\n', '示例');
+
 }, false);
 </script> </div><div class="post-footer" id="post-footer">
     <div class="post-info">
@@ -321,5 +335,5 @@ document.addEventListener('DOMContentLoaded', function() {
             </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
                 <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
             </a>
-        </div><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.13.1/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@8.6.0/dist/index.umd.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":50},"comment":{},"data":{"id-1":"图可视化","id-2":"图可视化"},"search":{"algoliaAppID":"PASDMWALPK","algoliaIndex":"index.zh-cn","algoliaSearchKey":"b42948e51daaa93df92381c8e2ac0f93","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+        </div><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.13.1/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@8.6.0/dist/index.umd.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"data":{"id-1":"图可视化","id-2":"图可视化"},"search":{"algoliaAppID":"PASDMWALPK","algoliaIndex":"index.zh-cn","algoliaSearchKey":"b42948e51daaa93df92381c8e2ac0f93","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
 </html>

@@ -19,7 +19,7 @@
 <meta name="application-name" content="LoveIt">
 <meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c">
 
-<link rel="icon" href="/images/avatar.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://blog.bugraph.com/mathbox_hello_world/" /><link rel="prev" href="http://blog.bugraph.com/neo4j-d3-visualization/" /><link rel="next" href="http://blog.bugraph.com/basic_graph/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<link rel="icon" href="/images/avatar.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://blog.bugraph.com/mathbox_hello_world/" /><link rel="prev" href="http://blog.bugraph.com/neo4j-d3-visualization/" /><link rel="next" href="http://blog.bugraph.com/mathbox_vector/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
     {
@@ -369,12 +369,26 @@
 
 <b>运行结果:</b><br>
 
+<script>
+      function iframeLoaded() {
+      var iFrameID = document.getElementById("Mathbox");
+      var height = "" || 400
+      if(iFrameID) {
+            
+            iFrameID.style.height = height + "px";
+      }   
+  }
+</script>
+
 <iframe id="Mathbox" allowfullscreen
-      style="width:100%;height:400px;"></iframe>
+      onload="iframeLoaded()"
+      style="width:100%;height:100%;"></iframe>
 <script src="/js/blob.js" type="text/javascript"></script> 
 <script type="text/javascript">
+
 document.addEventListener('DOMContentLoaded', function() {
    mySnippet('\n\n\n\n\n\n\u003cscript\n      type=\u0022text\/javascript\u0022\n      src=\u0022https:\/\/cdn.jsdelivr.net\/npm\/@editorjs\/editorjs@2.25.0\/dist\/editor.min.js\u0022\n    \u003e\u003c\/script\u003e\n\u003cscript\n      type=\u0022text\/javascript\u0022\n      src=\u0022https:\/\/cdn.jsdelivr.net\/npm\/three@0.137.0\/build\/three.min.js\u0022\n    \u003e\u003c\/script\u003e\n\u003cscript\n      type=\u0022text\/javascript\u0022\n      src=\u0022https:\/\/cdn.jsdelivr.net\/npm\/three@0.137.0\/examples\/js\/controls\/OrbitControls.js\u0022\n\u003e\u003c\/script\u003e\n \u003cscript\n      type=\u0022text\/javascript\u0022\n      src=\u0022https:\/\/cdn.jsdelivr.net\/npm\/mathbox@latest\/build\/bundle\/mathbox.js\u0022\n\u003e\u003c\/script\u003e\n\n\u003cdiv id=\u0022three-canvas\u0022\u003e\n\n\u003c\/div\u003e\n\n\n\n\n\n', '\n\n\n\n\n\n\n\n\nelement = document.querySelector(\u0022#three-canvas\u0022);\nmathbox = MathBox.mathBox({\n        plugins: [\u0022core\u0022, \u0022controls\u0022, \u0022cursor\u0022],\n        element: element,\n        controls: {\n          klass: THREE.OrbitControls,\n        },\n        camera: {\n          fov: 45,\n        },\n      });\n      three = mathbox.three;\n\n      three.camera.position.set(-0.15, 0.15, 3.6);\n      three.renderer.setClearColor(new THREE.Color(0xffffff), 1.0);\n\n      colors = {\n        x: new THREE.Color(0xff4136),\n        y: new THREE.Color(0x2ecc40),\n        z: new THREE.Color(0x0074d9),\n      };\n\n      view = mathbox\n        .set({\n          scale: 720,\n          focus: 1,\n        })\n        .cartesian({\n          range: [\n            [-2, 2],\n            [-1, 1],\n            [-1, 1],\n          ],\n          scale: [2, 1, 1],\n        });\n      view.axis({\n        color: colors.x,\n      });\n      view.axis({\n        axis: 2, \/\/ \u0022y\u0022 also works\n        color: colors.y,\n      });\n      view.axis({\n        axis: 3,\n        color: colors.z,\n      });\n\n      mathbox\n        .select(\u0022axis\u0022)\n        .set(\u0022end\u0022, true)\n        .set(\u0022width\u0022, 5)\n        .bind(\u0022depth\u0022, function (t) {\n          return 0.5 \u002b 0.5 * Math.sin(t * 0.5);\n        });\n\n      view.array({\n        id: \u0022colors\u0022,\n        live: false,\n        data: [colors.x, colors.y, colors.z].map(function (color) {\n          return [color.r, color.g, color.b, 1];\n        }),\n      });\n\n      view\n        .array({\n          data: [\n            [2, 0, 0],\n            [0, 1.11, 0],\n            [0, 0, 1],\n          ],\n          channels: 3, \/\/ necessary\n          live: false,\n        })\n        .text({\n          data: [\u0022x\u0022, \u0022y\u0022, \u0022z\u0022],\n        })\n        .label({\n          color: 0xffffff,\n          colors: \u0022#colors\u0022,\n        });\n\n\n', '\n\n\n\ncanvas{\n  height:100%;\n}\n\n\n\n\n\n\n\n\n\n', 'Mathbox');
+
 }, false);
 </script> 
 </div><div class="post-footer" id="post-footer">
@@ -401,7 +415,7 @@ document.addEventListener('DOMContentLoaded', function() {
     </div>
 
     <div class="post-nav"><a href="/neo4j-d3-visualization/" class="prev" rel="prev" title="Neo4j D3 图可视化"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>Neo4j D3 图可视化</a>
-            <a href="/basic_graph/" class="next" rel="next" title="Graph示例">Graph示例<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+            <a href="/mathbox_vector/" class="next" rel="next" title="Mathbox绘制线条">Mathbox绘制线条<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
 </div>
 </article></div>
             </main></div>
@@ -411,5 +425,5 @@ document.addEventListener('DOMContentLoaded', function() {
             </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
                 <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
             </a>
-        </div><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.13.1/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@8.6.0/dist/index.umd.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":50},"comment":{},"data":{"id-1":"图可视化","id-2":"图可视化"},"search":{"algoliaAppID":"PASDMWALPK","algoliaIndex":"index.zh-cn","algoliaSearchKey":"b42948e51daaa93df92381c8e2ac0f93","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+        </div><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.13.1/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@8.6.0/dist/index.umd.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"data":{"id-1":"图可视化","id-2":"图可视化"},"search":{"algoliaAppID":"PASDMWALPK","algoliaIndex":"index.zh-cn","algoliaSearchKey":"b42948e51daaa93df92381c8e2ac0f93","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
 </html>

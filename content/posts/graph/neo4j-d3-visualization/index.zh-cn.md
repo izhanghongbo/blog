@@ -666,14 +666,14 @@ loadScriptSync(libs+"/neo4jd3.js")
 //         encrypted: false
 //       })
 //       var session = driver.session()
-//       let data = await session.run(cmd, {})
+//       let data = await session.run(cmd, {})     
 //       console.log(data)
 // }
 
 async function executeCommand(info,cmd){
 
 	command = {
-	"statements" : [ {
+	"statements" : [{
 	"statement" : cmd,
 	"resultDataContents": ["graph"],
 	"parameters" : {
@@ -735,5 +735,8 @@ window.addEventListener('message', function (e) {
 
 {{</snippet>}}
 
+## Neo4j 在线测试数据库
+https://github.com/neo4j-graph-examples/demo.neo4jlabs.com
+用户名密码和数据库名称一致
 
 
