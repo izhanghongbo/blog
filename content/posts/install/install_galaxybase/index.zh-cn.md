@@ -15,6 +15,14 @@ tar -xzif galaxybase-standalone-20220721170804.tar.gz
 cd galaxybase-<release_version>/bin
 ```
 
+## 在galaxybase目录下新建`env`文件
+
+```sh
+export GALAXYBASE_HOME=/home/jacob/mydocument/software/galaxybase-20220721170804
+export PATH =$PATH:$GALAXYBASE_HOME/bin
+```
+运行`source .env`,现在在任何目录都可以运行`galaxybase-depoly`命令了
+
 ## 查看版本
 
 ```sh
@@ -23,10 +31,35 @@ cd galaxybase-<release_version>/bin
 
 ## 安装Docker
 
+`galaxybase-deploy install docker`
+
 如果本地已经安装，这部分可以跳过
 
+## 安装Galaxybase 
+运行命令`galaxybase-deploy image install`
+
+## 运行Galaxybase
+
 ```sh
-./galaxybase-deploy install docker
+# 在工程目录下创建一数据文件home-data
+# 运行下面命令启动Galaxybase
+ galaxybase-deploy build graph --home home-data
+```
+使用`ss -lntp`查看当前运行的端口
+
+```sh
+State        Recv-Q        Send-Q               Local Address:Port                Peer Address:Port       Process
+LISTEN       0             4096                     127.0.0.1:1098                     0.0.0.0:*
+LISTEN       0             128                        0.0.0.0:22                       0.0.0.0:*
+LISTEN       0             4096                     127.0.0.1:1080                     0.0.0.0:*
+LISTEN       0             4096                     127.0.0.1:34683                    0.0.0.0:*
+LISTEN       0             128                              *:12001                          *:*
+LISTEN       0             50                               *:38257                          *:*
+LISTEN       0             50                               *:51314                          *:*
+LISTEN       0             50                               *:51315                          *:*
+LISTEN       0             32                               *:21                             *:*
+LISTEN       0             128                           [::]:22                          [::]:*
+
 ```
 
 ## [教程](https://www.bilibili.com/video/BV1iY4y1F7Hn

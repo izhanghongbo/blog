@@ -36,6 +36,16 @@ systemctl set-default multi-user.target
 systemctl set-default graphical.target
 ```
 
+## 中文乱码问题
+
+在终端下输入命令，修改字符集
+```sh
+export LANGUAGE=zh_CN.UTF-8
+export LANG=zh_CN.UTF-8
+export LC_ALL=zh_CN.UTF-8
+locale-gen zh_CN.UTF-8
+```
+
 
 
 

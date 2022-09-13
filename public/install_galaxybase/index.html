@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
         <title>安装Galaxybase - 图可视化</title><meta name="Description" content="Graph"><meta property="og:title" content="安装Galaxybase" />
-<meta property="og:description" content="下载Galaxybase镜像 解压安装 1 2 tar -xzif galaxybase-standalone-20220721170804.tar.gz cd galaxybase-&lt;release_version&gt;/bin 查看版本 1 ./galaxybase-deploy version 安装Docker 如果本地已经安装，这部分可以跳过 1 ./galaxybase-deploy install docker [教程](https" />
+<meta property="og:description" content="下载Galaxybase镜像 解压安装 1 2 tar -xzif galaxybase-standalone-20220721170804.tar.gz cd galaxybase-&lt;release_version&gt;/bin 在galaxybase目录下新建env文件 1 2 export GALAXYBASE_HOME=/home/jacob/mydocument/software/galaxybase-20220721170804 export PATH =$PATH:$GALAXYBASE_HOME/bin 运行source .env,现在在任" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://blog.bugraph.com/install_galaxybase/" /><meta property="og:image" content="http://blog.bugraph.com/avatar.png"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2022-09-07T16:56:16+08:00" />
@@ -15,7 +15,7 @@
 <meta name="twitter:image" content="http://blog.bugraph.com/avatar.png"/>
 
 <meta name="twitter:title" content="安装Galaxybase"/>
-<meta name="twitter:description" content="下载Galaxybase镜像 解压安装 1 2 tar -xzif galaxybase-standalone-20220721170804.tar.gz cd galaxybase-&lt;release_version&gt;/bin 查看版本 1 ./galaxybase-deploy version 安装Docker 如果本地已经安装，这部分可以跳过 1 ./galaxybase-deploy install docker [教程](https"/>
+<meta name="twitter:description" content="下载Galaxybase镜像 解压安装 1 2 tar -xzif galaxybase-standalone-20220721170804.tar.gz cd galaxybase-&lt;release_version&gt;/bin 在galaxybase目录下新建env文件 1 2 export GALAXYBASE_HOME=/home/jacob/mydocument/software/galaxybase-20220721170804 export PATH =$PATH:$GALAXYBASE_HOME/bin 运行source .env,现在在任"/>
 <meta name="application-name" content="LoveIt">
 <meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c">
 
@@ -30,7 +30,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/blog.bugraph.com\/install_galaxybase\/"
-        },"image": ["http:\/\/blog.bugraph.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","wordcount":  108 ,
+        },"image": ["http:\/\/blog.bugraph.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","wordcount":  364 ,
         "url": "http:\/\/blog.bugraph.com\/install_galaxybase\/","datePublished": "2022-09-07T16:56:16+08:00","dateModified": "2022-09-07T16:56:16+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": "http:\/\/blog.bugraph.com\/images\/avatar.png"},"author": {
@@ -106,7 +106,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">安装Galaxybase</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Jacob</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-09-07">2022-09-07</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 108 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-09-07">2022-09-07</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 364 字&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 1 分钟&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
                 <div class="details-summary toc-title">
@@ -117,8 +117,11 @@
   <ul>
     <li><a href="#下载galaxybase镜像httpswwwgalaxybasecomdownload"><a href="https://www.galaxybase.com/download">下载Galaxybase镜像</a></a></li>
     <li><a href="#解压安装">解压安装</a></li>
+    <li><a href="#在galaxybase目录下新建env文件">在galaxybase目录下新建<code>env</code>文件</a></li>
     <li><a href="#查看版本">查看版本</a></li>
     <li><a href="#安装docker">安装Docker</a></li>
+    <li><a href="#安装galaxybase">安装Galaxybase</a></li>
+    <li><a href="#运行galaxybase">运行Galaxybase</a></li>
     <li><a href="#教程httpswwwbilibilicomvideobv1iy4y1f7hn">[教程](<a href="https://www.bilibili.com/video/BV1iY4y1F7Hn">https://www.bilibili.com/video/BV1iY4y1F7Hn</a></a></li>
   </ul>
 </nav></div>
@@ -134,7 +137,19 @@
 </span></span><span class="line"><span class="cl"><span class="nb">cd</span> galaxybase-&lt;release_version&gt;/bin
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="查看版本">查看版本</h2>
+</div><h2 id="在galaxybase目录下新建env文件">在galaxybase目录下新建<code>env</code>文件</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">GALAXYBASE_HOME</span><span class="o">=</span>/home/jacob/mydocument/software/galaxybase-20220721170804
+</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">PATH</span> <span class="o">=</span><span class="nv">$PATH</span>:<span class="nv">$GALAXYBASE_HOME</span>/bin
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>运行<code>source .env</code>,现在在任何目录都可以运行<code>galaxybase-depoly</code>命令了</p>
+<h2 id="查看版本">查看版本</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -144,13 +159,50 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="安装docker">安装Docker</h2>
+<p><code>galaxybase-deploy install docker</code></p>
 <p>如果本地已经安装，这部分可以跳过</p>
+<h2 id="安装galaxybase">安装Galaxybase</h2>
+<p>运行命令<code>galaxybase-deploy image install</code></p>
+<h2 id="运行galaxybase">运行Galaxybase</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">./galaxybase-deploy install docker
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="c1"># 在工程目录下创建一数据文件home-data</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 运行下面命令启动Galaxybase</span>
+</span></span><span class="line"><span class="cl"> galaxybase-deploy build graph --home home-data
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>使用<code>ss -lntp</code>查看当前运行的端口</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">State        Recv-Q        Send-Q               Local Address:Port                Peer Address:Port       Process
+</span></span><span class="line"><span class="cl">LISTEN       <span class="m">0</span>             <span class="m">4096</span>                     127.0.0.1:1098                     0.0.0.0:*
+</span></span><span class="line"><span class="cl">LISTEN       <span class="m">0</span>             <span class="m">128</span>                        0.0.0.0:22                       0.0.0.0:*
+</span></span><span class="line"><span class="cl">LISTEN       <span class="m">0</span>             <span class="m">4096</span>                     127.0.0.1:1080                     0.0.0.0:*
+</span></span><span class="line"><span class="cl">LISTEN       <span class="m">0</span>             <span class="m">4096</span>                     127.0.0.1:34683                    0.0.0.0:*
+</span></span><span class="line"><span class="cl">LISTEN       <span class="m">0</span>             <span class="m">128</span>                              *:12001                          *:*
+</span></span><span class="line"><span class="cl">LISTEN       <span class="m">0</span>             <span class="m">50</span>                               *:38257                          *:*
+</span></span><span class="line"><span class="cl">LISTEN       <span class="m">0</span>             <span class="m">50</span>                               *:51314                          *:*
+</span></span><span class="line"><span class="cl">LISTEN       <span class="m">0</span>             <span class="m">50</span>                               *:51315                          *:*
+</span></span><span class="line"><span class="cl">LISTEN       <span class="m">0</span>             <span class="m">32</span>                               *:21                             *:*
+</span></span><span class="line"><span class="cl">LISTEN       <span class="m">0</span>             <span class="m">128</span>                           <span class="o">[</span>::<span class="o">]</span>:22                          <span class="o">[</span>::<span class="o">]</span>:*
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="教程httpswwwbilibilicomvideobv1iy4y1f7hn">[教程](<a href="https://www.bilibili.com/video/BV1iY4y1F7Hn" target="_blank" rel="noopener noreffer ">https://www.bilibili.com/video/BV1iY4y1F7Hn</a></h2>
@@ -188,5 +240,5 @@
             </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
                 <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
             </a>
-        </div><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.13.1/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@8.6.0/dist/index.umd.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"data":{"id-1":"图可视化","id-2":"图可视化"},"search":{"algoliaAppID":"PASDMWALPK","algoliaIndex":"index.zh-cn","algoliaSearchKey":"b42948e51daaa93df92381c8e2ac0f93","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+        </div><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.13.1/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@8.6.0/dist/index.umd.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"data":{"id-1":"图可视化","id-2":"图可视化"},"search":{"algoliaAppID":"LRWEVFXDA3","algoliaIndex":"blog.bugraph.com","algoliaSearchKey":"5585e287a4a60aebad9cbd5d1d492da4","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
 </html>

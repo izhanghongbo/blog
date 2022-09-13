@@ -273,9 +273,9 @@ ignoreErrors = ["error-remote-getjson", "error-missing-instagram-accesstoken"]
     # 是否在搜索索引中使用基于 baseURL 的绝对路径
     absoluteURL = false
     [params.search.algolia]
-      index = ""
-      appID = ""
-      searchKey = ""
+      index = "blog.bugraph.com"
+      appID = "LRWEVFXDA3"
+      searchKey = "5585e287a4a60aebad9cbd5d1d492da4"
 
   # Home page config
   # 主页信息设置
@@ -858,9 +858,9 @@ ignoreErrors = ["error-remote-getjson", "error-missing-instagram-accesstoken"]
         highlightTag = "em"
         absoluteURL = false
         [languages.zh-cn.params.search.algolia]
-          index = "index.zh-cn"
-          appID = "PASDMWALPK"
-          searchKey = "b42948e51daaa93df92381c8e2ac0f93"
+          index = "blog.bugraph.com"
+          appID = "LRWEVFXDA3"
+          searchKey = "5585e287a4a60aebad9cbd5d1d492da4"
       [languages.zh-cn.params.home]
         rss = 10
         [languages.zh-cn.params.home.profile]
