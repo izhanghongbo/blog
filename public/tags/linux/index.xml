@@ -3,7 +3,31 @@
         <title>Linux - 标签 - 图可视化</title>
         <link>http://blog.bugraph.com/tags/linux/</link>
         <description>Linux - 标签 - 图可视化</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sat, 20 Aug 2022 18:46:09 &#43;0800</lastBuildDate><atom:link href="http://blog.bugraph.com/tags/linux/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sat, 10 Sep 2022 18:05:26 &#43;0800</lastBuildDate><atom:link href="http://blog.bugraph.com/tags/linux/" rel="self" type="application/rss+xml" /><item>
+    <title>Timeshift 备份与还原</title>
+    <link>http://blog.bugraph.com/timeshift-config/</link>
+    <pubDate>Sat, 10 Sep 2022 18:05:26 &#43;0800</pubDate>
+    <author>Jacob</author>
+    <guid>http://blog.bugraph.com/timeshift-config/</guid>
+    <description><![CDATA[查看硬盘（U盘） 1 lsblk 结果如下，可以看出sdc是U盘 1 2 3 4 5 6 7 8 NAME MAJ:MIN RM SIZE RO TYPE MOUNTPOINTS sda 8:0 0 233.8G 0 disk |-sda1 8:1 0 512M 0 part /boot/efi |-sda2 8:2 0 232.3G 0 part / `-sda3 8:3 0 976M 0 part [SWAP] sdb 8:16 1]]></description>
+</item>
+<item>
+    <title>Frp 内网穿透</title>
+    <link>http://blog.bugraph.com/frp-config/</link>
+    <pubDate>Sat, 10 Sep 2022 14:53:27 &#43;0800</pubDate>
+    <author>Jacob</author>
+    <guid>http://blog.bugraph.com/frp-config/</guid>
+    <description><![CDATA[下载代码 下载地址 运行服务端（公网服务器） 服务端配置 1 2 3 4 5 6 7 [common] token = xxxxx bind_port = 7000 vhost_http_port = 8081 dashboard_port = 7500 dashboard_user = admin dashboard_pwd = admin 1 ./frps -c ./frps.ini 运行客户端（本地电脑） 客户端配]]></description>
+</item>
+<item>
+    <title>Linux 基础</title>
+    <link>http://blog.bugraph.com/linux-basic/</link>
+    <pubDate>Sat, 10 Sep 2022 14:53:27 &#43;0800</pubDate>
+    <author>Jacob</author>
+    <guid>http://blog.bugraph.com/linux-basic/</guid>
+    <description><![CDATA[Group 相关 创建组 1 newgrp docker 查看组 1 groups 把用户添加到group中 1 2 #把jacob加入到docker组中 usermod -gG docker jacob 切换文本模式和图形模式 文本模式 1 2 systemctl set-default multi-user.target]]></description>
+</item>
+<item>
     <title>Linux免密登录设置</title>
     <link>http://blog.bugraph.com/linux_ssh_login_without_password/</link>
     <pubDate>Sat, 20 Aug 2022 18:46:09 &#43;0800</pubDate>

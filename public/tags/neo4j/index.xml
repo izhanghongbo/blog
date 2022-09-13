@@ -3,7 +3,15 @@
         <title>Neo4j - 标签 - 图可视化</title>
         <link>http://blog.bugraph.com/tags/neo4j/</link>
         <description>Neo4j - 标签 - 图可视化</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Fri, 26 Aug 2022 22:44:23 &#43;0800</lastBuildDate><atom:link href="http://blog.bugraph.com/tags/neo4j/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Fri, 09 Sep 2022 21:23:26 &#43;0800</lastBuildDate><atom:link href="http://blog.bugraph.com/tags/neo4j/" rel="self" type="application/rss+xml" /><item>
+    <title>Neo4j Basic</title>
+    <link>http://blog.bugraph.com/neo4j-basic/</link>
+    <pubDate>Fri, 09 Sep 2022 21:23:26 &#43;0800</pubDate>
+    <author>Jacob</author>
+    <guid>http://blog.bugraph.com/neo4j-basic/</guid>
+    <description><![CDATA[导入数据 1 bin/neo4j-admin load --from=/dumps/neo4j/neo4j-&lt;timestamp&gt;.dump --database=neo4j --force 导出数据 1 neo4j-admin dump --database=neo4j --to=/export/00001.dump 官方手册 数据源]]></description>
+</item>
+<item>
     <title>Neo4j D3 图可视化</title>
     <link>http://blog.bugraph.com/neo4j-d3-visualization/</link>
     <pubDate>Fri, 26 Aug 2022 22:44:23 &#43;0800</pubDate>

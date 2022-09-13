@@ -1,0 +1,8 @@
+{
+    "files.exclude": {
+        "**/.git": true,
+        "**/.git*":true,
+        "**/docs":true,
+        "**/public": true,
+    }
+}

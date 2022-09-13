@@ -21,6 +21,57 @@ http.createServer(function (request, response) {
 }).listen(8080);
 ```
 
+## 修改Docker文件映射
+
+修改/etc/docker/daemon.json
+```json
+{
+  "data-root":"/root/data/docker-data"
+}
+```
+
+重启docker `systemctl restart docker`,在`/root/data/`目录下会自动生成如下文件
+
+```json
+docker-data
+|-- buildkit
+|   |-- cache.db
+|   |-- containerdmeta.db
+|   |-- content
+|   |   `-- ingest
+|   |-- executor
+|   |-- metadata_v2.db
+|   `-- snapshots.db
+|-- containers
+|-- image
+|   `-- overlay2
+|       |-- distribution
+|       |-- imagedb
+|       |   |-- content
+|       |   |   `-- sha256
+|       |   `-- metadata
+|       |       `-- sha256
+|       |-- layerdb
+|       `-- repositories.json
+|-- network
+|   `-- files
+|       `-- local-kv.db
+|-- overlay2
+|   `-- l
+|-- plugins
+|   |-- storage
+|   |   `-- ingest
+|   `-- tmp
+|-- runtimes
+|-- swarm
+|-- tmp
+|-- trust
+`-- volumes
+    |-- backingFsBlockDev
+    `-- metadata.db
+```
+
+
 ## 创建Dockerfile
 
 ```docker
@@ -94,6 +145,12 @@ affb2d1fbf8c   vesoft/nebula-graphd:v3.0.0     "/usr/local/nebula/b…"   10 day
 docker stop 59cfd31c454a
 ```
 
+## 复制文件到容器
+
+```bash
+docker cp test.txt <container id>:test.txt
+```
+
 ## 进入容器
 
 ```bash
@@ -106,6 +163,8 @@ docker exec -it <container id> /bin/bash
 root@59cfd31c454a:/usr/src/app# ls
 Dockerfile  hello.js  package-lock.json  package.json
 ```
+
+
 
 ## 查看所有容器
 

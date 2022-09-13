@@ -39,3 +39,11 @@ Plugin 'iamcco/markdown-preview.nvim'
 :MarkdownPreview
 ```
 
+## 常用功能
+
+* 跳转到第一行（gg）
+* 跳转到最后一行（G/shift+g）
+
+[Neovim构建javascript IDE](https://jsdev.org/env/ide/neovim/)
+[视频教程](https://frontendmasters.com/courses/vim-fundamentals/)
+[Vim IDE](https://github.com/LunarVim/nvim-basic-ide)

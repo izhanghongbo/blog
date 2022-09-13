@@ -17,7 +17,7 @@
     <pubDate>Sat, 27 Aug 2022 14:52:29 &#43;0800</pubDate>
     <author>Jacob</author>
     <guid>http://blog.bugraph.com/build_a_nodejs_docker/</guid>
-    <description><![CDATA[创建一个NodeJS程序 1 2 3 4 5 6 7 8 9 10 http.createServer(function (request, response) { // 发送 HTTP 头部 // HTTP 状态值: 200 : OK // 内容类型: text/plain response.writeHead(200, {&#39;Content-Type&#39;: &#39;text/plain&#39;}); // 发送响应数据 &#34;Hello World&#34; response.end(&#39;Hello World\n&#39;); }).listen(8080); 创建Docke]]></description>
+    <description><![CDATA[创建一个NodeJS程序 1 2 3 4 5 6 7 8 9 10 http.createServer(function (request, response) { // 发送 HTTP 头部 // HTTP 状态值: 200 : OK // 内容类型: text/plain response.writeHead(200, {&#39;Content-Type&#39;: &#39;text/plain&#39;}); // 发送响应数据 &#34;Hello World&#34; response.end(&#39;Hello World\n&#39;); }).listen(8080); 修改Docke]]></description>
 </item>
 <item>
     <title>Nodejs 基础</title>

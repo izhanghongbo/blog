@@ -4,5 +4,8 @@ date: {{ .Date }}
 draft: false
 tags: []
 categories: []
+resources:
+- name: "featured-image-preview"
+  src: "banner.jpeg"
 ---
 

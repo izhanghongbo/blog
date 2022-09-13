@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>Webgl Shadertoy - 图可视化</title><meta name="Description" content="Graph"><meta property="og:title" content="Webgl Shadertoy" />
+<meta property="og:description" content="gl_FragCoord的使用 1 gl_FragColor = vec4(fract(gl_FragCoord.xy/50.0), 0, 1); gl_FragCoord 是像素坐标，取值范围是canvas的高和宽,如果gl_FragCoord.x 为 75. 75 / 50 = 1.5，" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://blog.bugraph.com/webgl_shadertoy/" /><meta property="og:image" content="http://blog.bugraph.com/avatar.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-09-07T06:33:16+08:00" />
+<meta property="article:modified_time" content="2022-09-07T06:33:16+08:00" /><meta property="og:site_name" content="LoveIt" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="http://blog.bugraph.com/avatar.png"/>
+
+<meta name="twitter:title" content="Webgl Shadertoy"/>
+<meta name="twitter:description" content="gl_FragCoord的使用 1 gl_FragColor = vec4(fract(gl_FragCoord.xy/50.0), 0, 1); gl_FragCoord 是像素坐标，取值范围是canvas的高和宽,如果gl_FragCoord.x 为 75. 75 / 50 = 1.5，"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c">
+
+<link rel="icon" href="/images/avatar.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://blog.bugraph.com/webgl_shadertoy/" /><link rel="prev" href="http://blog.bugraph.com/mermaid/" /><link rel="next" href="http://blog.bugraph.com/install_galaxybase/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Webgl Shadertoy",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/blog.bugraph.com\/webgl_shadertoy\/"
+        },"image": ["http:\/\/blog.bugraph.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "WebGL","wordcount":  601 ,
+        "url": "http:\/\/blog.bugraph.com\/webgl_shadertoy\/","datePublished": "2022-09-07T06:33:16+08:00","dateModified": "2022-09-07T06:33:16+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": "http:\/\/blog.bugraph.com\/images\/avatar.png"},"author": {
+                "@type": "Person",
+                "name": "Jacob"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><script type="text/javascript" src="https://unpkg.com/react@16/umd/react.production.min.js"></script><script type="text/javascript" src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script><script type="text/javascript" src="https://unpkg.com/babel-standalone@6/babel.min.js"></script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script><script type="text/javascript" src="https://d3js.org/d3.v6.min.js"></script>
+
+<header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="图可视化"><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="图可视化"><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Webgl Shadertoy</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Jacob</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/webgl/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>WebGL</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-09-07">2022-09-07</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 601 字&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 2 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#gl_fragcoord的使用">gl_FragCoord的使用</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="gl_fragcoord的使用">gl_FragCoord的使用</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl">    <span class="nx">gl_FragColor</span> <span class="o">=</span> <span class="nx">vec4</span><span class="p">(</span><span class="nx">fract</span><span class="p">(</span><span class="nx">gl_FragCoord</span><span class="p">.</span><span class="nx">xy</span><span class="o">/</span><span class="mf">50.0</span><span class="p">),</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>gl_FragCoord 是像素坐标，取值范围是canvas的高和宽,如果gl_FragCoord.x 为 75. 75 / 50 = 1.5， fract(1.5) = 0.5,每50个像素，他们的值一直在0-1之间变化</p>
+
+<h4>一个简单的VertexShader 代码片段 </h4>
+
+
+
+
+
+<p><strong>CSS:</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-css" data-lang="css"><span class="line"><span class="cl"><span class="nt">body</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">margin</span><span class="p">:</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="nt">canvas</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">width</span><span class="p">:</span> <span class="mi">100</span><span class="kt">vw</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">height</span><span class="p">:</span> <span class="mi">100</span><span class="kt">vh</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">display</span><span class="p">:</span> <span class="kc">block</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>HTML:</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">canvas</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;canvas&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">canvas</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="c">&lt;!--
+</span></span></span><span class="line"><span class="cl"><span class="c">for most samples webgl-utils only provides shader compiling/linking and
+</span></span></span><span class="line"><span class="cl"><span class="c">canvas resizing because why clutter the examples with code that&#39;s the same in every sample.
+</span></span></span><span class="line"><span class="cl"><span class="c">See https://webglfundamentals.org/webgl/lessons/webgl-boilerplate.html
+</span></span></span><span class="line"><span class="cl"><span class="c">and https://webglfundamentals.org/webgl/lessons/webgl-resizing-the-canvas.html
+</span></span></span><span class="line"><span class="cl"><span class="c">for webgl-utils, m3, m4, and webgl-lessons-ui.
+</span></span></span><span class="line"><span class="cl"><span class="c">--&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;https://webglfundamentals.org/webgl/resources/webgl-utils.js&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>JS:</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span><span class="lnt">73
+</span><span class="lnt">74
+</span><span class="lnt">75
+</span><span class="lnt">76
+</span><span class="lnt">77
+</span><span class="lnt">78
+</span><span class="lnt">79
+</span><span class="lnt">80
+</span><span class="lnt">81
+</span><span class="lnt">82
+</span><span class="lnt">83
+</span><span class="lnt">84
+</span><span class="lnt">85
+</span><span class="lnt">86
+</span><span class="lnt">87
+</span><span class="lnt">88
+</span><span class="lnt">89
+</span><span class="lnt">90
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="s2">&#34;use strict&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// Get A WebGL context
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="cm">/** @type {HTMLCanvasElement} */</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">canvas</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">&#34;#canvas&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">gl</span> <span class="o">=</span> <span class="nx">canvas</span><span class="p">.</span><span class="nx">getContext</span><span class="p">(</span><span class="s2">&#34;webgl&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">gl</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">vs</span> <span class="o">=</span> <span class="sb">`
+</span></span></span><span class="line"><span class="cl"><span class="sb">    // an attribute will receive data from a buffer
+</span></span></span><span class="line"><span class="cl"><span class="sb">    attribute vec4 a_position;
+</span></span></span><span class="line"><span class="cl"><span class="sb">
+</span></span></span><span class="line"><span class="cl"><span class="sb">    // all shaders have a main function
+</span></span></span><span class="line"><span class="cl"><span class="sb">    void main() {
+</span></span></span><span class="line"><span class="cl"><span class="sb">
+</span></span></span><span class="line"><span class="cl"><span class="sb">      // gl_Position is a special variable a vertex shader
+</span></span></span><span class="line"><span class="cl"><span class="sb">      // is responsible for setting
+</span></span></span><span class="line"><span class="cl"><span class="sb">      gl_Position = a_position;
+</span></span></span><span class="line"><span class="cl"><span class="sb">    }
+</span></span></span><span class="line"><span class="cl"><span class="sb">  `</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">fs</span> <span class="o">=</span> <span class="sb">`
+</span></span></span><span class="line"><span class="cl"><span class="sb">    precision highp float;
+</span></span></span><span class="line"><span class="cl"><span class="sb">    void main() {
+</span></span></span><span class="line"><span class="cl"><span class="sb">      // gl_FragColor is a special variable a fragment shader
+</span></span></span><span class="line"><span class="cl"><span class="sb">      // is responsible for setting
+</span></span></span><span class="line"><span class="cl"><span class="sb">
+</span></span></span><span class="line"><span class="cl"><span class="sb">//       gl_FragColor = vec4(1, 0, 0.5, 1); // return reddish-purple
+</span></span></span><span class="line"><span class="cl"><span class="sb">    gl_FragColor = vec4(fract(gl_FragCoord.xy/50.0), 0, 1);
+</span></span></span><span class="line"><span class="cl"><span class="sb">
+</span></span></span><span class="line"><span class="cl"><span class="sb">    }
+</span></span></span><span class="line"><span class="cl"><span class="sb">  `</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="c1">// setup GLSL program
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kr">const</span> <span class="nx">program</span> <span class="o">=</span> <span class="nx">webglUtils</span><span class="p">.</span><span class="nx">createProgramFromSources</span><span class="p">(</span><span class="nx">gl</span><span class="p">,</span> <span class="p">[</span><span class="nx">vs</span><span class="p">,</span> <span class="nx">fs</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="c1">// look up where the vertex data needs to go.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kr">const</span> <span class="nx">positionAttributeLocation</span> <span class="o">=</span> <span class="nx">gl</span><span class="p">.</span><span class="nx">getAttribLocation</span><span class="p">(</span><span class="nx">program</span><span class="p">,</span> <span class="s2">&#34;a_position&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="c1">// Create a buffer to put three 2d clip space points in
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kr">const</span> <span class="nx">positionBuffer</span> <span class="o">=</span> <span class="nx">gl</span><span class="p">.</span><span class="nx">createBuffer</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="c1">// Bind it to ARRAY_BUFFER (think of it as ARRAY_BUFFER = positionBuffer)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">gl</span><span class="p">.</span><span class="nx">bindBuffer</span><span class="p">(</span><span class="nx">gl</span><span class="p">.</span><span class="nx">ARRAY_BUFFER</span><span class="p">,</span> <span class="nx">positionBuffer</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="c1">// fill it with a 2 triangles that cover clipspace
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">gl</span><span class="p">.</span><span class="nx">bufferData</span><span class="p">(</span><span class="nx">gl</span><span class="p">.</span><span class="nx">ARRAY_BUFFER</span><span class="p">,</span> <span class="k">new</span> <span class="nx">Float32Array</span><span class="p">([</span>
+</span></span><span class="line"><span class="cl">    <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="c1">// first triangle
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>     <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">1</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">1</span><span class="p">,</span>  <span class="c1">// second triangle
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>     <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">     <span class="mi">1</span><span class="p">,</span>  <span class="mi">1</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="p">]),</span> <span class="nx">gl</span><span class="p">.</span><span class="nx">STATIC_DRAW</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nx">webglUtils</span><span class="p">.</span><span class="nx">resizeCanvasToDisplaySize</span><span class="p">(</span><span class="nx">gl</span><span class="p">.</span><span class="nx">canvas</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="c1">// Tell WebGL how to convert from clip space to pixels
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">gl</span><span class="p">.</span><span class="nx">viewport</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">gl</span><span class="p">.</span><span class="nx">canvas</span><span class="p">.</span><span class="nx">width</span><span class="p">,</span> <span class="nx">gl</span><span class="p">.</span><span class="nx">canvas</span><span class="p">.</span><span class="nx">height</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="c1">// Tell it to use our program (pair of shaders)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">gl</span><span class="p">.</span><span class="nx">useProgram</span><span class="p">(</span><span class="nx">program</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="c1">// Turn on the attribute
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">gl</span><span class="p">.</span><span class="nx">enableVertexAttribArray</span><span class="p">(</span><span class="nx">positionAttributeLocation</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="c1">// Bind the position buffer.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">gl</span><span class="p">.</span><span class="nx">bindBuffer</span><span class="p">(</span><span class="nx">gl</span><span class="p">.</span><span class="nx">ARRAY_BUFFER</span><span class="p">,</span> <span class="nx">positionBuffer</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="c1">// Tell the attribute how to get data out of positionBuffer (ARRAY_BUFFER)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">gl</span><span class="p">.</span><span class="nx">vertexAttribPointer</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">positionAttributeLocation</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="mi">2</span><span class="p">,</span>          <span class="c1">// 2 components per iteration
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>      <span class="nx">gl</span><span class="p">.</span><span class="nx">FLOAT</span><span class="p">,</span>   <span class="c1">// the data is 32bit floats
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>      <span class="kc">false</span><span class="p">,</span>      <span class="c1">// don&#39;t normalize the data
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>      <span class="mi">0</span><span class="p">,</span>          <span class="c1">// 0 = move forward size * sizeof(type) each iteration to get the next position
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>      <span class="mi">0</span><span class="p">,</span>          <span class="c1">// start at the beginning of the buffer
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nx">gl</span><span class="p">.</span><span class="nx">drawArrays</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">gl</span><span class="p">.</span><span class="nx">TRIANGLES</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="mi">0</span><span class="p">,</span>     <span class="c1">// offset
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>      <span class="mi">6</span><span class="p">,</span>     <span class="c1">// num vertices to process
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">main</span><span class="p">();</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<b>运行结果:</b><br>
+
+<script>
+      function iframeLoaded() {
+      var iFrameID = document.getElementById("一个简单的VertexShader");
+      var height = "" || 400
+      if(iFrameID) {
+            
+            iFrameID.style.height = height + "px";
+      }   
+  }
+</script>
+
+<iframe id="一个简单的VertexShader" allowfullscreen
+      onload="iframeLoaded()"
+      style="width:100%;height:100%;"></iframe>
+<script src="/js/blob.js" type="text/javascript"></script> 
+<script type="text/javascript">
+
+document.addEventListener('DOMContentLoaded', function() {
+   mySnippet('\n\n\n\n\n\n\u003ccanvas id=\u0022canvas\u0022\u003e\u003c\/canvas\u003e\n\u003c!--\nfor most samples webgl-utils only provides shader compiling\/linking and\ncanvas resizing because why clutter the examples with code that\u0027s the same in every sample.\nSee https:\/\/webglfundamentals.org\/webgl\/lessons\/webgl-boilerplate.html\nand https:\/\/webglfundamentals.org\/webgl\/lessons\/webgl-resizing-the-canvas.html\nfor webgl-utils, m3, m4, and webgl-lessons-ui.\n--\u003e\n\u003cscript src=\u0022https:\/\/webglfundamentals.org\/webgl\/resources\/webgl-utils.js\u0022\u003e\u003c\/script\u003e\n\n\n\n\n\n\n', '\n\n\n\n\n\n\n\n\n\u0022use strict\u0022;\n\nfunction main() {\n  \/\/ Get A WebGL context\n  \/** @type {HTMLCanvasElement} *\/\n  const canvas = document.querySelector(\u0022#canvas\u0022);\n  const gl = canvas.getContext(\u0022webgl\u0022);\n  if (!gl) {\n    return;\n  }\n\n  const vs = `\n    \/\/ an attribute will receive data from a buffer\n    attribute vec4 a_position;\n\n    \/\/ all shaders have a main function\n    void main() {\n\n      \/\/ gl_Position is a special variable a vertex shader\n      \/\/ is responsible for setting\n      gl_Position = a_position;\n    }\n  `;\n\n  const fs = `\n    precision highp float;\n    void main() {\n      \/\/ gl_FragColor is a special variable a fragment shader\n      \/\/ is responsible for setting\n\n\/\/       gl_FragColor = vec4(1, 0, 0.5, 1); \/\/ return reddish-purple\n    gl_FragColor = vec4(fract(gl_FragCoord.xy\/50.0), 0, 1);\n\n    }\n  `;\n\n  \/\/ setup GLSL program\n  const program = webglUtils.createProgramFromSources(gl, [vs, fs]);\n\n  \/\/ look up where the vertex data needs to go.\n  const positionAttributeLocation = gl.getAttribLocation(program, \u0022a_position\u0022);\n\n  \/\/ Create a buffer to put three 2d clip space points in\n  const positionBuffer = gl.createBuffer();\n\n  \/\/ Bind it to ARRAY_BUFFER (think of it as ARRAY_BUFFER = positionBuffer)\n  gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);\n\n  \/\/ fill it with a 2 triangles that cover clipspace\n  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([\n    -1, -1,  \/\/ first triangle\n     1, -1,\n    -1,  1,\n    -1,  1,  \/\/ second triangle\n     1, -1,\n     1,  1,\n  ]), gl.STATIC_DRAW);\n\n  webglUtils.resizeCanvasToDisplaySize(gl.canvas);\n\n  \/\/ Tell WebGL how to convert from clip space to pixels\n  gl.viewport(0, 0, gl.canvas.width, gl.canvas.height);\n\n  \/\/ Tell it to use our program (pair of shaders)\n  gl.useProgram(program);\n\n  \/\/ Turn on the attribute\n  gl.enableVertexAttribArray(positionAttributeLocation);\n\n  \/\/ Bind the position buffer.\n  gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);\n\n  \/\/ Tell the attribute how to get data out of positionBuffer (ARRAY_BUFFER)\n  gl.vertexAttribPointer(\n      positionAttributeLocation,\n      2,          \/\/ 2 components per iteration\n      gl.FLOAT,   \/\/ the data is 32bit floats\n      false,      \/\/ don\u0027t normalize the data\n      0,          \/\/ 0 = move forward size * sizeof(type) each iteration to get the next position\n      0,          \/\/ start at the beginning of the buffer\n  );\n\n  gl.drawArrays(\n      gl.TRIANGLES,\n      0,     \/\/ offset\n      6,     \/\/ num vertices to process\n  );\n}\n\nmain();\n\n\n\n', '\n\n\nbody {\n  margin: 0;\n}\ncanvas {\n  width: 100vw;\n  height: 100vh;\n  display: block;\n}\n\n\n\n\n\n\n\n\n\n\n', '一个简单的VertexShader');
+
+}, false);
+</script> 
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2022-09-07</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/webgl_shadertoy/index.md" target="_blank">阅读原始文档</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/webgl/">WebGL</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/mermaid/" class="prev" rel="prev" title="Mermaid 使用"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>Mermaid 使用</a>
+            <a href="/install_galaxybase/" class="next" rel="next" title="安装Galaxybase">安装Galaxybase<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+</article></div>
+            </main></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.13.1/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@8.6.0/dist/index.umd.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"data":{"id-1":"图可视化","id-2":"图可视化"},"search":{"algoliaAppID":"PASDMWALPK","algoliaIndex":"index.zh-cn","algoliaSearchKey":"b42948e51daaa93df92381c8e2ac0f93","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>
