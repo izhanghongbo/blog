@@ -4,6 +4,9 @@ date: 2022-09-10T14:19:57+08:00
 draft: false
 tags: ["FTP"]
 categories: ["Linux"]
+resources:
+- name: "featured-image"
+  src: "banner.png"
 ---
 
 ## 安装VSFTPD
@@ -16,7 +19,7 @@ apt install vsftpd
 
 打开`/etc/vsftpd.conf`,假如下面的配置
 
-```sh
+```bash
 user_config_dir=/etc/vsftpd/vsftpd_user_config
 ```
 

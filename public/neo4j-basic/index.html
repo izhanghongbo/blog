@@ -4,8 +4,8 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
-        <title>Neo4j Basic - 图可视化</title><meta name="Description" content="Graph"><meta property="og:title" content="Neo4j Basic" />
-<meta property="og:description" content="导入数据 1 bin/neo4j-admin load --from=/dumps/neo4j/neo4j-&lt;timestamp&gt;.dump --database=neo4j --force 导出数据 1 neo4j-admin dump --database=neo4j --to=/export/00001.dump 官方手册 数据源" />
+        <title>Neo4j Basic - Programing Hub</title><meta name="Description" content="Graph"><meta property="og:title" content="Neo4j Basic" />
+<meta property="og:description" content="导入数据 1 bin/neo4j-admin load --from=/dumps/neo4j/neo4j-&lt;timestamp&gt;.dump --database=neo4j --force 导出数据 1 neo4j-admin dump --database=neo4j --to=/export/00001.dump 引用 导入/导出数据 数据源 构建Neo4j Desktop App" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://blog.bugraph.com/neo4j-basic/" /><meta property="og:image" content="http://blog.bugraph.com/avatar.png"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2022-09-09T21:23:26+08:00" />
@@ -15,7 +15,7 @@
 <meta name="twitter:image" content="http://blog.bugraph.com/avatar.png"/>
 
 <meta name="twitter:title" content="Neo4j Basic"/>
-<meta name="twitter:description" content="导入数据 1 bin/neo4j-admin load --from=/dumps/neo4j/neo4j-&lt;timestamp&gt;.dump --database=neo4j --force 导出数据 1 neo4j-admin dump --database=neo4j --to=/export/00001.dump 官方手册 数据源"/>
+<meta name="twitter:description" content="导入数据 1 bin/neo4j-admin load --from=/dumps/neo4j/neo4j-&lt;timestamp&gt;.dump --database=neo4j --force 导出数据 1 neo4j-admin dump --database=neo4j --to=/export/00001.dump 引用 导入/导出数据 数据源 构建Neo4j Desktop App"/>
 <meta name="application-name" content="LoveIt">
 <meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c">
 
@@ -30,7 +30,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/blog.bugraph.com\/neo4j-basic\/"
-        },"image": ["http:\/\/blog.bugraph.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Neo4j","wordcount":  26 ,
+        },"image": ["http:\/\/blog.bugraph.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Neo4j","wordcount":  40 ,
         "url": "http:\/\/blog.bugraph.com\/neo4j-basic\/","datePublished": "2022-09-09T21:23:26+08:00","dateModified": "2022-09-09T21:23:26+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": "http:\/\/blog.bugraph.com\/images\/avatar.png"},"author": {
@@ -46,7 +46,7 @@
 <header class="desktop" id="header-desktop">
     <div class="header-wrapper">
         <div class="header-title">
-            <a href="/" title="图可视化"><span id="id-1" class="typeit"></span></a>
+            <a href="/" title="Programing Hub"><span id="id-1" class="typeit"></span></a>
         </div>
         <div class="menu">
             <div class="menu-inner"><a class="menu-item" href="/posts/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
@@ -69,7 +69,7 @@
     <div class="header-container">
         <div class="header-wrapper">
             <div class="header-title">
-                <a href="/" title="图可视化"><span id="id-2" class="typeit"></span></a>
+                <a href="/" title="Programing Hub"><span id="id-2" class="typeit"></span></a>
             </div>
             <div class="menu-toggle" id="menu-toggle-mobile">
                 <span></span><span></span><span></span>
@@ -106,7 +106,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Neo4j Basic</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Jacob</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/database/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Database</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-09-09">2022-09-09</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 26 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-09-09">2022-09-09</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 40 字&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 1 分钟&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
                 <div class="details-summary toc-title">
@@ -117,6 +117,7 @@
   <ul>
     <li><a href="#导入数据">导入数据</a></li>
     <li><a href="#导出数据">导出数据</a></li>
+    <li><a href="#引用">引用</a></li>
   </ul>
 </nav></div>
             </div><div class="content" id="content"><h2 id="导入数据">导入数据</h2>
@@ -125,7 +126,7 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">bin/neo4j-admin load --from<span class="o">=</span>/dumps/neo4j/neo4j-&lt;timestamp&gt;.dump --database<span class="o">=</span>neo4j --force
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">bin/neo4j-admin load --from<span class="o">=</span>/dumps/neo4j/neo4j-&lt;timestamp&gt;.dump --database<span class="o">=</span>neo4j --force
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="导出数据">导出数据</h2>
@@ -134,11 +135,13 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">neo4j-admin dump --database<span class="o">=</span>neo4j --to<span class="o">=</span>/export/00001.dump
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">neo4j-admin dump --database<span class="o">=</span>neo4j --to<span class="o">=</span>/export/00001.dump
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p><a href="https://neo4j.com/docs/operations-manual/current/backup-restore/restore-dump/" target="_blank" rel="noopener noreffer ">官方手册</a>
-<a href="https://github.com/neo4j-graph-examples" target="_blank" rel="noopener noreffer ">数据源</a></p>
+</div><h2 id="引用">引用</h2>
+<p><a href="https://neo4j.com/docs/operations-manual/current/backup-restore/restore-dump/" target="_blank" rel="noopener noreffer ">导入/导出数据</a></p>
+<p><a href="https://github.com/neo4j-graph-examples" target="_blank" rel="noopener noreffer ">数据源</a></p>
+<p><a href="https://neo4j.com/developer/graph-apps/building-a-graph-app/" target="_blank" rel="noopener noreffer ">构建Neo4j Desktop App</a></p>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
@@ -163,7 +166,7 @@
     </div>
 
     <div class="post-nav"><a href="/install_galaxybase/" class="prev" rel="prev" title="安装Galaxybase"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>安装Galaxybase</a>
-            <a href="/mac-keymapping-basic/" class="next" rel="next" title="Mac安装Linux系统键盘映射">Mac安装Linux系统键盘映射<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+            <a href="/mac-keymapping-basic/" class="next" rel="next" title="MacBook安装Linux系统键盘映射">MacBook安装Linux系统键盘映射<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
 </div>
 </article></div>
             </main></div>
@@ -173,5 +176,5 @@
             </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
                 <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
             </a>
-        </div><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.13.1/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@8.6.0/dist/index.umd.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"data":{"id-1":"图可视化","id-2":"图可视化"},"search":{"algoliaAppID":"LRWEVFXDA3","algoliaIndex":"blog.bugraph.com","algoliaSearchKey":"5585e287a4a60aebad9cbd5d1d492da4","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+        </div><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.13.1/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@8.6.0/dist/index.umd.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"data":{"id-1":"Programing Hub","id-2":"Programing Hub"},"search":{"algoliaAppID":"LRWEVFXDA3","algoliaIndex":"blog.bugraph.com","algoliaSearchKey":"5585e287a4a60aebad9cbd5d1d492da4","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
 </html>

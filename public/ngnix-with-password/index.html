@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
-        <title>使用htpasswd实现Nginx验证访问 - 图可视化</title><meta name="Description" content="Graph"><meta property="og:title" content="使用htpasswd实现Nginx验证访问" />
+        <title>使用htpasswd实现Nginx验证访问 - Programing Hub</title><meta name="Description" content="Graph"><meta property="og:title" content="使用htpasswd实现Nginx验证访问" />
 <meta property="og:description" content="安装htpasswd 1 yum -y install httpd-tools 生成密码 1 htpasswd -c ./passwd jacob 执行上面这个命令后，会在当前路径下生成一个passwd的文件 配置Nginx 打开/etc/ng" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://blog.bugraph.com/ngnix-with-password/" /><meta property="og:image" content="http://blog.bugraph.com/ngnix-with-password/bg.jpeg"/><meta property="article:section" content="posts" />
@@ -32,9 +32,9 @@
         },"image": [{
                             "@type": "ImageObject",
                             "url": "http:\/\/blog.bugraph.com\/ngnix-with-password\/bg.jpeg",
-                            "width":  0 ,
-                            "height":  0 
-                        }],"genre": "posts","keywords": "Nginx","wordcount":  160 ,
+                            "width":  800 ,
+                            "height":  450 
+                        }],"genre": "posts","keywords": "Nginx","wordcount":  228 ,
         "url": "http:\/\/blog.bugraph.com\/ngnix-with-password\/","datePublished": "2022-08-20T22:36:36+08:00","dateModified": "2022-08-20T22:36:36+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": "http:\/\/blog.bugraph.com\/images\/avatar.png"},"author": {
@@ -50,7 +50,7 @@
 <header class="desktop" id="header-desktop">
     <div class="header-wrapper">
         <div class="header-title">
-            <a href="/" title="图可视化"><span id="id-1" class="typeit"></span></a>
+            <a href="/" title="Programing Hub"><span id="id-1" class="typeit"></span></a>
         </div>
         <div class="menu">
             <div class="menu-inner"><a class="menu-item" href="/posts/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
@@ -73,7 +73,7 @@
     <div class="header-container">
         <div class="header-wrapper">
             <div class="header-title">
-                <a href="/" title="图可视化"><span id="id-2" class="typeit"></span></a>
+                <a href="/" title="Programing Hub"><span id="id-2" class="typeit"></span></a>
             </div>
             <div class="menu-toggle" id="menu-toggle-mobile">
                 <span></span><span></span><span></span>
@@ -110,7 +110,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">使用htpasswd实现Nginx验证访问</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Jacob</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-08-20">2022-08-20</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 160 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-08-20">2022-08-20</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 228 字&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 1 分钟&nbsp;</div>
         </div><div class="featured-image"><img
         class="lazyload"
@@ -129,6 +129,7 @@
     <li><a href="#安装htpasswd">安装htpasswd</a></li>
     <li><a href="#生成密码">生成密码</a></li>
     <li><a href="#配置nginx">配置Nginx</a></li>
+    <li><a href="#配置没有index文件的静态网站">配置没有index文件的静态网站</a></li>
   </ul>
 </nav></div>
             </div><div class="content" id="content"><h2 id="安装htpasswd">安装htpasswd</h2>
@@ -168,6 +169,49 @@
 </span></span><span class="line"><span class="cl">    <span class="o">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
+</div><h2 id="配置没有index文件的静态网站">配置没有index文件的静态网站</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">    server <span class="o">{</span>
+</span></span><span class="line"><span class="cl">      listen 9001<span class="p">;</span>
+</span></span><span class="line"><span class="cl">      listen <span class="o">[</span>::<span class="o">]</span>:9001<span class="p">;</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">      server_name mathbox.bugraph.com<span class="p">;</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">      root /home/jacob/mydocument/projects/mathbox<span class="p">;</span>
+</span></span><span class="line"><span class="cl">      index index.html<span class="p">;</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">      location / <span class="o">{</span>
+</span></span><span class="line"><span class="cl">       add_header X-Robots-Tag <span class="s2">&#34;noindex, follow&#34;</span> always<span class="p">;</span>
+</span></span><span class="line"><span class="cl">       autoindex on<span class="p">;</span>
+</span></span><span class="line"><span class="cl">       autoindex_exact_size off<span class="p">;</span>
+</span></span><span class="line"><span class="cl">       autoindex_format html<span class="p">;</span>
+</span></span><span class="line"><span class="cl">       autoindex_localtime on<span class="p">;</span>
+</span></span><span class="line"><span class="cl">       try_files <span class="nv">$uri</span> <span class="nv">$uri</span>/ <span class="o">=</span>404<span class="p">;</span>
+</span></span><span class="line"><span class="cl">     <span class="o">}</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
 </div><p><a href="https://blog.51cto.com/u_15127535/4016407" target="_blank" rel="noopener noreffer ">转载</a></p>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
@@ -203,5 +247,5 @@
             </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
                 <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
             </a>
-        </div><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.13.1/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@8.6.0/dist/index.umd.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"data":{"id-1":"图可视化","id-2":"图可视化"},"search":{"algoliaAppID":"LRWEVFXDA3","algoliaIndex":"blog.bugraph.com","algoliaSearchKey":"5585e287a4a60aebad9cbd5d1d492da4","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+        </div><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.13.1/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@8.6.0/dist/index.umd.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"data":{"id-1":"Programing Hub","id-2":"Programing Hub"},"search":{"algoliaAppID":"LRWEVFXDA3","algoliaIndex":"blog.bugraph.com","algoliaSearchKey":"5585e287a4a60aebad9cbd5d1d492da4","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
 </html>

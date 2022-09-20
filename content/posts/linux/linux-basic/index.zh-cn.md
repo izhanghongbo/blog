@@ -17,19 +17,19 @@ categories: ["Linux"]
 
 * 创建组
 
-```sh
+```bash
 newgrp docker
 ```
 
 * 查看组
 
-```sh
+```bash
 groups
 ```
 
 * 把用户添加到group中
 
-```sh
+```bash
 #把jacob加入到docker组中
 usermod -gG docker jacob
 ```
@@ -51,7 +51,7 @@ systemctl set-default graphical.target
 ## 中文乱码问题
 
 在终端下输入命令，修改字符集
-```sh
+```bash
 export LANGUAGE=zh_CN.UTF-8
 export LANG=zh_CN.UTF-8
 export LC_ALL=zh_CN.UTF-8

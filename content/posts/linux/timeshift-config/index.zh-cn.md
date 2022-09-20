@@ -11,12 +11,12 @@ resources:
 
 ## 查看硬盘（U盘）
 
-```sh
+```bash
  lsblk
 ```
 
 结果如下，可以看出sdc是U盘
-```sh
+```bash
 NAME   MAJ:MIN RM   SIZE RO TYPE MOUNTPOINTS
 sda      8:0    0 233.8G  0 disk
 |-sda1   8:1    0   512M  0 part /boot/efi
@@ -29,7 +29,7 @@ sdc      8:32   1  29.3G  0 disk
 
 ## 格式化U盘
 
-```sh
+```bash
 parted /dev/sdc  mklabel gpt
 parted /dev/sdc  mkpart primary 0% 100%
 mkfs.ext4  /dev/sdc

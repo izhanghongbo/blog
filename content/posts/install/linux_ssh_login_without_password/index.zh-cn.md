@@ -10,7 +10,7 @@ draft: false
 ## 生成秘钥
 查看你的本地是否存在 ~/.ssh文件夹，如果不存在则用如下命令生成秘钥
 
-```sh
+```bash
  ssh-keygen -t rsa
 ```
 
@@ -20,7 +20,7 @@ draft: false
 
 ## 登录服务器
 
-```sh
+```bash
 ssh -o ServerAliveInterval=30 root@66.112.216.xxx -p 27934
 ```
 

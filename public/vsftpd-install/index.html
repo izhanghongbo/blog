@@ -4,16 +4,15 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
-        <title>安装配置Vsftpd - 图可视化</title><meta name="Description" content="Graph"><meta property="og:title" content="安装配置Vsftpd" />
+        <title>安装配置Vsftpd - Programing Hub</title><meta name="Description" content="Graph"><meta property="og:title" content="安装配置Vsftpd" />
 <meta property="og:description" content="安装VSFTPD 1 apt install vsftpd 配置文件 打开/etc/vsftpd.conf,假如下面的配置 1 user_config_dir=/etc/vsftpd/vsftpd_user_config 创建目录vsftpd_user_config,在目录" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="http://blog.bugraph.com/vsftpd-install/" /><meta property="og:image" content="http://blog.bugraph.com/avatar.png"/><meta property="article:section" content="posts" />
+<meta property="og:url" content="http://blog.bugraph.com/vsftpd-install/" /><meta property="og:image" content="http://blog.bugraph.com/vsftpd-install/banner.png"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2022-09-10T14:19:57+08:00" />
 <meta property="article:modified_time" content="2022-09-10T14:19:57+08:00" /><meta property="og:site_name" content="LoveIt" />
 
 <meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:image" content="http://blog.bugraph.com/avatar.png"/>
-
+<meta name="twitter:image" content="http://blog.bugraph.com/vsftpd-install/banner.png"/>
 <meta name="twitter:title" content="安装配置Vsftpd"/>
 <meta name="twitter:description" content="安装VSFTPD 1 apt install vsftpd 配置文件 打开/etc/vsftpd.conf,假如下面的配置 1 user_config_dir=/etc/vsftpd/vsftpd_user_config 创建目录vsftpd_user_config,在目录"/>
 <meta name="application-name" content="LoveIt">
@@ -30,7 +29,12 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/blog.bugraph.com\/vsftpd-install\/"
-        },"image": ["http:\/\/blog.bugraph.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "FTP","wordcount":  104 ,
+        },"image": [{
+                            "@type": "ImageObject",
+                            "url": "http:\/\/blog.bugraph.com\/vsftpd-install\/banner.png",
+                            "width":  850 ,
+                            "height":  474 
+                        }],"genre": "posts","keywords": "FTP","wordcount":  104 ,
         "url": "http:\/\/blog.bugraph.com\/vsftpd-install\/","datePublished": "2022-09-10T14:19:57+08:00","dateModified": "2022-09-10T14:19:57+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": "http:\/\/blog.bugraph.com\/images\/avatar.png"},"author": {
@@ -46,7 +50,7 @@
 <header class="desktop" id="header-desktop">
     <div class="header-wrapper">
         <div class="header-title">
-            <a href="/" title="图可视化"><span id="id-1" class="typeit"></span></a>
+            <a href="/" title="Programing Hub"><span id="id-1" class="typeit"></span></a>
         </div>
         <div class="menu">
             <div class="menu-inner"><a class="menu-item" href="/posts/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
@@ -69,7 +73,7 @@
     <div class="header-container">
         <div class="header-wrapper">
             <div class="header-title">
-                <a href="/" title="图可视化"><span id="id-2" class="typeit"></span></a>
+                <a href="/" title="Programing Hub"><span id="id-2" class="typeit"></span></a>
             </div>
             <div class="menu-toggle" id="menu-toggle-mobile">
                 <span></span><span></span><span></span>
@@ -108,7 +112,14 @@
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Jacob</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/linux/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Linux</a></span></div>
             <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-09-10">2022-09-10</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 104 字&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 1 分钟&nbsp;</div>
-        </div><div class="details toc" id="toc-static"  data-kept="">
+        </div><div class="featured-image"><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/vsftpd-install/banner.png"
+        data-srcset="/vsftpd-install/banner.png, /vsftpd-install/banner.png 1.5x, /vsftpd-install/banner.png 2x"
+        data-sizes="auto"
+        alt="/vsftpd-install/banner.png"
+        title="/vsftpd-install/banner.png" /></div><div class="details toc" id="toc-static"  data-kept="">
                 <div class="details-summary toc-title">
                     <span>目录</span>
                     <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
@@ -135,7 +146,7 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="nv">user_config_dir</span><span class="o">=</span>/etc/vsftpd/vsftpd_user_config
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nv">user_config_dir</span><span class="o">=</span>/etc/vsftpd/vsftpd_user_config
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>创建目录<code>vsftpd_user_config</code>,在目录下创建一个与ftp用户相同名称的文件(jacob)，写入如下内容</p>
@@ -170,7 +181,7 @@
         </section>
     </div>
 
-    <div class="post-nav"><a href="/mac-keymapping-basic/" class="prev" rel="prev" title="Mac安装Linux系统键盘映射"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>Mac安装Linux系统键盘映射</a>
+    <div class="post-nav"><a href="/mac-keymapping-basic/" class="prev" rel="prev" title="MacBook安装Linux系统键盘映射"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>MacBook安装Linux系统键盘映射</a>
             <a href="/linux-basic/" class="next" rel="next" title="Linux 基础">Linux 基础<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
 </div>
 </article></div>
@@ -181,5 +192,5 @@
             </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
                 <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
             </a>
-        </div><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.13.1/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@8.6.0/dist/index.umd.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"data":{"id-1":"图可视化","id-2":"图可视化"},"search":{"algoliaAppID":"LRWEVFXDA3","algoliaIndex":"blog.bugraph.com","algoliaSearchKey":"5585e287a4a60aebad9cbd5d1d492da4","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+        </div><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.13.1/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@8.6.0/dist/index.umd.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"data":{"id-1":"Programing Hub","id-2":"Programing Hub"},"search":{"algoliaAppID":"LRWEVFXDA3","algoliaIndex":"blog.bugraph.com","algoliaSearchKey":"5585e287a4a60aebad9cbd5d1d492da4","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
 </html>

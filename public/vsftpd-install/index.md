@@ -11,7 +11,7 @@ apt install vsftpd
 
 打开`/etc/vsftpd.conf`,假如下面的配置
 
-```sh
+```bash
 user_config_dir=/etc/vsftpd/vsftpd_user_config
 ```
 

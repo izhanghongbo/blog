@@ -41,3 +41,7 @@ Plugin 'iamcco/markdown-preview.nvim'
 [Neovim构建javascript IDE](https://jsdev.org/env/ide/neovim/)
 [视频教程](https://frontendmasters.com/courses/vim-fundamentals/)
 [Vim IDE](https://github.com/LunarVim/nvim-basic-ide)
+
+## 快捷键
+
+跳转到引号内，并删除引号内的内容 `f'lcw`

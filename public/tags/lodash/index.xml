@@ -1,8 +1,8 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>Lodash - 标签 - 图可视化</title>
+        <title>Lodash - 标签 - Programing Hub</title>
         <link>http://blog.bugraph.com/tags/lodash/</link>
-        <description>Lodash - 标签 - 图可视化</description>
+        <description>Lodash - 标签 - Programing Hub</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Thu, 01 Sep 2022 00:33:09 &#43;0800</lastBuildDate><atom:link href="http://blog.bugraph.com/tags/lodash/" rel="self" type="application/rss+xml" /><item>
     <title>Lodash使用</title>
     <link>http://blog.bugraph.com/lodash%E4%BD%BF%E7%94%A8/</link>

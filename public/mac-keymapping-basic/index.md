@@ -1,11 +1,13 @@
-# Mac安装Linux系统键盘映射
+# MacBook安装Linux系统键盘映射
 
 
 # 键盘映射
 
+实现Supper 与 Control 键互换
+
 ## 打开下面的文件
 
-```sh
+```bash
 sudo vi usr/share/X11/xkb/symbols/pc
 ```
 

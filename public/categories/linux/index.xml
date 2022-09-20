@@ -1,9 +1,25 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>Linux - 分类 - 图可视化</title>
+        <title>Linux - 分类 - Programing Hub</title>
         <link>http://blog.bugraph.com/categories/linux/</link>
-        <description>Linux - 分类 - 图可视化</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sat, 10 Sep 2022 18:05:26 &#43;0800</lastBuildDate><atom:link href="http://blog.bugraph.com/categories/linux/" rel="self" type="application/rss+xml" /><item>
+        <description>Linux - 分类 - Programing Hub</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Thu, 15 Sep 2022 18:21:26 &#43;0800</lastBuildDate><atom:link href="http://blog.bugraph.com/categories/linux/" rel="self" type="application/rss+xml" /><item>
+    <title>网络抓包工具Tcpdump</title>
+    <link>http://blog.bugraph.com/tcpdump/</link>
+    <pubDate>Thu, 15 Sep 2022 18:21:26 &#43;0800</pubDate>
+    <author>Jacob</author>
+    <guid>http://blog.bugraph.com/tcpdump/</guid>
+    <description><![CDATA[查看443端口的发包情况 1 tcpdump -nnSX port 443 结果 1 2 3 4 5 6 7 8 9 10 11 12 18:36:15.567688 IP 192.168.31.26.51842 &gt; 104.21.5.103.443: Flags [P.], seq 3089667269:3089667306, ack 3818071690, win 4096, length 37 0x0000: 8c53 c3c7 8e3d f45c 89a5 12a9 0800 4500 .S...=.\......E. 0x0010: 004d 0000 4000 4006 ed6c c0a8 1f1a 6815 .M..@.@..l....h. 0x0020: 0567 ca82 01bb]]></description>
+</item>
+<item>
+    <title>Kali Linux 工具</title>
+    <link>http://blog.bugraph.com/kali/</link>
+    <pubDate>Wed, 14 Sep 2022 15:04:29 &#43;0800</pubDate>
+    <author>Jacob</author>
+    <guid>http://blog.bugraph.com/kali/</guid>
+    <description><![CDATA[netmask 查域名ip 1 netmask -s google.com nmap 端口扫描 扫描网段下的ip 查看路由器连接了那些设备 1 2 3 #指定端口范围 nmap -sT -p 80,443 192.168.31.0/24 nmap -sT 192.168.31.0/24 扫描端口 1 nmap 192.168.31.26 netcat 使用 在源机器建立监]]></description>
+</item>
+<item>
     <title>Timeshift 备份与还原</title>
     <link>http://blog.bugraph.com/timeshift-config/</link>
     <pubDate>Sat, 10 Sep 2022 18:05:26 &#43;0800</pubDate>
@@ -17,7 +33,7 @@
     <pubDate>Sat, 10 Sep 2022 14:53:27 &#43;0800</pubDate>
     <author>Jacob</author>
     <guid>http://blog.bugraph.com/frp-config/</guid>
-    <description><![CDATA[下载代码 下载地址 运行服务端（公网服务器） 服务端配置 1 2 3 4 5 6 7 [common] token = xxxxx bind_port = 7000 vhost_http_port = 8081 dashboard_port = 7500 dashboard_user = admin dashboard_pwd = admin 1 ./frps -c ./frps.ini 运行客户端（本地电脑） 客户端配]]></description>
+    <description><![CDATA[下载代码 下载地址 运行服务端（公网服务器） 服务端配置 1 2 3 4 5 6 7 [common] token = xxxxx bind_port = 7000 vhost_http_port = 9000 dashboard_port = 7500 dashboard_user = admin dashboard_pwd = admin 1 ./frps -c ./frps.ini 运行客户端（本地电脑） 客户端配]]></description>
 </item>
 <item>
     <title>Linux 基础</title>

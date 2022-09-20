@@ -33,5 +33,28 @@ htpasswd -c ./passwd jacob
     }
 ```
 
+## 配置没有index文件的静态网站
+
+```bash
+    server {
+      listen 9001;
+      listen [::]:9001;
+  
+      server_name mathbox.bugraph.com;
+  
+      root /home/jacob/mydocument/projects/mathbox;
+      index index.html;
+  
+      location / {
+       add_header X-Robots-Tag "noindex, follow" always;
+       autoindex on;
+       autoindex_exact_size off;
+       autoindex_format html;
+       autoindex_localtime on;
+       try_files $uri $uri/ =404;
+     }
+  }
+```
+
 [转载](https://blog.51cto.com/u_15127535/4016407)
 

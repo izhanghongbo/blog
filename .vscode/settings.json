@@ -4,5 +4,6 @@
         "**/.git*":true,
         "**/docs":true,
         "**/public": true,
+        "**/node_modules": true,
     }
 }

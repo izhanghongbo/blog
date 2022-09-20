@@ -1,0 +1,23 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Build - 分类 - Programing Hub</title>
+        <link>http://blog.bugraph.com/categories/build/</link>
+        <description>Build - 分类 - Programing Hub</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Thu, 15 Sep 2022 16:29:43 &#43;0800</lastBuildDate><atom:link href="http://blog.bugraph.com/categories/build/" rel="self" type="application/rss+xml" /><item>
+    <title>自定义 create-react-app模板</title>
+    <link>http://blog.bugraph.com/create-react-app/</link>
+    <pubDate>Thu, 15 Sep 2022 16:29:43 &#43;0800</pubDate>
+    <author>Jacob</author>
+    <guid>http://blog.bugraph.com/create-react-app/</guid>
+    <description><![CDATA[文件夹结构 创建一个名为cra-template-base的模板,packgage.json template.json,gitignore为必]]></description>
+</item>
+<item>
+    <title>Rollup配置</title>
+    <link>http://blog.bugraph.com/rollup_config/</link>
+    <pubDate>Thu, 15 Sep 2022 14:15:06 &#43;0800</pubDate>
+    <author>Jacob</author>
+    <guid>http://blog.bugraph.com/rollup_config/</guid>
+    <description><![CDATA[编译文件 rollup.config.js 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 import babel from &#34;rollup-plugin-babel&#34;; import postcss from &#34;rollup-plugin-postcss&#34;; import copy from &#34;rollup-plugin-copy&#34;; import fs from &#34;fs&#34;; let components = fs.readdirSync(&#34;./src/components&#34;); let interfaces = fs.readdirSync(&#34;./src/interfaces&#34;); interfaces]]></description>
+</item>
+</channel>
+</rss>

@@ -4,6 +4,10 @@ date: 2022-09-10T14:53:27+08:00
 draft: false
 tags: ["Linux"]
 categories: ["Linux"]
+resources:
+- name: "featured-image"
+  src: "banner.png"
+
 ---
 
 ## 下载代码
@@ -17,7 +21,7 @@ categories: ["Linux"]
 [common]
 token = xxxxx
 bind_port = 7000
-vhost_http_port = 8081
+vhost_http_port = 9000
 dashboard_port = 7500
 dashboard_user = admin
 dashboard_pwd = admin
@@ -37,11 +41,17 @@ server_addr = **.163.203.***
 server_port = 7000
 token = xxxxx
 
-[web]
+[web1]
+type = http
+local_ip = 192.168.31.26
+local_port = 8080
+custom_domains = kali.bugraph.com
+
+[web2]
 type = http
 local_ip = 192.168.31.26
 local_port = 8081
-custom_domains = kali.bugraph.com
+custom_domains = database.bugraph.com
 ```
 
 ```
@@ -67,7 +77,17 @@ ExecStart=/usr/local/frp/frps -c /usr/local/frp/frps.ini
 WantedBy=multi-user.target
 ```
 
+## 远程访问本机
+
+```bash
+database.bugraph.com:9000
+kali.bugraph.com:9000
+```
+
+2个服务都是通过9000端口访问,如果想通过80，可以通过配置Nginx实现，Nginx的配置如下
+
 ## 配置Nginx
+
 
 ```json
 server {
@@ -98,7 +118,7 @@ server {
     proxy_ignore_client_abort on;
 
     location / {
-        proxy_pass http://127.0.0.1:8080;
+        proxy_pass http://127.0.0.1:9000;
         proxy_redirect off;
         proxy_set_header Host $host:80;
         proxy_ssl_server_name on;
@@ -108,6 +128,8 @@ server {
     }
 }
 ```
+
+
 
 
 转载[https://zhuanlan.zhihu.com/p/341551501](https://zhuanlan.zhihu.com/p/341551501)

@@ -5,8 +5,8 @@ draft: false
 tags: []
 categories: []
 resources:
-- name: "featured-image-preview"
-  src: "banner.jpeg"
+- name: "featured-image"
+  src: "banner.gif"
 ---
 
 ## React Three Fiber

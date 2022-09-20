@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
-        <title>Timeshift 备份与还原 - 图可视化</title><meta name="Description" content="Graph"><meta property="og:title" content="Timeshift 备份与还原" />
+        <title>Timeshift 备份与还原 - Programing Hub</title><meta name="Description" content="Graph"><meta property="og:title" content="Timeshift 备份与还原" />
 <meta property="og:description" content="查看硬盘（U盘） 1 lsblk 结果如下，可以看出sdc是U盘 1 2 3 4 5 6 7 8 NAME MAJ:MIN RM SIZE RO TYPE MOUNTPOINTS sda 8:0 0 233.8G 0 disk |-sda1 8:1 0 512M 0 part /boot/efi |-sda2 8:2 0 232.3G 0 part / `-sda3 8:3 0 976M 0 part [SWAP] sdb 8:16 1" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://blog.bugraph.com/timeshift-config/" /><meta property="og:image" content="http://blog.bugraph.com/timeshift-config/banner.jpg"/><meta property="article:section" content="posts" />
@@ -50,7 +50,7 @@
 <header class="desktop" id="header-desktop">
     <div class="header-wrapper">
         <div class="header-title">
-            <a href="/" title="图可视化"><span id="id-1" class="typeit"></span></a>
+            <a href="/" title="Programing Hub"><span id="id-1" class="typeit"></span></a>
         </div>
         <div class="menu">
             <div class="menu-inner"><a class="menu-item" href="/posts/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
@@ -73,7 +73,7 @@
     <div class="header-container">
         <div class="header-wrapper">
             <div class="header-title">
-                <a href="/" title="图可视化"><span id="id-2" class="typeit"></span></a>
+                <a href="/" title="Programing Hub"><span id="id-2" class="typeit"></span></a>
             </div>
             <div class="menu-toggle" id="menu-toggle-mobile">
                 <span></span><span></span><span></span>
@@ -136,7 +136,7 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"> lsblk
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"> lsblk
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>结果如下，可以看出sdc是U盘</p>
@@ -152,7 +152,7 @@
 </span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">NAME   MAJ:MIN RM   SIZE RO TYPE MOUNTPOINTS
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">NAME   MAJ:MIN RM   SIZE RO TYPE MOUNTPOINTS
 </span></span><span class="line"><span class="cl">sda      8:0    <span class="m">0</span> 233.8G  <span class="m">0</span> disk
 </span></span><span class="line"><span class="cl"><span class="p">|</span>-sda1   8:1    <span class="m">0</span>   512M  <span class="m">0</span> part /boot/efi
 </span></span><span class="line"><span class="cl"><span class="p">|</span>-sda2   8:2    <span class="m">0</span> 232.3G  <span class="m">0</span> part /
@@ -170,7 +170,7 @@
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">parted /dev/sdc  mklabel gpt
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">parted /dev/sdc  mklabel gpt
 </span></span><span class="line"><span class="cl">parted /dev/sdc  mkpart primary 0% 100%
 </span></span><span class="line"><span class="cl">mkfs.ext4  /dev/sdc
 </span></span></code></pre></td></tr></table>
@@ -209,5 +209,5 @@
             </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
                 <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
             </a>
-        </div><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.13.1/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@8.6.0/dist/index.umd.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"data":{"id-1":"图可视化","id-2":"图可视化"},"search":{"algoliaAppID":"LRWEVFXDA3","algoliaIndex":"blog.bugraph.com","algoliaSearchKey":"5585e287a4a60aebad9cbd5d1d492da4","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+        </div><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.13.1/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@8.6.0/dist/index.umd.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"data":{"id-1":"Programing Hub","id-2":"Programing Hub"},"search":{"algoliaAppID":"LRWEVFXDA3","algoliaIndex":"blog.bugraph.com","algoliaSearchKey":"5585e287a4a60aebad9cbd5d1d492da4","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
 </html>

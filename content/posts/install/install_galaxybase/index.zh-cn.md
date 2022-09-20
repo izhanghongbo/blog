@@ -10,14 +10,14 @@ categories: []
 
 ## 解压安装
 
-```sh
+```bash
 tar -xzif galaxybase-standalone-20220721170804.tar.gz
 cd galaxybase-<release_version>/bin
 ```
 
 ## 在galaxybase目录下新建`env`文件
 
-```sh
+```bash
 export GALAXYBASE_HOME=/home/jacob/mydocument/software/galaxybase-20220721170804
 export PATH =$PATH:$GALAXYBASE_HOME/bin
 ```
@@ -25,7 +25,7 @@ export PATH =$PATH:$GALAXYBASE_HOME/bin
 
 ## 查看版本
 
-```sh
+```bash
  ./galaxybase-deploy version
 ```
 
@@ -40,14 +40,14 @@ export PATH =$PATH:$GALAXYBASE_HOME/bin
 
 ## 运行Galaxybase
 
-```sh
+```bash
 # 在工程目录下创建一数据文件home-data
 # 运行下面命令启动Galaxybase
  galaxybase-deploy build graph --home home-data
 ```
-使用`ss -lntp`查看当前运行的端口
+使用`ss -lntp`查看当前运行的端口,51314端口为galaxybase的节点管理平台的页面端口
 
-```sh
+```bash
 State        Recv-Q        Send-Q               Local Address:Port                Peer Address:Port       Process
 LISTEN       0             4096                     127.0.0.1:1098                     0.0.0.0:*
 LISTEN       0             128                        0.0.0.0:22                       0.0.0.0:*
@@ -63,3 +63,5 @@ LISTEN       0             128                           [::]:22                
 ```
 
 ## [教程](https://www.bilibili.com/video/BV1iY4y1F7Hn
+## [数据导入](https://github.com/galaxybase/graph-database-benchmark)
+## [可视化](https://github.com/galaxybase/GalaxyVis)
