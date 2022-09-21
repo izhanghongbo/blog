@@ -9,7 +9,7 @@
     <pubDate>Tue, 13 Sep 2022 11:44:10 &#43;0800</pubDate>
     <author>Jacob</author>
     <guid>http://blog.bugraph.com/apache-arrow-basic/</guid>
-    <description><![CDATA[RecordBatch-From-Vector 代码片段 CSS: 1 2 3 #result{ color:green; } HTML: 1 2 &lt;script src=&#34;https://cdn.jsdelivr.net/npm/apache-arrow@9.0.0/Arrow.es2015.min.js&#34;&gt;&lt;/script&gt; &lt;div id=&#34;result&#34;&gt;&lt;/div&gt; JS: 1 2 3 4 5 6 7 8 9 10 11 let {makeVector,RecordBatch} = Arrow const i32s = new Int32Array([1,2,3,4,5,6,7]); let i32 = makeVector(i32s) const batch = new RecordBatch({ &#34;name&#34;: i32.data[0] }); i32 = batch.getChildAt(0); log(&#34;表格第一行数]]></description>
+    <description><![CDATA[Vector 代码片段 CSS: 1 2 3 #result { color: gray; } HTML: 1 2 &lt;script src=&#34;https://cdn.jsdelivr.net/npm/apache-arrow@9.0.0/Arrow.es2015.min.js&#34;&gt;&lt;/script&gt; &lt;div id=&#34;result&#34;&gt;&lt;/div&gt; JS: 1 2 3 4 5 6 7 8 9 10 let { makeVector, RecordBatch } = Arrow; const i32s = new Int32Array([1, 2, 3, 4, 5, 6, 7]); let i32 = makeVector(i32s); const batch = new RecordBatch({ name: i32.data[0] }); i32 = batch.getChildAt(0); log(&]]></description>
 </item>
 <item>
     <title>Lodash使用</title>
@@ -17,7 +17,7 @@
     <pubDate>Thu, 01 Sep 2022 00:33:09 &#43;0800</pubDate>
     <author>Jacob</author>
     <guid>http://blog.bugraph.com/lodash%E4%BD%BF%E7%94%A8/</guid>
-    <description><![CDATA[Lodash使用 代码片段 CSS: 1 2 3 body{ color:gray; } HTML: 1 2 3 4 &lt;script src=&#34;https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js&#34;&gt;&lt;/script&gt; &lt;div id=&#34;result&#34;&gt;&lt;/div&gt; JS: 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 // _.add(6, 4); resultPanel = document.querySelector(&#34;#result&#34;) function log(message){ const node = document.createElement(&#34;label&#34;); node.innerHTML = message; resultPanel.appendChild(node) const br = document.createElement(&#34;br&#34;);]]></description>
+    <description><![CDATA[Lodash使用 代码片段 CSS: 1 2 3 body{ color:gray; } HTML: 1 2 3 4 &lt;script src=&#34;https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js&#34;&gt;&lt;/script&gt; &lt;div id=&#34;result&#34;&gt;&lt;/div&gt; JS: 1 2 3 4 5 6 7 8 9 // _.add(6, 4); var a = _.add(4,5) log(&#34;_.add(4,5) -&gt; &#34;+a) var object = { &#39;a&#39;: 1, &#39;b&#39;: 2 }; a= _.isMatch(object, { &#39;b&#39;: 2 }); log(&#34;isMatch =&gt;&#34;+a) 运行结果:]]></description>
 </item>
 </channel>
 </rss>

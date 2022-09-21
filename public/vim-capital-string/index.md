@@ -21,4 +21,10 @@ gU6w或gU6e---- 两个命令功能是一样的：光标后面的6个“字”会
 
 [来源](https://www.cnblogs.com/badboy200800/p/9880269.html)
 
+## 快速删除引号内的字符串
+
+`di"：delete all content inside "，结果字符串为""`
+
+## 跳转到指定的字符`f=`跳转到=所在位置
+
 

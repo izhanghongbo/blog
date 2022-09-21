@@ -21,18 +21,6 @@ body{
 ```js
 //  _.add(6, 4);
 
-
-resultPanel = document.querySelector("#result")
-
-function log(message){
-const node = document.createElement("label");
-node.innerHTML = message;
-resultPanel.appendChild(node)
-
-const br = document.createElement("br");
-resultPanel.appendChild(br)
-}
-
 var a = _.add(4,5)
 log("_.add(4,5) -> "+a)
 
