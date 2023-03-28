@@ -98,7 +98,90 @@ log("追加后的数据:<br/>" + concatedVec);
 
 {{</snippet>}}
 
+
 {{<snippet Schema 200 >}}
+
+```css
+#result {
+  color: gray;
+}
+```
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/apache-arrow@9.0.0/Arrow.es2015.min.js"></script>
+<div id="result"></div>
+```
+
+```js
+let properties = [
+  { name: "jacob", age: 22 },
+  { name: "Ben", age: 33, city: "SF" },
+];
+
+let newProperties = [{ name: "sean", age: 31 }];
+let {
+  Table,
+  Schema,
+  RecordBatch,
+  Field,
+  Float32,
+  Int32,
+  Struct,
+  Utf8,
+  Vector,
+  makeData,
+  vectorFromArray,
+  makeTable,
+  List
+} = Arrow;
+
+const values = [1, 2];
+const vector = vectorFromArray(values);
+
+const nodes = [
+  {
+    id: "1",
+    color: 0xfff000,
+    label: "Movie",
+    position: { x: 1, y: 2, z: 3 },
+    properties: {
+      name: "jacob",
+      age: 22,
+    },
+  },
+  {
+    id: "2",
+    color: 0xfff000,
+    label: "Movie",
+    position: { x: 1, y: 2, z: 3 },
+    properties: {
+      name: "test",
+      age: 22,
+    },
+  },
+];
+
+const nodesVector = vectorFromArray(nodes);
+
+  const labels = [["User", "Person"], ["3", "4", "5"]];
+    const labelVector = vectorFromArray(labels,new List(new Field("label",new Utf8)) );
+let fields = [Field.new("id",new Int32()),Field.new("label",new List(new Field("label",new Utf8)) ),Field.new("nodes",new Struct())]
+let schema = new Schema(fields)
+const data = makeData({ type: new Struct(schema.fields), children:[vector,labelVector,nodesVector] });
+let recordBatch = new RecordBatch(schema,data)
+
+// const batch = new RecordBatch({id:idVec,nodes:nodesVec});
+let graphTable = new Table([recordBatch])
+
+log("label:"+graphTable.getChild("nodes").get(1).label)
+let labels2 = graphTable.getChild("label").get(0)
+log("List:"+labels2)
+
+```
+
+{{</snippet>}}
+
+{{<snippet Table 200 >}}
 
 ```css
 #result {
@@ -202,7 +285,12 @@ let concatVec = concatTable.getChild("nodes")
 
 log("concat table's last row properties:"+concatTable.getChild("nodes").get(3).properties.name)
 
+//Change property's value
+let jacobProperty = concatTable.getChild("nodes").get(0).properties
+jacobProperty.name = "S"
+concatTable.getChild("nodes").get(0).properties = jacobProperty
 
+log("rename:"+concatTable.getChild("nodes").get(0).properties.name)
 
 
 ```
