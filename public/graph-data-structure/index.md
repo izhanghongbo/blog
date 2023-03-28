@@ -1,13 +1,5 @@
----
-title: "Graph Data Structure"
-date: 2023-03-29T00:57:17+08:00
-draft: false
-tags: []
-categories: ["Graph"]
-resources:
-- name: "featured-image"
-  src: "banner.jpeg"
----
+# Graph Data Structure
+
 
 Graph 数据结构，支持更新React组件
 ```js
@@ -63,4 +55,5 @@ class MyReactComponent extends React.Component implements GraphObserver {
 }
 
 ```
+
 
