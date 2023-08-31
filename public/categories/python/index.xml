@@ -1,0 +1,15 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Python - 分类 - Programing Hub</title>
+        <link>http://blog.bugraph.com/categories/python/</link>
+        <description>Python - 分类 - Programing Hub</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Fri, 19 May 2023 01:22:43 &#43;0800</lastBuildDate><atom:link href="http://blog.bugraph.com/categories/python/" rel="self" type="application/rss+xml" /><item>
+    <title>构建Python虚拟环境</title>
+    <link>http://blog.bugraph.com/build-python-virtual-enviroment/</link>
+    <pubDate>Fri, 19 May 2023 01:22:43 &#43;0800</pubDate>
+    <author>Jacob</author>
+    <guid>http://blog.bugraph.com/build-python-virtual-enviroment/</guid>
+    <description><![CDATA[使用virtualenv 安装virtualenv 1 pip install virtualenv 创建运行环境 1 virtualenv venv 激活环境 1 2 cd venv source ./bin/activate 退出环境 1 deactivate 使用venv 激活 1 2 python3 -m venv . source bin/activate 退]]></description>
+</item>
+</channel>
+</rss>

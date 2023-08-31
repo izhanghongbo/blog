@@ -62,6 +62,11 @@ LISTEN       0             128                           [::]:22                
 
 ```
 
+数据库管理平台：http://192.168.31.191:51314
+用户名 admin 密码 admin
+数据库可视化：http://192.168.31.191:8888
+用户名 admin 密码 admin
+
 ## [教程](https://www.bilibili.com/video/BV1iY4y1F7Hn
 ## [数据导入](https://github.com/galaxybase/graph-database-benchmark)
 ## [可视化](https://github.com/galaxybase/GalaxyVis)
