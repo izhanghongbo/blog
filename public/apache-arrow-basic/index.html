@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
         <title>Apache Arrow 基础 - Programing Hub</title><meta name="Description" content="Graph"><meta property="og:title" content="Apache Arrow 基础" />
-<meta property="og:description" content="Vector 代码片段 CSS: 1 2 3 #result { color: gray; } HTML: 1 2 &lt;script src=&#34;https://cdn.jsdelivr.net/npm/apache-arrow@9.0.0/Arrow.es2015.min.js&#34;&gt;&lt;/script&gt; &lt;div id=&#34;result&#34;&gt;&lt;/div&gt; JS: 1 2 3 4 5 6 7 8 9 10 let { makeVector, RecordBatch } = Arrow; const i32s = new Int32Array([1, 2, 3, 4, 5, 6, 7]); let i32 = makeVector(i32s); const batch = new RecordBatch({ name: i32.data[0] }); i32 = batch.getChildAt(0); log(&" />
+<meta property="og:description" content="Vector 代码片段 CSS: 1 2 3 #result { color: gray; } HTML: 1 2 3 &lt;script src=&#34;https://cdn.jsdelivr.net/npm/apache-arrow@9.0.0/Arrow.es2015.min.js&#34;&gt;&lt;/script&gt; &lt;script src=&#34;/hello.js&#34;&gt;&lt;/script&gt; &lt;div id=&#34;result&#34;&gt;&lt;/div&gt; JS: 1 2 3 4 5 6 7 8 9 10 let { makeVector, RecordBatch } = Arrow; const i32s = new Int32Array([1, 2, 3, 4, 5, 6, 7]); let i32 = makeVector(i32s); const batch = new RecordBatch({ name: i32.data[0] }); i32 = batch.getChildAt(0); lo" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://blog.bugraph.com/apache-arrow-basic/" /><meta property="og:image" content="http://blog.bugraph.com/apache-arrow-basic/banner.jpeg"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2022-09-13T11:44:10+08:00" />
@@ -14,7 +14,7 @@
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="http://blog.bugraph.com/apache-arrow-basic/banner.jpeg"/>
 <meta name="twitter:title" content="Apache Arrow 基础"/>
-<meta name="twitter:description" content="Vector 代码片段 CSS: 1 2 3 #result { color: gray; } HTML: 1 2 &lt;script src=&#34;https://cdn.jsdelivr.net/npm/apache-arrow@9.0.0/Arrow.es2015.min.js&#34;&gt;&lt;/script&gt; &lt;div id=&#34;result&#34;&gt;&lt;/div&gt; JS: 1 2 3 4 5 6 7 8 9 10 let { makeVector, RecordBatch } = Arrow; const i32s = new Int32Array([1, 2, 3, 4, 5, 6, 7]); let i32 = makeVector(i32s); const batch = new RecordBatch({ name: i32.data[0] }); i32 = batch.getChildAt(0); log(&"/>
+<meta name="twitter:description" content="Vector 代码片段 CSS: 1 2 3 #result { color: gray; } HTML: 1 2 3 &lt;script src=&#34;https://cdn.jsdelivr.net/npm/apache-arrow@9.0.0/Arrow.es2015.min.js&#34;&gt;&lt;/script&gt; &lt;script src=&#34;/hello.js&#34;&gt;&lt;/script&gt; &lt;div id=&#34;result&#34;&gt;&lt;/div&gt; JS: 1 2 3 4 5 6 7 8 9 10 let { makeVector, RecordBatch } = Arrow; const i32s = new Int32Array([1, 2, 3, 4, 5, 6, 7]); let i32 = makeVector(i32s); const batch = new RecordBatch({ name: i32.data[0] }); i32 = batch.getChildAt(0); lo"/>
 <meta name="application-name" content="LoveIt">
 <meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c">
 
@@ -34,7 +34,7 @@
                             "url": "http:\/\/blog.bugraph.com\/apache-arrow-basic\/banner.jpeg",
                             "width":  800 ,
                             "height":  450 
-                        }],"genre": "posts","keywords": "ApacheArrow","wordcount":  1164 ,
+                        }],"genre": "posts","keywords": "ApacheArrow","wordcount":  1167 ,
         "url": "http:\/\/blog.bugraph.com\/apache-arrow-basic\/","datePublished": "2022-09-13T11:44:10+08:00","dateModified": "2022-09-13T11:44:10+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": "http:\/\/blog.bugraph.com\/images\/avatar.png"},"author": {
@@ -110,7 +110,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Apache Arrow 基础</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Jacob</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/javascript/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Javascript</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-09-13">2022-09-13</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 1164 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-09-13">2022-09-13</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 1167 字&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 3 分钟&nbsp;</div>
         </div><div class="featured-image"><img
         class="lazyload"
@@ -150,9 +150,11 @@
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
+</span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;https://cdn.jsdelivr.net/npm/apache-arrow@9.0.0/Arrow.es2015.min.js&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;/hello.js&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;result&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
 </span></span></code></pre></td></tr></table>
 </div>
@@ -220,7 +222,7 @@
 <script type="text/javascript">
 
 document.addEventListener('DOMContentLoaded', function() {
-   mySnippet('\n\n\n\n\n\n\u003cscript src=\u0022https:\/\/cdn.jsdelivr.net\/npm\/apache-arrow@9.0.0\/Arrow.es2015.min.js\u0022\u003e\u003c\/script\u003e\n\u003cdiv id=\u0022result\u0022\u003e\u003c\/div\u003e\n\n\n\n\n\n', '\n\n\n\n\n\n\n\n\nlet { makeVector, RecordBatch } = Arrow;\n\nconst i32s = new Int32Array([1, 2, 3, 4, 5, 6, 7]);\nlet i32 = makeVector(i32s);\n\nconst batch = new RecordBatch({ name: i32.data[0] });\ni32 = batch.getChildAt(0);\nlog(\u0022表格第一行数据:\u0022 \u002b i32.get(0));\n\nlog(\u0022列名称:\u0022 \u002b batch.schema.fields[0].name);\n\n\n', '\n\n\n#result {\n  color: gray;\n}\n\n\n\n\n\n\n\n\n', 'Vector');
+   mySnippet('\n\n\n\n\n\n\u003cscript src=\u0022https:\/\/cdn.jsdelivr.net\/npm\/apache-arrow@9.0.0\/Arrow.es2015.min.js\u0022\u003e\u003c\/script\u003e\n\u003cscript src=\u0022\/hello.js\u0022\u003e\u003c\/script\u003e\n\u003cdiv id=\u0022result\u0022\u003e\u003c\/div\u003e\n\n\n\n\n\n', '\n\n\n\n\n\n\n\n\nlet { makeVector, RecordBatch } = Arrow;\n\nconst i32s = new Int32Array([1, 2, 3, 4, 5, 6, 7]);\nlet i32 = makeVector(i32s);\n\nconst batch = new RecordBatch({ name: i32.data[0] });\ni32 = batch.getChildAt(0);\nlog(\u0022表格第一行数据:\u0022 \u002b i32.get(0));\n\nlog(\u0022列名称:\u0022 \u002b batch.schema.fields[0].name);\n\n\n', '\n\n\n#result {\n  color: gray;\n}\n\n\n\n\n\n\n\n\n', 'Vector');
 
 }, false);
 </script> 

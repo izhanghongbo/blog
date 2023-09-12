@@ -9,7 +9,7 @@
     <pubDate>Tue, 13 Sep 2022 11:44:10 &#43;0800</pubDate>
     <author>Jacob</author>
     <guid>http://blog.bugraph.com/apache-arrow-basic/</guid>
-    <description><![CDATA[Vector 代码片段 CSS: 1 2 3 #result { color: gray; } HTML: 1 2 &lt;script src=&#34;https://cdn.jsdelivr.net/npm/apache-arrow@9.0.0/Arrow.es2015.min.js&#34;&gt;&lt;/script&gt; &lt;div id=&#34;result&#34;&gt;&lt;/div&gt; JS: 1 2 3 4 5 6 7 8 9 10 let { makeVector, RecordBatch } = Arrow; const i32s = new Int32Array([1, 2, 3, 4, 5, 6, 7]); let i32 = makeVector(i32s); const batch = new RecordBatch({ name: i32.data[0] }); i32 = batch.getChildAt(0); log(&]]></description>
+    <description><![CDATA[Vector 代码片段 CSS: 1 2 3 #result { color: gray; } HTML: 1 2 3 &lt;script src=&#34;https://cdn.jsdelivr.net/npm/apache-arrow@9.0.0/Arrow.es2015.min.js&#34;&gt;&lt;/script&gt; &lt;script src=&#34;http://blog.bugraph.com/hello.js&#34;&gt;&lt;/script&gt; &lt;div id=&#34;result&#34;&gt;&lt;/div&gt; JS: 1 2 3 4 5 6 7 8 9 10 let { makeVector, RecordBatch } = Arrow; const i32s = new Int32Array([1, 2, 3, 4, 5, 6, 7]); let i32 = makeVector(i32s); const batch = new RecordBatch({ name: i32.data[0] }); i32 = batch.getChildAt(0); lo]]></description>
 </item>
 <item>
     <title>Lodash使用</title>

@@ -3,7 +3,15 @@
         <title>WebGL - 分类 - Programing Hub</title>
         <link>http://blog.bugraph.com/categories/webgl/</link>
         <description>WebGL - 分类 - Programing Hub</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Wed, 07 Sep 2022 06:33:16 &#43;0800</lastBuildDate><atom:link href="http://blog.bugraph.com/categories/webgl/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Fri, 01 Sep 2023 10:22:46 &#43;0800</lastBuildDate><atom:link href="http://blog.bugraph.com/categories/webgl/" rel="self" type="application/rss+xml" /><item>
+    <title>WebGL 模板</title>
+    <link>http://blog.bugraph.com/webgl_basic/</link>
+    <pubDate>Fri, 01 Sep 2023 10:22:46 &#43;0800</pubDate>
+    <author>Jacob</author>
+    <guid>http://blog.bugraph.com/webgl_basic/</guid>
+    <description><![CDATA[一个简单的VertexShader 代码片段 CSS: 1 2 3 4 5 6 7 8 body { margin: 0; } canvas { width: 100vw; height: 100vh; display: block; } HTML: 1 2 &lt;canvas id=&#34;canvas&#34;&gt;&lt;/canvas&gt; &lt;script src=&#34;https://webglfundamentals.org/webgl/resources/webgl-utils.js&#34;&gt;&lt;/script&gt; JS: 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18]]></description>
+</item>
+<item>
     <title>Webgl Shadertoy</title>
     <link>http://blog.bugraph.com/webgl_shadertoy/</link>
     <pubDate>Wed, 07 Sep 2022 06:33:16 &#43;0800</pubDate>

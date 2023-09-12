@@ -11,6 +11,7 @@
 
 ```html
 <script src="https://cdn.jsdelivr.net/npm/apache-arrow@9.0.0/Arrow.es2015.min.js"></script>
+<script src="/hello.js"></script>
 <div id="result"></div>
 ```
 
